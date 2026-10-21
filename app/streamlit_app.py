@@ -61,13 +61,21 @@ if view == "Executive overview":
     for col, label, value in zip(cols, ["Task sample rows", "Reward sample rows", "Wallet sample rows", "Feature event samples"], [len(activity), len(rewards), len(wallet), len(events)]):
         col.metric(label, value)
     coverage = pd.DataFrame({"Domain": ["Task activity", "Rewards", "Wallet", "Withdrawals", "Referrals", "Feature events"], "Illustrative rows": [len(activity), len(rewards), len(wallet), len(withdrawals), len(referrals), len(events)]})
-    fig = px.bar(coverage, x="Domain", y="Illustrative rows", title="Sample records by domain", color_discrete_sequence=["#287d73"])\n    fig.update_layout(template="plotly_white", margin=dict(l=16, r=16, t=55, b=16), font=dict(family="Arial, sans-serif", color="#344054"), title_font_size=16, showlegend=False)\n    st.plotly_chart(fig, use_container_width=True)
+    fig = px.bar(coverage, x="Domain", y="Illustrative rows", title="Sample records by domain", color_discrete_sequence=["#287d73"])
+    fig.update_layout(template="plotly_white", margin=dict(l=16, r=16, t=55, b=16), font=dict(family="Arial, sans-serif", color="#344054"), title_font_size=16, showlegend=False)
+    st.plotly_chart(fig, use_container_width=True)
     st.info("The source Task 01 workbook supplied user/account data only. Transaction-domain samples here are generated in code solely to demonstrate proposed dashboard layouts.")
 elif view == "Engagement & tasks":
     st.subheader("Engagement and task diagnostics")
-    fig = px.bar(activity["task_status"].value_counts().rename_axis("Status").reset_index(name="Sample records"), x="Status", y="Sample records", title="Task status", color_discrete_sequence=["#287d73"])\n    fig.update_layout(template="plotly_white", margin=dict(l=16, r=16, t=55, b=16), font=dict(family="Arial, sans-serif", color="#344054"), title_font_size=16, showlegend=False)\n    st.plotly_chart(fig, use_container_width=True)
-    fig = px.bar(events["event_name"].value_counts().head(15).rename_axis("Event").reset_index(name="Sample events"), x="Event", y="Sample events", title="Feature event samples", color_discrete_sequence=["#6486b8"])\n    fig.update_layout(template="plotly_white", margin=dict(l=16, r=16, t=55, b=16), font=dict(family="Arial, sans-serif", color="#344054"), title_font_size=16, showlegend=False)\n    st.plotly_chart(fig, use_container_width=True)
-    fig = px.histogram(activity, x="task_category", title="Task category samples", color_discrete_sequence=["#6486b8"])\n    fig.update_layout(template="plotly_white", margin=dict(l=16, r=16, t=55, b=16), font=dict(family="Arial, sans-serif", color="#344054"), title_font_size=16, showlegend=False)\n    st.plotly_chart(fig, use_container_width=True)
+    fig = px.bar(activity["task_status"].value_counts().rename_axis("Status").reset_index(name="Sample records"), x="Status", y="Sample records", title="Task status", color_discrete_sequence=["#287d73"])
+    fig.update_layout(template="plotly_white", margin=dict(l=16, r=16, t=55, b=16), font=dict(family="Arial, sans-serif", color="#344054"), title_font_size=16, showlegend=False)
+    st.plotly_chart(fig, use_container_width=True)
+    fig = px.bar(events["event_name"].value_counts().head(15).rename_axis("Event").reset_index(name="Sample events"), x="Event", y="Sample events", title="Feature event samples", color_discrete_sequence=["#6486b8"])
+    fig.update_layout(template="plotly_white", margin=dict(l=16, r=16, t=55, b=16), font=dict(family="Arial, sans-serif", color="#344054"), title_font_size=16, showlegend=False)
+    st.plotly_chart(fig, use_container_width=True)
+    fig = px.histogram(activity, x="task_category", title="Task category samples", color_discrete_sequence=["#6486b8"])
+    fig.update_layout(template="plotly_white", margin=dict(l=16, r=16, t=55, b=16), font=dict(family="Arial, sans-serif", color="#344054"), title_font_size=16, showlegend=False)
+    st.plotly_chart(fig, use_container_width=True)
     st.caption("A production conversion funnel requires an approved eligible-start denominator and authoritative completion/validation states.")
 elif view == "Rewards & wallet":
     left, right = st.columns(2)
@@ -91,7 +99,12 @@ else:
         ["Privacy and retention", "Design recommendations only", "Security/legal owner to approve retention and access roles"],
     ], columns=["Area", "Evidence available", "Gap / next action"])
     st.dataframe(gaps, use_container_width=True, hide_index=True)
-    st.markdown("**Recommended order**\n1. Confirm source-of-truth tables, stable IDs, timezone and status enums.\n2. Instrument critical lifecycle events and maintain immutable reward/wallet ledgers.\n3. Add duplicate, chronology, foreign-key and reconciliation checks.\n4. Validate KPI formulas with business owners.\n5. Publish business dashboards only after source data and definitions are approved.")
+    st.markdown("**Recommended order**
+1. Confirm source-of-truth tables, stable IDs, timezone and status enums.
+2. Instrument critical lifecycle events and maintain immutable reward/wallet ledgers.
+3. Add duplicate, chronology, foreign-key and reconciliation checks.
+4. Validate KPI formulas with business owners.
+5. Publish business dashboards only after source data and definitions are approved.")
 
 st.divider()
 st.markdown("<div style=\"padding:.85rem 1rem;border:1px solid #dbe3ed;border-radius:12px;background:#fff;color:#64748b;font-size:.82rem\">No connection to VELOOP production systems is configured. All displayed records are illustrative demo data.</div>", unsafe_allow_html=True)
