@@ -4,10 +4,17 @@
 **Task:** Product Analytics, Data Readiness & Data Management Blueprint  
 **Status:** Analytical design and interactive demo prototype; production implementation is not verified.
 
-## Included
-- `app/streamlit_app.py`: interactive Streamlit dashboard prototype.
-- `docs/data_gaps_and_kpi_guardrails.md`: key evidence gaps and KPI interpretation rules.
+## Live demo
+[Open the Streamlit dashboard](https://veloop-task01-data-analytics.streamlit.app/)
+
+The live URL is published separately from this repository. A deployment link alone does not prove the app has passed browser smoke testing.
+
+## Included in this repository
+- `app/streamlit_app.py`: self-contained interactive Streamlit dashboard prototype.
+- `docs/data_gaps_and_kpi_guardrails.md`: evidence gaps and KPI interpretation rules.
 - `requirements.txt`: runtime dependencies.
+
+**Note:** The complete Task 01 submission report, design workbook, supplemental synthetic workbook and diagrams are bundled separately in the QA-clean submission ZIP. They are not currently stored as individual files in this GitHub repository.
 
 ## Demo data status
 **SIMULATED DATA — CREATED FOR ANALYTICAL TESTING.** The app generates small illustrative sample records in code. These are not VELOOP production data and must not be reported as company performance. No production-system connection is configured.
@@ -17,9 +24,6 @@
 pip install -r requirements.txt
 streamlit run app/streamlit_app.py
 ```
-
-## Deploy demo
-Deploy this repository with Streamlit Community Cloud and set the app entry point to `app/streamlit_app.py`.
 
 ## Before company sign-off
 1. Confirm whether authorized production datasets exist for tasks, rewards, wallet, withdrawals, referrals and feature events.
