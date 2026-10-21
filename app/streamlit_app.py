@@ -30,7 +30,9 @@ hr { border-color: #e5e7eb; }
 
 st.title("VELOOP Rewards Analytics")
 st.warning("SIMULATED DATA — CREATED FOR ANALYTICAL TESTING. These illustrative records are not production VELOOP data.")
-st.caption("Task 01 · Product analytics and data readiness")
+st.caption("TASK 01  /  PRODUCT ANALYTICS & DATA READINESS")
+st.markdown("Use the sidebar to explore the proposed dashboard. Every count and chart below is **illustrative demo data**, not a live business KPI.")
+st.markdown("---")
 
 @st.cache_data
 def make_demo_data():
@@ -51,6 +53,23 @@ def make_demo_data():
     return tasks, rewards, wallet, withdrawals, referrals, events
 
 activity, rewards, wallet, withdrawals, referrals, events = make_demo_data()
+
+def style_chart(fig, *, horizontal=False):
+    fig.update_layout(
+        template="plotly_white",
+        margin=dict(l=18, r=18, t=58, b=18),
+        font=dict(family="Arial, sans-serif", size=12, color="#344054"),
+        title=dict(font=dict(size=16, color="#202938"), x=0.02, xanchor="left"),
+        showlegend=False,
+        paper_bgcolor="#ffffff",
+        plot_bgcolor="#ffffff",
+        height=330,
+    )
+    fig.update_xaxes(showgrid=False, zeroline=False, automargin=True)
+    fig.update_yaxes(showgrid=True, gridcolor="#eef1f5", zeroline=False, automargin=True)
+    if horizontal:
+        fig.update_layout(height=360)
+    return fig
 with st.sidebar:
     st.markdown("#### Dashboard views")
     view = st.radio("Dashboard view", ["Executive overview", "Engagement & tasks", "Rewards & wallet", "Withdrawals & referrals", "Data readiness"])
@@ -62,7 +81,7 @@ if view == "Executive overview":
         col.metric(label, value)
     coverage = pd.DataFrame({"Domain": ["Task activity", "Rewards", "Wallet", "Withdrawals", "Referrals", "Feature events"], "Illustrative rows": [len(activity), len(rewards), len(wallet), len(withdrawals), len(referrals), len(events)]})
     fig = px.bar(coverage, x="Domain", y="Illustrative rows", title="Sample records by domain", color_discrete_sequence=["#287d73"])
-    fig.update_layout(template="plotly_white", margin=dict(l=16, r=16, t=55, b=16), font=dict(family="Arial, sans-serif", color="#344054"), title_font_size=16, showlegend=False)
+    style_chart(fig)
     st.plotly_chart(fig, use_container_width=True)
     st.info("The source Task 01 workbook supplied user/account data only. Transaction-domain samples here are generated in code solely to demonstrate proposed dashboard layouts.")
 elif view == "Engagement & tasks":
@@ -79,14 +98,14 @@ elif view == "Engagement & tasks":
     st.caption("A production conversion funnel requires an approved eligible-start denominator and authoritative completion/validation states.")
 elif view == "Rewards & wallet":
     left, right = st.columns(2)
-    left.plotly_chart(px.bar(rewards["reward_status"].value_counts().rename_axis("Status").reset_index(name="Sample records"), x="Status", y="Sample records", title="Illustrative reward statuses"), use_container_width=True)
-    right.plotly_chart(px.bar(wallet["transaction_type"].value_counts().rename_axis("Type").reset_index(name="Sample records"), x="Type", y="Sample records", title="Illustrative wallet transaction types"), use_container_width=True)
+    left.plotly_chart(style_chart(px.bar(rewards["reward_status"].value_counts().rename_axis("Status").reset_index(name="Sample records"), x="Status", y="Sample records", title="Reward statuses", color_discrete_sequence=["#287d73"])), use_container_width=True)
+    right.plotly_chart(style_chart(px.bar(wallet["transaction_type"].value_counts().rename_axis("Type").reset_index(name="Sample records"), x="Type", y="Sample records", title="Wallet transaction types", color_discrete_sequence=["#6486b8"])), use_container_width=True)
     st.dataframe(rewards.groupby("unit", dropna=False)["amount"].sum().reset_index(), use_container_width=True)
     st.warning("Values are illustrative. Different reward units must not be summed together; production ledger and reversal rules are unverified.")
 elif view == "Withdrawals & referrals":
     left, right = st.columns(2)
-    left.plotly_chart(px.bar(withdrawals["status"].value_counts().rename_axis("Status").reset_index(name="Sample records"), x="Status", y="Sample records", title="Illustrative withdrawal statuses"), use_container_width=True)
-    right.plotly_chart(px.bar(referrals["status"].value_counts().rename_axis("Status").reset_index(name="Sample records"), x="Status", y="Sample records", title="Illustrative referral statuses"), use_container_width=True)
+    left.plotly_chart(style_chart(px.bar(withdrawals["status"].value_counts().rename_axis("Status").reset_index(name="Sample records"), x="Status", y="Sample records", title="Withdrawal statuses", color_discrete_sequence=["#287d73"])), use_container_width=True)
+    right.plotly_chart(style_chart(px.bar(referrals["status"].value_counts().rename_axis("Status").reset_index(name="Sample records"), x="Status", y="Sample records", title="Referral statuses", color_discrete_sequence=["#6486b8"])), use_container_width=True)
     st.caption("Withdrawal durations need approved terminal-state timestamps. Referral registration, activation and conversion are distinct lifecycle stages.")
 else:
     st.subheader("Data readiness and evidence gaps")
