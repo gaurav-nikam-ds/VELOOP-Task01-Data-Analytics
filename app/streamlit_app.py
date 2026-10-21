@@ -99,12 +99,14 @@ else:
         ["Privacy and retention", "Design recommendations only", "Security/legal owner to approve retention and access roles"],
     ], columns=["Area", "Evidence available", "Gap / next action"])
     st.dataframe(gaps, use_container_width=True, hide_index=True)
-    st.markdown("**Recommended order**
+    st.markdown("""**Recommended order**
+
 1. Confirm source-of-truth tables, stable IDs, timezone and status enums.
 2. Instrument critical lifecycle events and maintain immutable reward/wallet ledgers.
 3. Add duplicate, chronology, foreign-key and reconciliation checks.
 4. Validate KPI formulas with business owners.
-5. Publish business dashboards only after source data and definitions are approved.")
+5. Publish business dashboards only after source data and definitions are approved.
+""")
 
 st.divider()
 st.markdown("<div style=\"padding:.85rem 1rem;border:1px solid #dbe3ed;border-radius:12px;background:#fff;color:#64748b;font-size:.82rem\">No connection to VELOOP production systems is configured. All displayed records are illustrative demo data.</div>", unsafe_allow_html=True)
