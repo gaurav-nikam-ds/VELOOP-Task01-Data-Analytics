@@ -6,38 +6,31 @@ st.set_page_config(page_title="VELOOP Rewards | Analytics Prototype", page_icon=
 
 st.markdown("""
 <style>
-:root { --ink:#172033; --muted:#64748b; --line:#e2e8f0; --panel:#ffffff; --brand:#0f766e; }
-.stApp { background: #f5f7fb; color: var(--ink); }
-.block-container { max-width: 1440px; padding-top: 1.5rem; padding-bottom: 3rem; }
-[data-testid="stHeader"] { background: rgba(245,247,251,.88); }
-[data-testid="stSidebar"] { background: #101827; border-right: 1px solid #243247; }
-[data-testid="stSidebar"] * { color: #e8eef7; }
-[data-testid="stSidebar"] [data-testid="stRadio"] label { padding: .45rem .55rem; border-radius: 8px; }
-[data-testid="stSidebar"] [data-testid="stRadio"] label:hover { background: #202d40; }
-h1, h2, h3 { letter-spacing: -0.035em; color: #172033; }
-h1 { font-size: 2.05rem !important; font-weight: 750 !important; }
-h2 { font-size: 1.45rem !important; font-weight: 700 !important; }
-h3 { font-size: 1.08rem !important; font-weight: 680 !important; }
-[data-testid="stMetric"] { background: #fff; border: 1px solid var(--line); padding: 1rem 1.05rem; border-radius: 14px; box-shadow: 0 2px 8px rgba(15,23,42,.035); }
-[data-testid="stMetricLabel"] p { color: #64748b; font-size: .82rem; }
-[data-testid="stMetricValue"] { color: #0f766e; font-weight: 750; }
-[data-testid="stPlotlyChart"], [data-testid="stDataFrame"], [data-testid="stTable"] { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: .4rem; box-shadow: 0 2px 8px rgba(15,23,42,.025); }
-[data-testid="stAlert"] { border-radius: 12px; }
-.stButton button, [data-testid="stDownloadButton"] button { border-radius: 9px; }
-hr { border-color: #dbe3ed; }
-.small-muted { color: #64748b; font-size: .9rem; }
-div[data-testid="stVerticalBlock"] > div:has(> [data-testid="stHorizontalBlock"]) { gap: 1rem; }
+.stApp { background: #f7f8fa; color: #202938; }
+.block-container { max-width: 1320px; padding-top: 1.25rem; padding-bottom: 2.5rem; }
+[data-testid="stHeader"] { background: #f7f8fa; }
+[data-testid="stSidebar"] { background: #ffffff; border-right: 1px solid #e5e7eb; }
+[data-testid="stSidebar"] * { color: #202938; }
+h1, h2, h3 { color: #202938; letter-spacing: -0.02em; }
+h1 { font-size: 1.9rem !important; font-weight: 700 !important; }
+h2 { font-size: 1.35rem !important; font-weight: 650 !important; }
+h3 { font-size: 1.05rem !important; font-weight: 650 !important; }
+[data-testid="stMetric"] { background: #fff; border: 1px solid #e5e7eb; padding: .85rem 1rem; border-radius: 10px; }
+[data-testid="stMetricLabel"] p { color: #667085; font-size: .82rem; }
+[data-testid="stMetricValue"] { color: #176b63; font-weight: 700; }
+[data-testid="stPlotlyChart"], [data-testid="stDataFrame"] { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: .25rem; }
+[data-testid="stAlert"] { border-radius: 9px; }
+hr { border-color: #e5e7eb; }
 @media (max-width: 768px) {
- .block-container { padding: 1rem .8rem 2rem; }
- h1 { font-size: 1.6rem !important; }
- [data-testid="stMetric"] { padding: .7rem; }
+ .block-container { padding: .8rem .7rem 1.5rem; }
+ h1 { font-size: 1.55rem !important; }
 }
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown("""<div style="display:flex;align-items:center;gap:12px;margin:.1rem 0 .3rem"><div style="background:#0f766e;color:white;border-radius:12px;padding:10px 13px;font-size:1.25rem;font-weight:800;letter-spacing:-.04em">V</div><div><div style="font-size:.78rem;color:#0f766e;font-weight:750;letter-spacing:.12em;text-transform:uppercase">VELOOP REWARDS</div><div style="font-size:1.85rem;color:#172033;font-weight:800;letter-spacing:-.045em;line-height:1.2">Product Analytics Dashboard</div></div></div>""", unsafe_allow_html=True)
-st.warning("SIMULATED DATA — CREATED FOR ANALYTICAL TESTING. This demo uses illustrative records generated in code; it is not production VELOOP data.")
-st.caption("TASK 01  /  Product analytics, data readiness & data management")
+st.title("VELOOP Rewards Analytics")
+st.warning("SIMULATED DATA — CREATED FOR ANALYTICAL TESTING. These illustrative records are not production VELOOP data.")
+st.caption("Task 01 · Product analytics and data readiness")
 
 @st.cache_data
 def make_demo_data():
@@ -59,22 +52,22 @@ def make_demo_data():
 
 activity, rewards, wallet, withdrawals, referrals, events = make_demo_data()
 with st.sidebar:
-    st.markdown("### Navigation")
+    st.markdown("#### Dashboard views")
     view = st.radio("Dashboard view", ["Executive overview", "Engagement & tasks", "Rewards & wallet", "Withdrawals & referrals", "Data readiness"])
-    st.caption("Prototype · illustrative records only")
+    st.caption("Prototype · sample data only")
 
 if view == "Executive overview":
     cols = st.columns(4)
     for col, label, value in zip(cols, ["Task sample rows", "Reward sample rows", "Wallet sample rows", "Feature event samples"], [len(activity), len(rewards), len(wallet), len(events)]):
         col.metric(label, value)
     coverage = pd.DataFrame({"Domain": ["Task activity", "Rewards", "Wallet", "Withdrawals", "Referrals", "Feature events"], "Illustrative rows": [len(activity), len(rewards), len(wallet), len(withdrawals), len(referrals), len(events)]})
-    st.plotly_chart(px.bar(coverage, x="Domain", y="Illustrative rows", title="Illustrative sample records by domain"), use_container_width=True)
+    fig = px.bar(coverage, x="Domain", y="Illustrative rows", title="Sample records by domain", color_discrete_sequence=["#287d73"])\n    fig.update_layout(template="plotly_white", margin=dict(l=16, r=16, t=55, b=16), font=dict(family="Arial, sans-serif", color="#344054"), title_font_size=16, showlegend=False)\n    st.plotly_chart(fig, use_container_width=True)
     st.info("The source Task 01 workbook supplied user/account data only. Transaction-domain samples here are generated in code solely to demonstrate proposed dashboard layouts.")
 elif view == "Engagement & tasks":
     st.subheader("Engagement and task diagnostics")
-    st.plotly_chart(px.bar(activity["task_status"].value_counts().rename_axis("Status").reset_index(name="Sample records"), x="Status", y="Sample records"), use_container_width=True)
-    st.plotly_chart(px.bar(events["event_name"].value_counts().head(15).rename_axis("Event").reset_index(name="Sample events"), x="Event", y="Sample events"), use_container_width=True)
-    st.plotly_chart(px.histogram(activity, x="task_category", title="Illustrative task categories"), use_container_width=True)
+    fig = px.bar(activity["task_status"].value_counts().rename_axis("Status").reset_index(name="Sample records"), x="Status", y="Sample records", title="Task status", color_discrete_sequence=["#287d73"])\n    fig.update_layout(template="plotly_white", margin=dict(l=16, r=16, t=55, b=16), font=dict(family="Arial, sans-serif", color="#344054"), title_font_size=16, showlegend=False)\n    st.plotly_chart(fig, use_container_width=True)
+    fig = px.bar(events["event_name"].value_counts().head(15).rename_axis("Event").reset_index(name="Sample events"), x="Event", y="Sample events", title="Feature event samples", color_discrete_sequence=["#6486b8"])\n    fig.update_layout(template="plotly_white", margin=dict(l=16, r=16, t=55, b=16), font=dict(family="Arial, sans-serif", color="#344054"), title_font_size=16, showlegend=False)\n    st.plotly_chart(fig, use_container_width=True)
+    fig = px.histogram(activity, x="task_category", title="Task category samples", color_discrete_sequence=["#6486b8"])\n    fig.update_layout(template="plotly_white", margin=dict(l=16, r=16, t=55, b=16), font=dict(family="Arial, sans-serif", color="#344054"), title_font_size=16, showlegend=False)\n    st.plotly_chart(fig, use_container_width=True)
     st.caption("A production conversion funnel requires an approved eligible-start denominator and authoritative completion/validation states.")
 elif view == "Rewards & wallet":
     left, right = st.columns(2)
