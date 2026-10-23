@@ -10,7 +10,7 @@
 The live URL is published separately from this repository. A deployment link alone does not prove the app has passed browser smoke testing.
 
 ## Included in this repository
-- `app/streamlit_app.py`: self-contained interactive Streamlit dashboard prototype.
+- `app/streamlit_app.py`: interactive dashboard with executive KPI cards, daily trend lines, domain mix, lifecycle bars, domain comparison, engagement heatmap, duration distributions, reward/wallet views, referral and withdrawal funnels, processing-time analysis, readiness matrix, and sidebar date/domain filters.
 - `docs/data_gaps_and_kpi_guardrails.md`: evidence gaps and KPI interpretation rules.
 - `requirements.txt`: runtime dependencies.
 
