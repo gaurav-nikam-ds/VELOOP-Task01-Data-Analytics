@@ -98,7 +98,7 @@ elif view == "Engagement & tasks":
     style_chart(fig)
     st.plotly_chart(fig, use_container_width=True)
     fig = px.bar(events["event_name"].value_counts().head(15).rename_axis("Event").reset_index(name="Sample events"), x="Event", y="Sample events", title="Feature event samples", color_discrete_sequence=["#6486b8"])
-    fig.update_layout(template="plotly_white", margin=dict(l=16, r=16, t=55, b=16), font=dict(family="Arial, sans-serif", color="#344054"), title_font_size=16, showlegend=False)
+    style_chart(fig)
     st.plotly_chart(fig, use_container_width=True)
     fig = px.histogram(activity, x="task_category", title="Task category samples", color_discrete_sequence=["#6486b8"])
     fig.update_layout(template="plotly_white", margin=dict(l=16, r=16, t=55, b=16), font=dict(family="Arial, sans-serif", color="#344054"), title_font_size=16, showlegend=False)
