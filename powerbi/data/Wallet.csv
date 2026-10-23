@@ -1,0 +1,7 @@
+date,movement,amount
+2026-10-01,Credit,42.00
+2026-10-01,Debit,15.00
+2026-10-02,Credit,67.00
+2026-10-03,Reversal,-7.00
+2026-10-04,Credit,55.00
+2026-10-05,Debit,18.00
