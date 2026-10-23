@@ -1,0 +1,6 @@
+date,status,amount,processing_hours
+2026-10-01,Completed,250,8.5
+2026-10-02,Pending,180,12.1
+2026-10-03,Under review,320,19.4
+2026-10-04,Failed,110,6.2
+2026-10-05,Completed,450,14.2
