@@ -1,0 +1,13 @@
+date,domain,status,user_id,points,duration_min
+2026-10-01,Surveys,Completed,10001,42,8.5
+2026-10-01,Games,Started,10002,18,6.1
+2026-10-02,Offers,Completed,10003,67,11.4
+2026-10-02,Learning,Validated,10001,24,7.8
+2026-10-03,Referrals,Completed,10004,39,13.2
+2026-10-03,Surveys,Rejected,10005,0,4.3
+2026-10-04,Games,Completed,10006,55,9.1
+2026-10-04,Offers,Expired,10002,0,3.2
+2026-10-05,Learning,Started,10007,16,5.6
+2026-10-05,Surveys,Completed,10003,38,7.2
+2026-10-06,Referrals,Validated,10008,21,10.2
+2026-10-06,Offers,Completed,10009,72,12.1
