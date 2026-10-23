@@ -77,8 +77,15 @@ with st.sidebar:
 
 if view == "Executive overview":
     cols = st.columns(4)
-    for col, label, value in zip(cols, ["Task sample rows", "Reward sample rows", "Wallet sample rows", "Feature event samples"], [len(activity), len(rewards), len(wallet), len(events)]):
+    task_completion_rate = (activity["task_status"].eq("completed").sum() / len(activity) * 100) if len(activity) else 0
+    credited_rewards = int(rewards.loc[rewards["reward_status"].eq("credited"), "amount"].count())
+    for col, label, value in zip(
+        cols,
+        ["Task sample rows", "Task completion share", "Credited reward samples", "Feature event samples"],
+        [len(activity), f"{task_completion_rate:.0f}%", credited_rewards, len(events)],
+    ):
         col.metric(label, value)
+    st.caption("All metrics are calculated from the small illustrative sample below. They are not production performance results.")
     coverage = pd.DataFrame({"Domain": ["Task activity", "Rewards", "Wallet", "Withdrawals", "Referrals", "Feature events"], "Illustrative rows": [len(activity), len(rewards), len(wallet), len(withdrawals), len(referrals), len(events)]})
     fig = px.bar(coverage, x="Domain", y="Illustrative rows", title="Sample records by domain", color_discrete_sequence=["#287d73"])
     style_chart(fig)
@@ -86,8 +93,9 @@ if view == "Executive overview":
     st.info("The source Task 01 workbook supplied user/account data only. Transaction-domain samples here are generated in code solely to demonstrate proposed dashboard layouts.")
 elif view == "Engagement & tasks":
     st.subheader("Engagement and task diagnostics")
+    st.caption("Use these charts to demonstrate proposed analyses; sample sizes are intentionally small.")
     fig = px.bar(activity["task_status"].value_counts().rename_axis("Status").reset_index(name="Sample records"), x="Status", y="Sample records", title="Task status", color_discrete_sequence=["#287d73"])
-    fig.update_layout(template="plotly_white", margin=dict(l=16, r=16, t=55, b=16), font=dict(family="Arial, sans-serif", color="#344054"), title_font_size=16, showlegend=False)
+    style_chart(fig)
     st.plotly_chart(fig, use_container_width=True)
     fig = px.bar(events["event_name"].value_counts().head(15).rename_axis("Event").reset_index(name="Sample events"), x="Event", y="Sample events", title="Feature event samples", color_discrete_sequence=["#6486b8"])
     fig.update_layout(template="plotly_white", margin=dict(l=16, r=16, t=55, b=16), font=dict(family="Arial, sans-serif", color="#344054"), title_font_size=16, showlegend=False)
@@ -100,13 +108,14 @@ elif view == "Rewards & wallet":
     left, right = st.columns(2)
     left.plotly_chart(style_chart(px.bar(rewards["reward_status"].value_counts().rename_axis("Status").reset_index(name="Sample records"), x="Status", y="Sample records", title="Reward statuses", color_discrete_sequence=["#287d73"])), use_container_width=True)
     right.plotly_chart(style_chart(px.bar(wallet["transaction_type"].value_counts().rename_axis("Type").reset_index(name="Sample records"), x="Type", y="Sample records", title="Wallet transaction types", color_discrete_sequence=["#6486b8"])), use_container_width=True)
-    st.dataframe(rewards.groupby("unit", dropna=False)["amount"].sum().reset_index(), use_container_width=True)
+    st.dataframe(rewards.groupby("unit", dropna=False)["amount"].sum().reset_index().rename(columns={"unit": "Reward unit", "amount": "Illustrative net amount"}), use_container_width=True, hide_index=True)
     st.warning("Values are illustrative. Different reward units must not be summed together; production ledger and reversal rules are unverified.")
 elif view == "Withdrawals & referrals":
     left, right = st.columns(2)
     left.plotly_chart(style_chart(px.bar(withdrawals["status"].value_counts().rename_axis("Status").reset_index(name="Sample records"), x="Status", y="Sample records", title="Withdrawal statuses", color_discrete_sequence=["#287d73"])), use_container_width=True)
     right.plotly_chart(style_chart(px.bar(referrals["status"].value_counts().rename_axis("Status").reset_index(name="Sample records"), x="Status", y="Sample records", title="Referral statuses", color_discrete_sequence=["#6486b8"])), use_container_width=True)
     st.caption("Withdrawal durations need approved terminal-state timestamps. Referral registration, activation and conversion are distinct lifecycle stages.")
+    st.info("Do not compare these sample counts with real operational targets. The prototype has no production source connection.")
 else:
     st.subheader("Data readiness and evidence gaps")
     gaps = pd.DataFrame([
@@ -118,6 +127,7 @@ else:
         ["Privacy and retention", "Design recommendations only", "Security/legal owner to approve retention and access roles"],
     ], columns=["Area", "Evidence available", "Gap / next action"])
     st.dataframe(gaps, use_container_width=True, hide_index=True)
+    st.caption("Priority: validate source access and metric definitions before presenting these KPIs as business results.")
     st.markdown("""**Recommended order**
 
 1. Confirm source-of-truth tables, stable IDs, timezone and status enums.
