@@ -1,0 +1,65 @@
+{
+  "name": "VELOOP Product Intelligence",
+  "dataColors": [
+    "#087E8B",
+    "#4677C8",
+    "#8064A2",
+    "#D58B22",
+    "#27856B",
+    "#C65D5D",
+    "#98A2B3"
+  ],
+  "background": "#F5F7FA",
+  "foreground": "#182230",
+  "tableAccent": "#087E8B",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "title": [
+          {
+            "show": true,
+            "fontFace": "Aptos Display",
+            "fontSize": 14,
+            "color": {
+              "solid": {
+                "color": "#182230"
+              }
+            }
+          }
+        ],
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#E4E7EC"
+              }
+            },
+            "radius": 8
+          }
+        ],
+        "visualHeader": [
+          {
+            "show": true,
+            "foreground": {
+              "solid": {
+                "color": "#667085"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
