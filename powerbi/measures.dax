@@ -1,0 +1,54 @@
+// VELOOP Task 01 — starter DAX measures
+// Table names below assume CSV imports are renamed to Tasks, Rewards, Wallet, Withdrawals, Referrals.
+// These calculations are illustrative and should be validated against approved business definitions.
+
+Task Records =
+COUNTROWS ( Tasks )
+
+Completed Task Records =
+CALCULATE (
+    [Task Records],
+    Tasks[status] = "Completed"
+)
+
+Task Completion Rate =
+DIVIDE ( [Completed Task Records], [Task Records], 0 )
+
+Distinct Demo Users =
+DISTINCTCOUNT ( Tasks[user_id] )
+
+Points on Completed Tasks =
+CALCULATE (
+    SUM ( Tasks[points] ),
+    Tasks[status] = "Completed"
+)
+
+Average Completed Task Duration (min) =
+CALCULATE (
+    AVERAGE ( Tasks[duration_min] ),
+    Tasks[status] = "Completed"
+)
+
+Reward Sample Records =
+COUNTROWS ( Rewards )
+
+Reward Amount (Illustrative) =
+SUM ( Rewards[amount] )
+
+Wallet Movement Records =
+COUNTROWS ( Wallet )
+
+Withdrawal Sample Records =
+COUNTROWS ( Withdrawals )
+
+Median Withdrawal Processing Hours =
+MEDIAN ( Withdrawals[processing_hours] )
+
+Referral Sample Records =
+COUNTROWS ( Referrals )
+
+Production Source Connections =
+0
+
+Demo Data Disclaimer =
+"Synthetic demo data only — not production performance"
