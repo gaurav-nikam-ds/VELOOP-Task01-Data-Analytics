@@ -1,364 +1,154 @@
-import numpy as np
-import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
 import streamlit as st
+import pandas as pd
 
-st.set_page_config(page_title="VELOOP | Product Intelligence", page_icon="◈", layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(
+    page_title="VELOOP Rewards | Task 01 Analytics Blueprint",
+    page_icon="◈",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
 
-# Visual system: restrained enterprise palette, high contrast, consistent spacing.
 st.markdown("""
 <style>
-:root { --ink:#182230; --muted:#667085; --line:#e4e7ec; --canvas:#f5f7fa; --teal:#087e8b; --blue:#4677c8; --violet:#8064a2; --amber:#d58b22; }
+:root { --ink:#182230; --muted:#667085; --line:#e4e7ec; --canvas:#f5f7fa; --teal:#087e8b; }
 .stApp { background:var(--canvas); color:var(--ink); }
-.block-container { max-width:1500px; padding:1.25rem 2rem 3rem; }
-[data-testid="stHeader"] { background:rgba(245,247,250,.92); }
+.block-container { max-width:1450px; padding:1.25rem 1.4rem 3rem; }
 [data-testid="stSidebar"] { background:#fff; border-right:1px solid var(--line); }
-[data-testid="stSidebar"] * { color:var(--ink); }
-h1,h2,h3 { color:var(--ink); letter-spacing:-.035em; }
-h1 { font-size:2rem!important; font-weight:750!important; }
-h2 { font-size:1.32rem!important; font-weight:700!important; }
-h3 { font-size:1rem!important; font-weight:650!important; }
-[data-testid="stMetric"] { background:#fff; border:1px solid var(--line); border-radius:14px; padding:1rem 1.05rem; box-shadow:0 1px 2px rgba(16,24,40,.025); min-height:118px; }
-[data-testid="stMetricLabel"] p { color:var(--muted); font-size:.79rem; font-weight:600; }
-[data-testid="stMetricValue"] { color:var(--ink); font-weight:750; font-size:1.8rem; }
-[data-testid="stMetricDelta"] { font-size:.76rem; }
-[data-testid="stPlotlyChart"] { background:#fff; border:1px solid var(--line); border-radius:14px; padding:.35rem; }
-[data-testid="stDataFrame"] { background:#fff; border:1px solid var(--line); border-radius:12px; }
-[data-testid="stAlert"] { border-radius:12px; }
-hr { border-color:var(--line); }
-div[data-testid="stVerticalBlockBorderWrapper"] { border-color:var(--line)!important; border-radius:14px!important; }
-.hero { background:linear-gradient(115deg,#102a43 0%,#174a63 52%,#087e8b 100%); border-radius:18px; padding:1.5rem 1.7rem; color:#fff; margin-bottom:1rem; box-shadow:0 8px 24px rgba(16,42,67,.12); }
-.hero-kicker { color:#b8e5e8; font-size:.73rem; font-weight:750; letter-spacing:.14em; text-transform:uppercase; }
-.hero-title { color:#fff; font-size:1.8rem; line-height:1.2; font-weight:760; margin:.35rem 0 .45rem; letter-spacing:-.04em; }
-.hero-sub { color:#e3f2f4; font-size:.94rem; max-width:850px; line-height:1.55; }
-.section-label { color:#667085; font-size:.72rem; font-weight:750; letter-spacing:.12em; text-transform:uppercase; margin:.25rem 0 .65rem; }
-.insight { background:#fff; border:1px solid var(--line); border-left:4px solid var(--teal); border-radius:10px; padding:.9rem 1rem; color:#344054; line-height:1.55; }
-.mini-note { color:#667085; font-size:.78rem; }
-@media (max-width:800px) { .block-container { padding:.7rem .7rem 1.5rem; } .hero { padding:1.1rem; } .hero-title { font-size:1.45rem; } h1 { font-size:1.55rem!important; } }
+h1,h2,h3 { letter-spacing:-.025em; color:var(--ink); }
+[data-testid="stMetric"] { background:#fff; border:1px solid var(--line); border-radius:12px; padding:1rem; }
+[data-testid="stDataFrame"] { background:#fff; border:1px solid var(--line); border-radius:10px; }
+.hero { background:linear-gradient(115deg,#102a43,#174a63 60%,#087e8b); border-radius:16px; padding:1.5rem; color:white; margin-bottom:1rem; }
+.hero h1 { color:white; font-size:1.8rem; }
+.hero p { color:#e3f2f4; max-width:950px; }
+.note { border-left:4px solid var(--teal); background:white; padding:.85rem 1rem; border-radius:8px; }
+@media (max-width:800px) { .block-container { padding:.65rem .65rem 1.5rem; } .hero { padding:1rem; } }
 </style>
 """, unsafe_allow_html=True)
 
-@st.cache_data
-def build_demo():
-    # Deterministic synthetic data for visual prototyping; never production records.
-    rng = np.random.default_rng(42)
-    n = 1800
-    dates = pd.date_range(end=pd.Timestamp.today().normalize(), periods=90, freq="D")
-    day_idx = rng.integers(0, len(dates), n)
-    domain = rng.choice(["Surveys", "Games", "Offers", "Learning", "Referrals"], n, p=[.30,.22,.24,.14,.10])
-    status = rng.choice(["Completed", "Started", "Validated", "Rejected", "Expired"], n, p=[.48,.22,.13,.09,.08])
-    user_ids = rng.integers(10001, 10601, n)
-    category_multiplier = pd.Series(domain).map({"Surveys":1.0,"Games":1.2,"Offers":1.5,"Learning":.8,"Referrals":1.1}).to_numpy()
-    points = np.maximum(0, np.round(rng.gamma(2.1, 18, n) * category_multiplier, 0)).astype(int)
-    task = pd.DataFrame({"date":dates[day_idx],"domain":domain,"status":status,"user_id":user_ids,"points":points,
-                         "duration_min":np.round(rng.gamma(2.5, 4.5, n),1)})
-    task["completed_flag"] = task["status"].eq("Completed")
-    task["month_day"] = task["date"].dt.strftime("%d %b")
-    reward = pd.DataFrame({"date":dates[rng.integers(0,90,850)],"type":rng.choice(["Earned","Redeemed","Reversed","Pending"],850,p=[.56,.22,.08,.14]),
-                           "unit":rng.choice(["VE","XP","Gems"],850,p=[.52,.33,.15]),"amount":np.round(rng.gamma(2,24,850),0)})
-    wallet = pd.DataFrame({"date":dates[rng.integers(0,90,620)],"movement":rng.choice(["Credit","Debit","Reversal"],620,p=[.59,.33,.08]),
-                           "amount":np.round(rng.gamma(2.4,32,620),2)})
-    withdrawal = pd.DataFrame({"date":dates[rng.integers(0,90,240)],"status":rng.choice(["Completed","Pending","Under review","Failed"],240,p=[.62,.16,.13,.09]),
-                               "amount":np.round(rng.gamma(2.6,110,240),2),"processing_hours":np.round(rng.gamma(2.5,8,240),1)})
-    referral = pd.DataFrame({"date":dates[rng.integers(0,90,310)],"stage":rng.choice(["Registered","Activated","Converted","Pending"],310,p=[.37,.27,.20,.16])})
-    return task, reward, wallet, withdrawal, referral
+st.markdown("""
+<div class="hero">
+  <h1>VELOOP Rewards — Product Analytics & Data Readiness</h1>
+  <p>Task 01 deliverable review, source-file audit, dashboard specification and implementation dependencies. This workspace reports only facts recorded in the supplied assignment materials and audit; it does not fabricate production transactions or company performance.</p>
+</div>
+""", unsafe_allow_html=True)
 
-tasks, rewards, wallet, withdrawals, referrals = build_demo()
-PALETTE = {"teal":"#087e8b","blue":"#4677c8","violet":"#8064a2","amber":"#d58b22","red":"#c65d5d","green":"#27856b"}
-STATUS_COLORS = {"Completed":PALETTE["teal"],"Started":PALETTE["blue"],"Validated":PALETTE["green"],"Rejected":PALETTE["red"],"Expired":"#98a2b3",
-                 "Earned":PALETTE["teal"],"Redeemed":PALETTE["blue"],"Reversed":PALETTE["red"],"Pending":PALETTE["amber"],
-                 "Credit":PALETTE["teal"],"Debit":PALETTE["blue"],"Reversal":PALETTE["red"],"Under review":PALETTE["violet"],"Failed":PALETTE["red"],
-                 "Registered":PALETTE["blue"],"Activated":PALETTE["teal"],"Converted":PALETTE["green"]}
-
-def polish(fig, height=340, legend=False):
-    fig.update_layout(template="plotly_white",height=height,margin=dict(l=18,r=18,t=54,b=18),
-        font=dict(family="Inter, Arial, sans-serif",size=12,color="#344054"),
-        title=dict(font=dict(size=15,color="#182230"),x=.025,xanchor="left"),
-        paper_bgcolor="#ffffff",plot_bgcolor="#ffffff",showlegend=legend,
-        legend=dict(orientation="h",yanchor="bottom",y=1.02,xanchor="right",x=1) if legend else None,
-        hoverlabel=dict(bgcolor="#182230",font_size=12,font_color="#ffffff"))
-    fig.update_xaxes(showgrid=False,zeroline=False,automargin=True,linecolor="#eaecf0")
-    fig.update_yaxes(showgrid=True,gridcolor="#f0f2f5",zeroline=False,automargin=True)
-    return fig
-
-def section(label, title, subtitle=None):
-    st.markdown(f'<div class="section-label">{label}</div>',unsafe_allow_html=True)
-    st.subheader(title)
-    if subtitle: st.caption(subtitle)
-
-def metric_row(df):
-    completed = df["completed_flag"].mean()*100 if len(df) else 0
-    active = df["user_id"].nunique()
-    points = int(df.loc[df["completed_flag"],"points"].sum())
-    avg_duration = df.loc[df["completed_flag"],"duration_min"].mean() if df["completed_flag"].any() else 0
-    cols=st.columns(4)
-    cols[0].metric("Task records",f"{len(df):,}",help="Synthetic task records after selected filters")
-    cols[1].metric("Completion rate",f"{completed:.1f}%",help="Completed records / all displayed task records")
-    cols[2].metric("Distinct demo users",f"{active:,}")
-    cols[3].metric("Points on completed tasks",f"{points:,}",help="Illustrative points; not a financial value")
-    return avg_duration
+st.warning("SOURCE LIMITATION: The Task 01 brief identifies its supplied data as simulated. No authorized production extract or production-system connection was supplied. Therefore, real VELOOP business performance cannot be calculated from the available files.")
 
 with st.sidebar:
-    st.markdown("## ◈ VELOOP")
-    st.caption("PRODUCT INTELLIGENCE · TASK 01")
+    st.markdown("## ◈ VELOOP REWARDS")
+    st.caption("TASK 01 · ANALYTICS BLUEPRINT")
+    page = st.radio("WORKSPACE", [
+        "Executive status",
+        "Supplied data audit",
+        "Deliverable tracker",
+        "Seven-dashboard blueprint",
+        "Acceptance blockers",
+    ])
     st.markdown("---")
-    view=st.radio("WORKSPACE",["Executive overview","Engagement & tasks","Rewards & wallet","Withdrawals & referrals","Data readiness"],label_visibility="visible")
-    st.markdown("---")
-    st.markdown("**Demo controls**")
-    date_range=st.date_input("Activity window",value=(tasks.date.min().date(),tasks.date.max().date()),min_value=tasks.date.min().date(),max_value=tasks.date.max().date())
-    domains=st.multiselect("Task domains",options=sorted(tasks.domain.unique()),default=sorted(tasks.domain.unique()))
-    st.markdown("---")
-    st.caption("Prototype build 03 · Synthetic data")
-    st.caption("No production source connection")
-    st.markdown("**Submission documents**")
-    st.markdown("[Task 01 checklist](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/blob/main/docs/TASK01_REQUIREMENTS_CHECKLIST.md)")
-    st.markdown("[Three-file audit](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/blob/main/docs/THREE_SOURCE_FILES_AUDIT.md)")
-    st.markdown("[Data gaps & KPI guardrails](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/blob/main/docs/data_gaps_and_kpi_guardrails.md)")
-    st.markdown("[Repository README](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics)")
+    st.caption("Evidence basis: supplied Task 01 PDF, Task 01 workbook, separately supplied Task 02 workbook and assignment email.")
 
-if isinstance(date_range,(tuple,list)) and len(date_range)==2:
-    start_date,end_date=pd.Timestamp(date_range[0]),pd.Timestamp(date_range[1])
-else:
-    start_date,end_date=tasks.date.min(),tasks.date.max()
-filtered=tasks[tasks.date.between(start_date,end_date)&tasks.domain.isin(domains)].copy()
-if filtered.empty:
-    st.info("No records match the selected filters. Showing the full synthetic sample so the charts remain usable; adjust the sidebar filters to explore a narrower window.")
-    filtered=tasks.copy()
+if page == "Executive status":
+    st.subheader("Current submission status")
+    c1,c2,c3,c4 = st.columns(4)
+    c1.metric("Required final deliverables", "21")
+    c2.metric("Proposed KPI definitions", "36")
+    c3.metric("Proposed dictionary fields", "90")
+    c4.metric("Production connections", "0")
+    st.markdown("""
+    **What is established**
+    - The governing assignment is a product-analytics and data-readiness blueprint, not evidence that a production analytics system already exists.
+    - The Task 01 workbook provides user-profile clean and messy tabs, plus dictionary/summary tabs.
+    - The separately supplied behavior workbook labels itself Task 02 and is kept separate pending coordinator approval.
+    - Event plans, dictionary fields, KPI definitions, logical model, dashboard specifications, governance and pipeline are design proposals until the relevant company owners approve them.
+    """)
+    st.markdown('<div class="note"><b>Decision:</b> do not publish actual-company KPIs, payout metrics, retention rates or conversion rates until authorized production data and approved definitions are available.</div>', unsafe_allow_html=True)
 
-# Lightweight exports make the prototype easier to review and inspect.
-export_summary = pd.DataFrame([
-    {"Metric":"Filtered task records","Value":int(len(filtered)),"Definition":"Number of synthetic task records after current sidebar filters"},
-    {"Metric":"Completion rate (%)","Value":round(float(filtered["completed_flag"].mean()*100),2) if len(filtered) else 0,"Definition":"Completed records divided by displayed task records"},
-    {"Metric":"Distinct demo users","Value":int(filtered["user_id"].nunique()),"Definition":"Distinct synthetic user IDs in displayed task records"},
-    {"Metric":"Points on completed tasks","Value":int(filtered.loc[filtered["completed_flag"],"points"].sum()),"Definition":"Illustrative points on completed task records; not cash value"},
-])
-st.sidebar.download_button("Download filtered task CSV",data=filtered.to_csv(index=False).encode("utf-8"),file_name="velop_demo_filtered_tasks.csv",mime="text/csv",use_container_width=True,disabled=filtered.empty)
-st.sidebar.download_button("Download KPI summary CSV",data=export_summary.to_csv(index=False).encode("utf-8"),file_name="velop_demo_kpi_summary.csv",mime="text/csv",use_container_width=True)
+elif page == "Supplied data audit":
+    st.subheader("Task 01 source workbook")
+    a,b,c,d = st.columns(4)
+    a.metric("Clean users", "1,000")
+    b.metric("Columns per user tab", "28")
+    c.metric("Messy audit rows", "1,008")
+    d.metric("Repeated IDs in messy tab", "8")
+    st.dataframe(pd.DataFrame([
+        {"Source sheet":"Users_1000_Clean","Rows":1000,"Columns":28,"Finding":"1,000 unique, non-null user_id values; 0 exact duplicate rows"},
+        {"Source sheet":"Users_1000_Clean","Rows":1000,"Columns":28,"Finding":"881 missing referral_source_detail; 72 missing last_login_datetime"},
+        {"Source sheet":"Users_Messy_Audit","Rows":1008,"Columns":28,"Finding":"1,000 unique IDs; 8 repeated IDs"},
+        {"Source sheet":"Users_Messy_Audit","Rows":1008,"Columns":28,"Finding":"1 missing registration timestamp; 73 missing last-login timestamps"},
+        {"Source sheet":"Users_Messy_Audit","Rows":1008,"Columns":28,"Finding":"885 missing referral details; 4 negative days_since_registration values"},
+    ]), hide_index=True, use_container_width=True)
+    st.subheader("Separate Task 02 workbook — not merged")
+    st.dataframe(pd.DataFrame([
+        {"Dataset":"Sessions","Rows":7913,"Audited finding":"984 distinct user IDs; no orphan user IDs against Task 02 profiles"},
+        {"Dataset":"Primary feature events","Rows":35704,"Audited finding":"35,704 unique event IDs; date range 2026-04-02 to 2026-09-15; no user ID orphans"},
+        {"Dataset":"Event audit","Rows":35714,"Audited finding":"10 exact duplicate rows"},
+        {"Dataset":"Daily activity","Rows":6667,"Audited finding":"Task 02 workbook summary; not treated as Task 01 source"},
+        {"Dataset":"Task activity","Rows":9846,"Audited finding":"Task 02 workbook summary; not treated as Task 01 source"},
+        {"Dataset":"Milestones","Rows":4799,"Audited finding":"Task 02 workbook summary; not treated as Task 01 source"},
+    ]), hide_index=True, use_container_width=True)
+    st.caption("These are counts/findings from the supplied simulated assignment workbooks, not actual VELOOP production statistics. Missingness should be interpreted against field-level rules; do not silently delete or correct records.")
 
-st.markdown(f"""
-<div class="hero">
- <div class="hero-kicker">VELOOP REWARDS · ANALYTICS BLUEPRINT</div>
- <div class="hero-title">Product performance, at a glance.</div>
- <div class="hero-sub">An interactive demonstration of how task engagement, reward movement, wallet activity and operational readiness can be explored. All records are synthetic and are used only to demonstrate visual design and analytical workflows.</div>
-</div>
-""",unsafe_allow_html=True)
-st.warning("DEMO DATA ONLY  ·  These charts are generated synthetic examples, not actual VELOOP performance or production data.")
-st.markdown("")
-
-if view=="Executive overview":
-    section("01 / BUSINESS SNAPSHOT","Executive overview","A high-level scan of engagement, sample activity and domain mix. Use the sidebar filters to explore the demo.")
-    avg_duration=metric_row(filtered)
-    c1,c2=st.columns([1.55,1])
-    with c1:
-        daily=filtered.groupby("date").agg(records=("user_id","size"),completed=("completed_flag","sum")).reset_index()
-        daily["completion_rate"]=np.where(daily["records"]>0,daily["completed"]/daily["records"]*100,0)
-        fig=go.Figure()
-        fig.add_trace(go.Scatter(x=daily.date,y=daily.records,mode="lines",name="Task records",line=dict(color=PALETTE["blue"],width=2.5),fill="tozeroy",fillcolor="rgba(70,119,200,.09)"))
-        fig.add_trace(go.Scatter(x=daily.date,y=daily.completed,mode="lines",name="Completed",line=dict(color=PALETTE["teal"],width=2.5)))
-        fig.update_layout(title="Activity trend · daily volume",xaxis_title=None,yaxis_title="Records",hovermode="x unified")
-        st.plotly_chart(polish(fig,360,True),use_container_width=True)
-    with c2:
-        mix=filtered.domain.value_counts().rename_axis("Domain").reset_index(name="Records")
-        fig=px.pie(mix,names="Domain",values="Records",hole=.68,color="Domain",color_discrete_sequence=[PALETTE["teal"],PALETTE["blue"],PALETTE["violet"],PALETTE["amber"],"#98a2b3"])
-        fig.update_traces(textposition="inside",textinfo="percent",hovertemplate="%{label}<br>%{value:,} records<extra></extra>")
-        fig.add_annotation(text=f"<b>{len(filtered):,}</b><br><span style='font-size:11px'>records</span>",x=.5,y=.5,showarrow=False,font=dict(size=20,color="#182230"))
-        fig.update_layout(title="Activity mix by domain")
-        st.plotly_chart(polish(fig,360),use_container_width=True)
-    c3,c4=st.columns(2)
-    with c3:
-        status=filtered.status.value_counts().rename_axis("Status").reset_index(name="Records")
-        fig=px.bar(status,x="Records",y="Status",orientation="h",color="Status",color_discrete_map=STATUS_COLORS)
-        fig.update_layout(title="Task lifecycle distribution",yaxis={"categoryorder":"total ascending"},xaxis_title="Records",yaxis_title=None)
-        st.plotly_chart(polish(fig,330),use_container_width=True)
-    with c4:
-        domain_summary=filtered.groupby("domain").agg(records=("user_id","size"),completion_rate=("completed_flag","mean"),unique_users=("user_id","nunique")).reset_index()
-        domain_summary["completion_rate"]*=100
-        fig=px.scatter(domain_summary,x="records",y="completion_rate",size="unique_users",color="domain",text="domain",
-                       color_discrete_sequence=[PALETTE["teal"],PALETTE["blue"],PALETTE["violet"],PALETTE["amber"],"#98a2b3"],
-                       labels={"records":"Task records","completion_rate":"Completion rate (%)","domain":"Domain","unique_users":"Distinct users"})
-        fig.update_traces(textposition="top center",marker=dict(opacity=.82,line=dict(width=1,color="#ffffff")))
-        fig.update_layout(title="Domain comparison · volume vs completion",showlegend=False)
-        st.plotly_chart(polish(fig,330),use_container_width=True)
-    # Decision-oriented interpretation generated from the currently filtered synthetic sample.
-    top_domain = domain_summary.sort_values("records", ascending=False).iloc[0] if not domain_summary.empty else None
-    best_rate = domain_summary.sort_values("completion_rate", ascending=False).iloc[0] if not domain_summary.empty else None
-    lowest_rate = domain_summary.sort_values("completion_rate", ascending=True).iloc[0] if not domain_summary.empty else None
-    rejected_share = (filtered["status"].eq("Rejected").mean() * 100) if len(filtered) else 0
-    expired_share = (filtered["status"].eq("Expired").mean() * 100) if len(filtered) else 0
-    insight_cols = st.columns(3)
-    insight_cols[0].metric("Highest-volume domain", str(top_domain["domain"]) if top_domain is not None else "—",
-                           f'{int(top_domain["records"]):,} records' if top_domain is not None else None)
-    insight_cols[1].metric("Highest completion-rate domain", str(best_rate["domain"]) if best_rate is not None else "—",
-                           f'{best_rate["completion_rate"]:.1f}%' if best_rate is not None else None)
-    insight_cols[2].metric("Rejected + expired", f"{rejected_share + expired_share:.1f}%",
-                           "Share of filtered demo task records")
-    if top_domain is not None and best_rate is not None and lowest_rate is not None:
-        st.markdown(
-            f'<div class="insight"><b>Decision notes · synthetic sample only</b><br>'
-            f'• <b>{top_domain["domain"]}</b> has the largest record volume ({int(top_domain["records"]):,}). '
-            f'• <b>{best_rate["domain"]}</b> has the highest observed sample completion rate '
-            f'({best_rate["completion_rate"]:.1f}%), while <b>{lowest_rate["domain"]}</b> is lowest '
-            f'({lowest_rate["completion_rate"]:.1f}%).<br>'
-            f'• Rejected and expired statuses account for {rejected_share + expired_share:.1f}% of the filtered sample. '
-            f'For a real decision, validate eligible-task denominators, final states, duplicate handling and event timestamps first.</div>',
-            unsafe_allow_html=True)
-    with st.expander("Inspect filtered demo records"):
-        st.caption("Exports and preview contain synthetic sample records only.")
-        st.dataframe(filtered.sort_values("date",ascending=False),hide_index=True,use_container_width=True)
-        st.download_button("Export visible task records (CSV)",data=filtered.to_csv(index=False).encode("utf-8"),file_name="velop_visible_task_records.csv",mime="text/csv",disabled=filtered.empty)
-
-elif view=="Engagement & tasks":
-    section("02 / ENGAGEMENT","Engagement & tasks","Explore when sample activity occurs, which domains are active, and how lifecycle statuses differ.")
-    metric_row(filtered)
-    c1,c2=st.columns(2)
-    with c1:
-        daily=filtered.groupby("date").agg(Started=("status",lambda x:(x=="Started").sum()),Completed=("completed_flag","sum"),Validated=("status",lambda x:(x=="Validated").sum())).reset_index()
-        fig=px.area(daily,x="date",y=["Started","Completed","Validated"],title="Lifecycle activity over time",color_discrete_sequence=[PALETTE["blue"],PALETTE["teal"],PALETTE["violet"]])
-        fig.update_layout(xaxis_title=None,yaxis_title="Records",legend_title=None)
-        st.plotly_chart(polish(fig,360,True),use_container_width=True)
-    with c2:
-        heat=filtered.pivot_table(index=filtered.date.dt.day_name(),columns="domain",values="user_id",aggfunc="count",fill_value=0)
-        order=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
-        heat=heat.reindex([x for x in order if x in heat.index])
-        fig=px.imshow(heat,text_auto=True,aspect="auto",color_continuous_scale=["#edf7f7","#087e8b"],labels=dict(x="Domain",y="Day of week",color="Records"),title="Activity heatmap · day × domain")
-        st.plotly_chart(polish(fig,360),use_container_width=True)
-    c3,c4=st.columns(2)
-    with c3:
-        fig=px.box(filtered,x="domain",y="duration_min",color="domain",points=False,color_discrete_sequence=[PALETTE["teal"],PALETTE["blue"],PALETTE["violet"],PALETTE["amber"],"#98a2b3"],title="Task duration distribution")
-        fig.update_layout(xaxis_title=None,yaxis_title="Minutes",showlegend=False)
-        st.plotly_chart(polish(fig,330),use_container_width=True)
-    with c4:
-        funnel=pd.DataFrame({"Stage":["Started","Validated","Completed"],"Records":[int(filtered.status.eq("Started").sum()),int(filtered.status.eq("Validated").sum()),int(filtered.completed_flag.sum())]})
-        fig=go.Figure(go.Funnel(y=funnel.Stage,x=funnel.Records,textinfo="value+percent initial",marker=dict(color=[PALETTE["blue"],PALETTE["violet"],PALETTE["teal"]]),connector={"line":{"color":"#d0d5dd","width":1}}))
-        fig.update_layout(title="Illustrative lifecycle stage counts")
-        st.plotly_chart(polish(fig,330),use_container_width=True)
-    st.caption("The lifecycle chart shows status counts, not a validated user-level conversion funnel. Production funnel stages need event-level identities and sequential timestamps.")
-
-elif view=="Rewards & wallet":
-    section("03 / REWARD ECONOMY","Rewards & wallet","Separate reward states, reward units and wallet movements to avoid misleading aggregation.")
-    a,b,c=st.columns(3)
-    a.metric("Reward sample records",f"{len(rewards):,}")
-    b.metric("Wallet sample movements",f"{len(wallet):,}")
-    c.metric("Reward units",f"{rewards.unit.nunique()}")
-    r1,r2=st.columns(2)
-    with r1:
-        by_status=rewards.type.value_counts().rename_axis("State").reset_index(name="Records")
-        fig=px.bar(by_status,x="State",y="Records",color="State",color_discrete_map=STATUS_COLORS,title="Reward records by state")
-        st.plotly_chart(polish(fig,350),use_container_width=True)
-    with r2:
-        by_unit=rewards.groupby("unit",as_index=False).agg(records=("amount","size"),sample_amount=("amount","sum"))
-        fig=px.bar(by_unit,x="unit",y="records",color="unit",color_discrete_sequence=[PALETTE["teal"],PALETTE["blue"],PALETTE["violet"]],title="Records by reward unit")
-        fig.update_layout(xaxis_title=None,yaxis_title="Records",showlegend=False)
-        st.plotly_chart(polish(fig,350),use_container_width=True)
-    daily=rewards.groupby([rewards.date.dt.date,"type"]).size().reset_index(name="records").rename(columns={"date":"day"})
-    fig=px.area(daily,x="day",y="records",color="type",title="Reward state activity · daily",color_discrete_map=STATUS_COLORS)
-    st.plotly_chart(polish(fig,330,True),use_container_width=True)
-    st.dataframe(by_unit.rename(columns={"unit":"Reward unit","records":"Sample records","sample_amount":"Illustrative amount total"}),hide_index=True,use_container_width=True)
-    st.warning("VE, XP and Gems are different units and must not be added together. Amounts are synthetic and are not a verified financial ledger.")
-
-elif view=="Withdrawals & referrals":
-    section("04 / OPERATIONS","Withdrawals & referrals","Illustrative operational monitoring patterns for status mix, processing time and referral lifecycle.")
-    a,b,c=st.columns(3)
-    a.metric("Withdrawal samples",f"{len(withdrawals):,}")
-    b.metric("Referral samples",f"{len(referrals):,}")
-    c.metric("Median processing time",f"{withdrawals.processing_hours.median():.1f} h")
-    c1,c2=st.columns(2)
-    with c1:
-        w=withdrawals.status.value_counts().rename_axis("Status").reset_index(name="Records")
-        fig=px.bar(w,x="Status",y="Records",color="Status",color_discrete_map=STATUS_COLORS,title="Withdrawal status distribution")
-        st.plotly_chart(polish(fig,350),use_container_width=True)
-    with c2:
-        r=referrals.stage.value_counts().rename_axis("Stage").reset_index(name="Records")
-        fig=go.Figure(go.Funnel(y=r.Stage,x=r.Records,textinfo="value+percent initial",marker=dict(color=[PALETTE["blue"],PALETTE["teal"],PALETTE["green"],PALETTE["amber"]])))
-        fig.update_layout(title="Referral stage distribution")
-        st.plotly_chart(polish(fig,350),use_container_width=True)
-    fig=px.histogram(withdrawals,x="processing_hours",color="status",nbins=24,barmode="overlay",opacity=.78,color_discrete_map=STATUS_COLORS,title="Withdrawal processing-time distribution")
-    fig.update_layout(xaxis_title="Illustrative hours",yaxis_title="Requests",legend_title=None)
-    st.plotly_chart(polish(fig,350,True),use_container_width=True)
-    st.caption("Production SLA reporting requires authoritative request, completion and failure timestamps plus approved business-hour rules.")
-
-else:
-    section("05 / TRUST & READINESS","Data readiness","A senior-style view of what can be measured now, what remains unverified, and what must be approved before production reporting.")
-    c1,c2,c3=st.columns(3)
-    c1.metric("Demo domains", "5")
-    c2.metric("Production sources connected", "0")
-    c3.metric("Metric status", "Proposed")
-    gaps=pd.DataFrame([
-        ["User/account","Simulated Task 01 sample available","Profile completeness, duplicate and valid-value checks","Medium"],
-        ["Task lifecycle","No production extract supplied","Confirm eligible population, stable task ID and final status","High"],
-        ["Rewards ledger","Synthetic sample only","Approve units, reversal rules and immutable ledger","High"],
-        ["Wallet","Synthetic sample only","Reconcile credits, debits, reversals and balances","High"],
-        ["Withdrawals","Synthetic sample only","Confirm state machine, timestamps and SLA clock","High"],
-        ["Referrals","Synthetic sample only","Define registration, activation and qualified conversion","High"],
-        ["Product events","Synthetic sample only","Approve event taxonomy, user/session IDs and timezone","High"],
-        ["Privacy & retention","Design recommendation only","Confirm access roles, minimisation and retention policy","High"],
-    ],columns=["Data domain","Evidence available","Validation needed","Priority"])
-    st.dataframe(gaps,hide_index=True,use_container_width=True)
-
-    # Transparent, reproducible checks over synthetic prototype tables only.
-    allowed_task_status = ["Completed", "Started", "Validated", "Rejected", "Expired"]
-    allowed_reward_types = ["Earned", "Redeemed", "Reversed", "Pending"]
-    allowed_units = ["VE", "XP", "Gems"]
-    allowed_wallet_movements = ["Credit", "Debit", "Reversal"]
-    allowed_withdrawal_status = ["Completed", "Pending", "Under review", "Failed"]
-    allowed_referral_stages = ["Registered", "Activated", "Converted", "Pending"]
-
-    def quality_result(name, observed, interpretation, severity="REVIEW"):
-        return {"Check": name, "Observed": int(observed), "Result": "PASS" if int(observed) == 0 else severity,
-                "Interpretation": interpretation}
-
-    quality_checks = [
-        quality_result("Task rows with any missing values", tasks.isna().any(axis=1).sum(), "Rows containing at least one missing task field"),
-        quality_result("Exact duplicate task rows", tasks.duplicated().sum(), "Exact duplicate rows in the synthetic task table"),
-        quality_result("Task dates in the future",
-                       (tasks["date"].dt.normalize() > pd.Timestamp.today().normalize()).sum(),
-                       "Task dates later than the current local date; generated demo data should not be future-dated"),
-        quality_result("Negative task points", tasks["points"].lt(0).sum(), "Task records with points below zero"),
-        quality_result("Unknown task status values", (~tasks["status"].isin(allowed_task_status)).sum(), "Statuses outside the documented demo set"),
-        quality_result("Completion flag/status mismatch",
-                       (tasks["completed_flag"] != tasks["status"].eq("Completed")).sum(),
-                       "completed_flag should agree with the Completed status"),
-        quality_result("Negative task duration", tasks["duration_min"].lt(0).sum(), "Task duration below zero minutes"),
-        quality_result("Reward rows with missing values", rewards.isna().any(axis=1).sum(), "Rows containing at least one missing reward field"),
-        quality_result("Unknown reward types", (~rewards["type"].isin(allowed_reward_types)).sum(), "Reward states outside the documented demo set"),
-        quality_result("Unknown reward units", (~rewards["unit"].isin(allowed_units)).sum(), "Reward units outside the documented demo set"),
-        quality_result("Negative reward amount", rewards["amount"].lt(0).sum(), "Reward amount below zero; production sign rules require approval"),
-        quality_result("Unknown wallet movement types", (~wallet["movement"].isin(allowed_wallet_movements)).sum(), "Wallet movement types outside the demo set"),
-        quality_result("Negative wallet amounts", wallet["amount"].lt(0).sum(), "Negative wallet amount; confirm whether signs encode movement direction"),
-        quality_result("Unknown withdrawal status values", (~withdrawals["status"].isin(allowed_withdrawal_status)).sum(), "Withdrawal statuses outside the documented demo set"),
-        quality_result("Negative withdrawal amounts", withdrawals["amount"].lt(0).sum(), "Withdrawal amounts below zero"),
-        quality_result("Negative withdrawal processing time", withdrawals["processing_hours"].lt(0).sum(), "Processing duration below zero hours"),
-        quality_result("Unknown referral stage values", (~referrals["stage"].isin(allowed_referral_stages)).sum(), "Referral stages outside the documented demo set"),
-        quality_result("Empty task sample", int(tasks.empty), "Task table should contain synthetic rows"),
-        quality_result("Empty reward sample", int(rewards.empty), "Reward table should contain synthetic rows"),
-        quality_result("Empty wallet sample", int(wallet.empty), "Wallet table should contain synthetic rows"),
-        quality_result("Empty withdrawal sample", int(withdrawals.empty), "Withdrawal table should contain synthetic rows"),
-        quality_result("Empty referral sample", int(referrals.empty), "Referral table should contain synthetic rows"),
+elif page == "Deliverable tracker":
+    st.subheader("Task 01 required deliverables")
+    rows = [
+        (1,"Executive summary","Documented","Company-owner unknowns remain"),
+        (2,"Product data audit","Documented design","Product owner confirms live vs planned features"),
+        (3,"Data coverage matrix","Documented","Validate against source systems"),
+        (4,"User/account analytics specification","Documented","Confirm identifiers and account states"),
+        (5,"Earning/reward analytics specification","Documented design","Authoritative reward/task records not supplied"),
+        (6,"Wallet/withdrawal specification","Documented design","Finance/Operations must confirm ledger and payout semantics"),
+        (7,"Referral/engagement specification","Documented design","Approve activation and conversion definitions"),
+        (8,"Event tracking plan","Proposed","Engineering approval and staging validation"),
+        (9,"Data dictionary (75+ fields)","90 proposed fields","Confirm physical schema and constraints"),
+        (10,"Logical data model and ERD","Proposed","Not verified production schema"),
+        (11,"KPI catalogue (30+ KPIs)","36 proposed KPIs","Approve formulas, units, sources and denominators"),
+        (12,"Simulated data profiling","Source-limited","Full Task 01 transaction/event pack not supplied"),
+        (13,"Data-quality audit","Partial/source-limited","Production datasets not supplied"),
+        (14,"Dashboard blueprint","Seven areas specified","Blueprint is not a production dashboard implementation"),
+        (15,"Developer analytics handoff","Proposed","Engineering sign-off required"),
+        (16,"Data pipeline and operating model","Proposed","Not deployed"),
+        (17,"Privacy/access/governance","Proposed","Security/Legal review required"),
+        (18,"Analytics change management","Proposed process","Internal owner adoption required"),
+        (19,"Gap assessment","Documented","Update after company review"),
+        (20,"Assumption and verification register","Documented","Resolve To Be Verified items"),
+        (21,"Prioritized implementation backlog","Documented proposal","Confirm owners and priorities"),
     ]
-    quality_df = pd.DataFrame(quality_checks)
-    pass_count = int(quality_df["Result"].eq("PASS").sum())
-    review_count = int(quality_df["Result"].eq("REVIEW").sum())
-    q1,q2,q3,q4 = st.columns(4)
-    q1.metric("Quality rules", len(quality_df))
-    q2.metric("Passed", pass_count)
-    q3.metric("Needs review", review_count)
-    q4.metric("Prototype tables", 5)
-    st.dataframe(quality_df,hide_index=True,use_container_width=True)
-    st.download_button("Download full data-quality report (CSV)",data=quality_df.to_csv(index=False).encode("utf-8"),
-                       file_name="velop_task01_data_quality_report.csv",mime="text/csv",use_container_width=True)
-    st.caption("These automated checks run on synthetic prototype tables only. A PASS means the specific programmed rule passed; it does not prove production data quality, financial correctness or business validity.")
+    df = pd.DataFrame(rows, columns=["#","Deliverable","Evidence status","Remaining dependency"])
+    st.dataframe(df, hide_index=True, use_container_width=True)
+    st.download_button("Export deliverable tracker (CSV)", df.to_csv(index=False).encode("utf-8"), "velop_task01_deliverable_tracker.csv", "text/csv")
 
-    c1,c2=st.columns(2)
-    with c1:
-        fig=px.bar(gaps.groupby("Priority").size().reset_index(name="Domains"),x="Priority",y="Domains",color="Priority",color_discrete_map={"High":PALETTE["red"],"Medium":PALETTE["amber"]},title="Readiness actions by priority")
-        st.plotly_chart(polish(fig,320),use_container_width=True)
-    with c2:
-        fig=go.Figure(go.Pie(labels=["Production-connected","Synthetic / unverified"],values=[0,100],hole=.72,marker_colors=[PALETTE["teal"],"#d0d5dd"],textinfo="none",hoverinfo="label+percent"))
-        fig.add_annotation(text="<b>0%</b><br><span style='font-size:11px'>production connected</span>",x=.5,y=.5,showarrow=False,font=dict(size=20,color="#182230"))
-        fig.update_layout(title="Production data connectivity")
-        st.plotly_chart(polish(fig,320),use_container_width=True)
-    st.markdown('<div class="insight"><b>Decision gate:</b> treat these pages as a visual prototype until source access, metric definitions, ownership and reconciliation checks are approved. Do not use synthetic counts for operational decisions.</div>',unsafe_allow_html=True)
+elif page == "Seven-dashboard blueprint":
+    st.subheader("Dashboard areas required by the assignment")
+    dashboards = [
+        ("01","Executive Overview","Approved core KPIs, trends, alerts and definitions","Product / leadership","Production sources and approved KPI definitions"),
+        ("02","User Analytics","Registration, onboarding, account lifecycle and cohorts","Product / growth","Canonical user IDs and lifecycle events"),
+        ("03","Engagement","Active/returning users, task activity and feature usage","Product / analytics","Session/event data and approved activity definition"),
+        ("04","Rewards","Earned, pending, credited, reversed and corrected rewards","Rewards operations / finance","Authoritative reward ledger and reward units"),
+        ("05","Wallet","Ledger credits/debits, balances and reconciliation","Finance / operations","Wallet ledger, transaction IDs and reconciliation rules"),
+        ("06","Withdrawals","Requests, outcomes, failure reasons and processing time","Operations / finance","Payout source of truth, status history and timestamps"),
+        ("07","Referrals","Referral creation, registration, activation and conversion","Growth / product","Referral attribution and approved conversion definition"),
+    ]
+    for num,name,metrics,owner,dependency in dashboards:
+        with st.expander(f"{num} · {name}", expanded=(num=="01")):
+            st.write("**Business measures:** " + metrics)
+            st.write("**Primary stakeholder:** " + owner)
+            st.write("**Source/approval dependency:** " + dependency)
+            st.write("**Specification status:** Blueprint only; visual-level metric formulas, dimensions, filters, date range and refresh rules are in the submission report/workbook and require owner validation.")
+    st.caption("This page describes the seven dashboard areas required by the assignment. It does not claim that production dashboards have been implemented.")
+
+elif page == "Acceptance blockers":
+    st.subheader("Items preventing an honest claim of full completion")
+    blockers = [
+        ("Hosting platform","Open","The assignment email specifies Vercel or Netlify. The current public URL is Streamlit Community Cloud; this is not compliant unless the coordinator approves an exception."),
+        ("Production data","Open","No authorized production extracts or API/database credentials were supplied. Actual company performance cannot be shown."),
+        ("Scope confirmation","Open","The behavior workbook identifies itself as Task 02. Do not merge it into Task 01 without coordinator approval."),
+        ("Company definitions","Open","Product/Engineering must confirm event implementation, canonical IDs, statuses, timestamps and source systems."),
+        ("Finance/Operations sign-off","Open","Reward units, wallet ledger semantics, withdrawal states and reconciliation rules need authoritative confirmation."),
+        ("Browser QA","Open","GitHub Actions verifies dependency installation, Python compilation, app startup and health endpoint; it does not prove all browser interactions or mobile breakpoints."),
+        ("Live deployment freshness","Unverified","A successful GitHub commit/CI run alone does not prove that the public URL has redeployed to that commit."),
+    ]
+    st.dataframe(pd.DataFrame(blockers, columns=["Gate","Status","Evidence / next action"]), hide_index=True, use_container_width=True)
+    st.markdown('<div class="note"><b>Acceptance rule:</b> only mark a gate complete after evidence exists. Do not replace missing company facts with invented transactions or metrics.</div>', unsafe_allow_html=True)
 
 st.markdown("---")
-st.markdown('<div class="mini-note">VELOOP Task 01 · Visual prototype for review · Synthetic data only · No production connection configured</div>',unsafe_allow_html=True)
+st.caption("VELOOP Rewards · Task 01 · Source-grounded analytical blueprint · No production system connected")
