@@ -1,0 +1,43 @@
+name: Streamlit smoke check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip && pip install -r requirements.txt
+      - name: Compile Python source
+        run: python -m py_compile app/streamlit_app.py
+      - name: Start Streamlit app
+        run: |
+          streamlit run app/streamlit_app.py --server.headless true --server.port 8501 > /tmp/streamlit.log 2>&1 &
+          echo $! > /tmp/streamlit.pid
+      - name: Wait for app to respond
+        run: |
+          for i in $(seq 1 30); do
+            if curl --fail --silent http://localhost:8501/_stcore/health; then
+              echo 'Streamlit health endpoint passed.'
+              exit 0
+            fi
+            sleep 2
+          done
+          cat /tmp/streamlit.log
+          exit 1
+      - name: Stop Streamlit
+        if: always()
+        run: if [ -f /tmp/streamlit.pid ]; then kill $(cat /tmp/streamlit.pid) || true; fi
