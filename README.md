@@ -28,6 +28,8 @@ Proposed fields, events, KPI definitions, data models, governance controls and p
 
 ## Requirements and evidence
 
+- [Analytics foundation implementation pack](docs/ANALYTICS_FOUNDATION_IMPLEMENTATION_PACK.md) — source register, product/data coverage map, event contract, identity/grain model, quality controls, 30+ proposed KPIs, seven-dashboard blueprint, pipeline, governance, gaps, verification register, backlog and acceptance checklist.
+
 - [Task 01 requirements-to-evidence checklist](docs/TASK01_REQUIREMENTS_CHECKLIST.md)
 - [Three-source-file audit and acceptance status](docs/THREE_SOURCE_FILES_AUDIT.md)
 - [Data gaps and KPI guardrails](docs/data_gaps_and_kpi_guardrails.md)
