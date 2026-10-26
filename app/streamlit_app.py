@@ -268,6 +268,27 @@ else:
         ["Privacy & retention","Design recommendation only","Confirm access roles, minimisation and retention policy","High"],
     ],columns=["Data domain","Evidence available","Validation needed","Priority"])
     st.dataframe(gaps,hide_index=True,use_container_width=True)
+
+    # Transparent profiling checks over the synthetic demo datasets.
+    quality_checks = [
+        {"Check":"Task records with missing values","Observed":int(tasks.isna().any(axis=1).sum()),"Result":"PASS" if not tasks.isna().any(axis=1).any() else "REVIEW","Interpretation":"Rows containing at least one missing field"},
+        {"Check":"Duplicate full task rows","Observed":int(tasks.duplicated().sum()),"Result":"PASS" if not tasks.duplicated().any() else "REVIEW","Interpretation":"Exact duplicate rows in the synthetic task sample"},
+        {"Check":"Negative task points","Observed":int(tasks["points"].lt(0).sum()),"Result":"PASS" if not tasks["points"].lt(0).any() else "REVIEW","Interpretation":"Task records with points below zero"},
+        {"Check":"Unknown task statuses","Observed":int((~tasks["status"].isin(["Completed","Started","Validated","Rejected","Expired"])).sum()),"Result":"PASS" if tasks["status"].isin(["Completed","Started","Validated","Rejected","Expired"]).all() else "REVIEW","Interpretation":"Statuses outside the documented demo set"},
+        {"Check":"Unknown reward units","Observed":int((~rewards["unit"].isin(["VE","XP","Gems"])).sum()),"Result":"PASS" if rewards["unit"].isin(["VE","XP","Gems"]).all() else "REVIEW","Interpretation":"Reward units outside the demo unit set"},
+        {"Check":"Negative wallet movements","Observed":int(wallet["amount"].lt(0).sum()),"Result":"PASS" if not wallet["amount"].lt(0).any() else "REVIEW","Interpretation":"Negative amounts; business sign conventions must be confirmed in production"},
+        {"Check":"Negative withdrawal amounts","Observed":int(withdrawals["amount"].lt(0).sum()),"Result":"PASS" if not withdrawals["amount"].lt(0).any() else "REVIEW","Interpretation":"Withdrawal records with amounts below zero"},
+    ]
+    quality_df = pd.DataFrame(quality_checks)
+    pass_count = int(quality_df["Result"].eq("PASS").sum())
+    q1,q2,q3 = st.columns(3)
+    q1.metric("Demo quality checks",len(quality_df))
+    q2.metric("Checks passed",pass_count)
+    q3.metric("Checks needing review",len(quality_df)-pass_count)
+    st.dataframe(quality_df,hide_index=True,use_container_width=True)
+    st.download_button("Download data quality checks (CSV)",data=quality_df.to_csv(index=False).encode("utf-8"),file_name="velop_demo_data_quality_checks.csv",mime="text/csv",use_container_width=True)
+    st.caption("These checks profile synthetic demo tables only. Passing checks do not establish production data quality or business correctness.")
+
     c1,c2=st.columns(2)
     with c1:
         fig=px.bar(gaps.groupby("Priority").size().reset_index(name="Domains"),x="Priority",y="Domains",color="Priority",color_discrete_map={"High":PALETTE["red"],"Medium":PALETTE["amber"]},title="Readiness actions by priority")
