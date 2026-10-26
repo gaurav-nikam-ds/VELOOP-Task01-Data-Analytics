@@ -25,6 +25,15 @@ pip install -r requirements.txt
 streamlit run app/streamlit_app.py
 ```
 
+## Latest review improvements
+
+- **Executive Overview:** decision notes summarize the highest-volume domain, the highest observed sample completion-rate domain, and the combined rejected/expired share for the currently selected synthetic sample.
+- **Data Readiness:** 22 programmed data-quality rules cover task, reward, wallet, withdrawal and referral demo tables. Each rule reports observed count, PASS/REVIEW and an interpretation.
+- **Export:** download the data-quality report as CSV for review. Existing filtered task and KPI-summary exports remain available.
+- **Requirements traceability:** [Task 01 requirements-to-evidence checklist](docs/TASK01_REQUIREMENTS_CHECKLIST.md) maps the original assignment deliverables to evidence and outstanding dependencies.
+
+These are genuine prototype improvements, not production data validation. The app still uses synthetic data and has no production source connection. A PASS means only that a programmed check passed on the demo records.
+
 ## Before company sign-off
 1. Confirm whether authorized production datasets exist for tasks, rewards, wallet, withdrawals, referrals and feature events.
 2. Have Product/Engineering confirm live vs planned features, event payloads, identifiers, timezone and status enums.
