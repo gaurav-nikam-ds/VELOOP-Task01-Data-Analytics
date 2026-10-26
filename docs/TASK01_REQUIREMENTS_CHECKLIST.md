@@ -64,3 +64,10 @@
 - [ ] All five navigation views open.
 - [ ] Synthetic-data warning remains visible.
 - [ ] No-match filter fallback behaves as documented.
+
+
+## Automated smoke-check workflow
+
+A GitHub Actions workflow is now configured at `.github/workflows/streamlit-smoke-test.yml`. On pushes to `main`, pull requests targeting `main`, or manual dispatch, it installs the declared dependencies, compiles the Streamlit app, starts the app headlessly and checks the Streamlit health endpoint. This validates startup/health only; it does not replace interactive browser testing of each view, filter, chart and download.
+
+**Current verification status:** workflow file committed; no completed green workflow result has been confirmed yet. The live Streamlit URL could not be fetched from the current environment, so deployment status and rendered UI remain unverified here.
