@@ -48,6 +48,8 @@ with st.sidebar:
     ])
     st.markdown("---")
     st.caption("Evidence basis: supplied Task 01 PDF, Task 01 workbook, separate Task 02 workbook and assignment email.")
+    st.markdown("[Open full analytics foundation pack](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/blob/main/docs/ANALYTICS_FOUNDATION_IMPLEMENTATION_PACK.md)")
+    st.markdown("[Open requirements checklist](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/blob/main/docs/TASK01_REQUIREMENTS_CHECKLIST.md)")
 
 if page == "Executive status":
     st.subheader("Current submission status")
