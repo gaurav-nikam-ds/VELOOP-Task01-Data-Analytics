@@ -118,8 +118,8 @@ else:
     start_date,end_date=tasks.date.min(),tasks.date.max()
 filtered=tasks[tasks.date.between(start_date,end_date)&tasks.domain.isin(domains)].copy()
 if filtered.empty:
-    st.info("No records match the selected date window and domains. Clear or widen the filters in the sidebar to see task activity.")
-    filtered=tasks.iloc[0:0].copy()
+    st.info("No records match the selected filters. Showing the full synthetic sample so the charts remain usable; adjust the sidebar filters to explore a narrower window.")
+    filtered=tasks.copy()
 
 # Lightweight exports make the prototype easier to review and inspect.
 export_summary = pd.DataFrame([
