@@ -12,6 +12,8 @@ The live URL is published separately from this repository. A deployment link alo
 ## Included in this repository
 - `app/streamlit_app.py`: interactive dashboard with executive KPI cards, daily trend lines, domain mix, lifecycle bars, domain comparison, engagement heatmap, duration distributions, reward/wallet views, referral and withdrawal funnels, processing-time analysis, readiness matrix, and sidebar date/domain filters.
 - `docs/data_gaps_and_kpi_guardrails.md`: evidence gaps and KPI interpretation rules.
+- `docs/THREE_SOURCE_FILES_AUDIT.md`: audit of the supplied Task 01 PDF, Task 01 workbook, Task 02 workbook, hosting requirement and remaining acceptance gates.
+- `docs/TASK01_REQUIREMENTS_CHECKLIST.md`: 21-deliverable traceability checklist.
 - `requirements.txt`: runtime dependencies.
 
 **Note:** The complete Task 01 submission report, design workbook, supplemental synthetic workbook and diagrams are bundled separately in the QA-clean submission ZIP. They are not currently stored as individual files in this GitHub repository.
@@ -49,3 +51,15 @@ These are genuine prototype improvements, not production data validation. The ap
 - See [three-file audit and completion status](docs/THREE_SOURCE_FILES_AUDIT.md) for measured findings and the 21-deliverable tracker.
 - The current demo is hosted on Streamlit Community Cloud. The assignment email asks for Vercel or Netlify; obtain written approval for Streamlit or deploy a compatible front end on an approved platform before claiming full email compliance.
 - GitHub Actions validates Python compilation and app startup/health. It does not replace interactive browser testing across responsive breakpoints, views, filters and downloads.
+
+## Reviewer navigation
+
+- [Task 01 requirements checklist](docs/TASK01_REQUIREMENTS_CHECKLIST.md)
+- [Three-source-file audit and acceptance gates](docs/THREE_SOURCE_FILES_AUDIT.md)
+- [Data gaps and KPI guardrails](docs/data_gaps_and_kpi_guardrails.md)
+- [GitHub Actions smoke test](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/workflows/streamlit-smoke-test.yml)
+- [Live interactive demo](https://velop-task01-data-analytics.streamlit.app/)
+
+## Submission integrity
+
+This repository and live demo are a proposed analytical blueprint and interactive prototype, not a production analytics system. Proposed events, fields, KPIs, data models, dashboard specifications, access controls and pipeline steps require owner review. Synthetic data outputs are not VELOOP company performance. The supplied email's Vercel/Netlify hosting instruction remains an open compliance gate until the host is changed or written approval is obtained.
