@@ -180,12 +180,12 @@ elif page == "Supplied data audit":
     st.subheader("Task 01 source workbook")
     a,b,c,d = st.columns(4)
     a.metric("Clean users", "1,000")
-    b.metric("Columns per user tab", "28")
+    b.metric("Clean-sheet columns", "27")
     c.metric("Messy audit rows", "1,008")
     d.metric("Repeated IDs in messy tab", "8")
     st.dataframe(pd.DataFrame([
-        {"Source sheet":"Users_1000_Clean","Rows":1000,"Columns":28,"Finding":"1,000 unique, non-null user_id values; 0 exact duplicate rows"},
-        {"Source sheet":"Users_1000_Clean","Rows":1000,"Columns":28,"Finding":"881 missing referral_source_detail; 72 missing last_login_datetime"},
+        {"Source sheet":"Users_1000_Clean","Rows":1000,"Columns":27,"Finding":"1,000 unique, non-null user_id values; 0 exact duplicate rows"},
+        {"Source sheet":"Users_1000_Clean","Rows":1000,"Columns":27,"Finding":"881 missing referral_source_detail; 72 missing last_login_datetime"},
         {"Source sheet":"Users_Messy_Audit","Rows":1008,"Columns":28,"Finding":"1,000 unique IDs; 8 repeated IDs"},
         {"Source sheet":"Users_Messy_Audit","Rows":1008,"Columns":28,"Finding":"1 missing registration timestamp; 73 missing last-login timestamps"},
         {"Source sheet":"Users_Messy_Audit","Rows":1008,"Columns":28,"Finding":"885 missing referral details; 4 negative days_since_registration values"},
