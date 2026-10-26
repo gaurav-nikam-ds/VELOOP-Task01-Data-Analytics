@@ -21,6 +21,7 @@ h1,h2,h3 { letter-spacing:-.025em; color:var(--ink); }
 .hero h1 { color:white; font-size:1.8rem; }
 .hero p { color:#e3f2f4; max-width:950px; }
 .note { border-left:4px solid var(--teal); background:white; padding:.85rem 1rem; border-radius:8px; }
+.insight-card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:1rem; min-height:180px; }
 @media (max-width:800px) { .block-container { padding:.65rem .65rem 1.5rem; } .hero { padding:1rem; } }
 </style>
 """, unsafe_allow_html=True)
@@ -28,24 +29,25 @@ h1,h2,h3 { letter-spacing:-.025em; color:var(--ink); }
 st.markdown("""
 <div class="hero">
   <h1>VELOOP Rewards — Product Analytics & Data Readiness</h1>
-  <p>Task 01 deliverable review, source-file audit, dashboard specification and implementation dependencies. This workspace reports only facts recorded in the supplied assignment materials and audit; it does not fabricate production transactions or company performance.</p>
+  <p>Evidence-based findings, business questions, recommended actions and implementation dependencies from the supplied assignment materials. This workspace distinguishes source-file findings from unverified production performance.</p>
 </div>
 """, unsafe_allow_html=True)
 
-st.warning("SOURCE LIMITATION: The Task 01 brief identifies its supplied data as simulated. No authorized production extract or production-system connection was supplied. Therefore, real VELOOP business performance cannot be calculated from the available files.")
+st.warning("DATA LIMITATION: The assignment identifies its supplied data as simulated. No authorized production extract or production-system connection was supplied. Findings below describe the supplied workbooks only; they are not claims about actual VELOOP users or business performance.")
 
 with st.sidebar:
     st.markdown("## ◈ VELOOP REWARDS")
-    st.caption("TASK 01 · ANALYTICS BLUEPRINT")
+    st.caption("TASK 01 · ANALYTICS & DECISION SUPPORT")
     page = st.radio("WORKSPACE", [
         "Executive status",
+        "Insights & recommendations",
         "Supplied data audit",
         "Deliverable tracker",
         "Seven-dashboard blueprint",
         "Acceptance blockers",
     ])
     st.markdown("---")
-    st.caption("Evidence basis: supplied Task 01 PDF, Task 01 workbook, separately supplied Task 02 workbook and assignment email.")
+    st.caption("Evidence basis: supplied Task 01 PDF, Task 01 workbook, separate Task 02 workbook and assignment email.")
 
 if page == "Executive status":
     st.subheader("Current submission status")
@@ -55,13 +57,93 @@ if page == "Executive status":
     c3.metric("Proposed dictionary fields", "90")
     c4.metric("Production connections", "0")
     st.markdown("""
-    **What is established**
-    - The governing assignment is a product-analytics and data-readiness blueprint, not evidence that a production analytics system already exists.
-    - The Task 01 workbook provides user-profile clean and messy tabs, plus dictionary/summary tabs.
+    **What the evidence supports**
+    - The assignment is a product-analytics and data-readiness blueprint.
+    - The Task 01 workbook includes clean and messy user-profile tabs, plus dictionary/summary tabs.
     - The separately supplied behavior workbook labels itself Task 02 and is kept separate pending coordinator approval.
-    - Event plans, dictionary fields, KPI definitions, logical model, dashboard specifications, governance and pipeline are design proposals until the relevant company owners approve them.
+    - Reward, wallet, withdrawal and referral business performance cannot be measured from the supplied Task 01 user-profile tabs alone.
     """)
-    st.markdown('<div class="note"><b>Decision:</b> do not publish actual-company KPIs, payout metrics, retention rates or conversion rates until authorized production data and approved definitions are available.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="note"><b>Decision:</b> first improve data reliability and confirm authoritative business sources. Then calculate and interpret product KPIs from approved data. Do not publish synthetic counts as actual company results.</div>', unsafe_allow_html=True)
+
+elif page == "Insights & recommendations":
+    st.subheader("What can an analyst conclude from the supplied evidence?")
+    st.caption("The following are source-file quality insights. They are not production performance insights because the supplied assignment data is simulated.")
+    a,b,c,d = st.columns(4)
+    a.metric("Clean user profiles", "1,000")
+    b.metric("Referral detail missing", "88.1%", "881 of 1,000 clean profiles")
+    c.metric("Last-login timestamp missing", "7.2%", "72 of 1,000 clean profiles")
+    d.metric("Repeated IDs in messy tab", "8", "in 1,008 rows")
+
+    st.markdown("### Findings → business risk → recommended action")
+    findings = [
+        {
+            "Finding":"Referral source detail is missing in 881/1,000 clean profiles (88.1%).",
+            "Evidence":"Task 01 workbook: Users_1000_Clean.",
+            "Risk / limitation":"Referral attribution analysis may be incomplete or biased if missingness is not understood. This does not prove referrals perform poorly.",
+            "Recommendation":"Define which referral-source fields are required, distinguish 'unknown/not collected/not applicable', and validate capture at registration/referral entry.",
+            "Priority":"High",
+            "Owner to confirm":"Product + Engineering",
+            "Success check":"Measure missing-source rate on a new, approved extract and reconcile it with the event/attribution source."
+        },
+        {
+            "Finding":"Last-login timestamp is missing in 72/1,000 clean profiles (7.2%).",
+            "Evidence":"Task 01 workbook: Users_1000_Clean.",
+            "Risk / limitation":"Last-login-based activity or recency metrics could undercount or misclassify users unless missing values have an explicit meaning.",
+            "Recommendation":"Confirm the authoritative activity event and timestamp definition; validate timezone, null semantics and update behavior before defining active/retained users.",
+            "Priority":"High",
+            "Owner to confirm":"Product Analytics + Engineering",
+            "Success check":"Compare profile last-login values against approved login/session events and document expected exceptions."
+        },
+        {
+            "Finding":"The messy audit sheet has 1,008 rows but 1,000 unique IDs (8 repeated IDs).",
+            "Evidence":"Task 01 workbook: Users_Messy_Audit.",
+            "Risk / limitation":"Naive row counts or joins can double-count users and distort profile-level metrics.",
+            "Recommendation":"Add a uniqueness test for user_id at the agreed grain; quarantine duplicates and define a deterministic survivorship rule before deduplication.",
+            "Priority":"High",
+            "Owner to confirm":"Data Engineering / Data Owner",
+            "Success check":"Duplicate-ID count is reported on each load and unresolved duplicates are traceable."
+        },
+        {
+            "Finding":"The messy audit sheet contains 4 negative days_since_registration values and 1 missing registration timestamp.",
+            "Evidence":"Task 01 workbook: Users_Messy_Audit.",
+            "Risk / limitation":"Derived tenure and cohort calculations can be invalid when dates are missing or chronology is impossible.",
+            "Recommendation":"Recompute tenure from the canonical registration timestamp and the agreed as-of date; reject or flag impossible chronology rather than silently altering it.",
+            "Priority":"High",
+            "Owner to confirm":"Data Engineering / Data Owner",
+            "Success check":"Invalid chronology is zero in the validated output, or every exception is explicitly logged with a reason."
+        },
+        {
+            "Finding":"The separate Task 02 event audit has 35,714 rows and 10 exact duplicate rows.",
+            "Evidence":"Separately supplied Task 02 workbook; not merged into Task 01.",
+            "Risk / limitation":"Duplicate events can inflate activity counts if event identity and idempotency rules are not enforced.",
+            "Recommendation":"Ask the coordinator to confirm whether Task 02 data may be used; if approved, deduplicate using the agreed event key and add an ingestion idempotency test.",
+            "Priority":"Medium",
+            "Owner to confirm":"Coordinator + Engineering",
+            "Success check":"Approved event dataset has a documented unique event key and duplicate rate is monitored."
+        },
+    ]
+    df = pd.DataFrame(findings)
+    for i, item in enumerate(findings):
+        with st.container(border=True):
+            st.markdown(f"**Finding {i+1}: {item['Finding']}**")
+            st.caption("Evidence: " + item["Evidence"])
+            st.write("**Business risk / limitation:** " + item["Risk / limitation"])
+            st.write("**Recommended action:** " + item["Recommendation"])
+            x,y = st.columns(2)
+            x.write("**Priority:** " + item["Priority"])
+            y.write("**Owner to confirm:** " + item["Owner to confirm"])
+            st.write("**Validation / success check:** " + item["Success check"])
+    st.download_button("Export evidence-based recommendations (CSV)", df.to_csv(index=False).encode("utf-8"), "velop_task01_evidence_based_recommendations.csv", "text/csv")
+
+    st.markdown("### Business decisions that still need production data")
+    st.dataframe(pd.DataFrame([
+        {"Business question":"Are users returning and retaining?","Data needed":"Approved login/session/activity events; user IDs; event timestamps","Decision enabled":"Prioritize onboarding or engagement improvements only after cohort analysis"},
+        {"Business question":"Which earning tasks perform well?","Data needed":"Task impressions, starts, completions, failures, partner/source, reward and timestamps","Decision enabled":"Investigate task funnel drop-offs and prioritize reliable/high-value task sources"},
+        {"Business question":"Are rewards credited accurately?","Data needed":"Authoritative reward ledger with pending/credited/reversed states and transaction IDs","Decision enabled":"Reconcile crediting issues and reduce unexplained reward discrepancies"},
+        {"Business question":"Where do withdrawals fail or take too long?","Data needed":"Withdrawal state history, timestamps, failure reasons and payout outcomes","Decision enabled":"Target operational bottlenecks and improve user communication"},
+        {"Business question":"Which referrals convert?","Data needed":"Referral attribution, referred-user registration, activation and eligibility events","Decision enabled":"Compare referral channels using approved attribution and conversion definitions"},
+    ]), hide_index=True, use_container_width=True)
+    st.markdown('<div class="note"><b>Decision rule:</b> the recommendations above are data-readiness actions supported by the supplied files. Product-growth or revenue recommendations must wait for the relevant production records and approved KPI definitions.</div>', unsafe_allow_html=True)
 
 elif page == "Supplied data audit":
     st.subheader("Task 01 source workbook")
@@ -86,7 +168,7 @@ elif page == "Supplied data audit":
         {"Dataset":"Task activity","Rows":9846,"Audited finding":"Task 02 workbook summary; not treated as Task 01 source"},
         {"Dataset":"Milestones","Rows":4799,"Audited finding":"Task 02 workbook summary; not treated as Task 01 source"},
     ]), hide_index=True, use_container_width=True)
-    st.caption("These are counts/findings from the supplied simulated assignment workbooks, not actual VELOOP production statistics. Missingness should be interpreted against field-level rules; do not silently delete or correct records.")
+    st.caption("These are findings from the supplied simulated assignment workbooks, not actual VELOOP production statistics. Missingness should be interpreted against field-level rules; do not silently delete or correct records.")
 
 elif page == "Deliverable tracker":
     st.subheader("Task 01 required deliverables")
@@ -151,4 +233,4 @@ elif page == "Acceptance blockers":
     st.markdown('<div class="note"><b>Acceptance rule:</b> only mark a gate complete after evidence exists. Do not replace missing company facts with invented transactions or metrics.</div>', unsafe_allow_html=True)
 
 st.markdown("---")
-st.caption("VELOOP Rewards · Task 01 · Source-grounded analytical blueprint · No production system connected")
+st.caption("VELOOP Rewards · Task 01 · Evidence-based analysis and decision support · No production system connected")
