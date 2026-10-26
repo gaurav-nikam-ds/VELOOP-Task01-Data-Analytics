@@ -105,6 +105,26 @@ elif page == "Insights & recommendations":
     st.dataframe(onboarding_activity, hide_index=True, use_container_width=True)
     st.markdown("**Dataset-only interpretation:** completed-onboarding profiles have a higher 30-day active share (34.5%) than profiles marked Started (26.0%). This is an association in simulated data, not evidence that onboarding completion causes retention. Confirm event definitions and analyze real cohorts before product changes.")
 
+    st.markdown("#### Verification status and 30-day activity")
+    verification_activity = pd.DataFrame([
+        {"Email verification status":"Verified","Users":855,"Active in 30 days":305,"30-day active share":35.7},
+        {"Email verification status":"Pending","Users":145,"Active in 30 days":20,"30-day active share":13.8},
+    ])
+    st.dataframe(verification_activity, hide_index=True, use_container_width=True)
+    st.markdown("**Dataset-only interpretation:** the simulated file shows 35.7% 30-day active share for verified profiles versus 13.8% for pending profiles. This is an association, not proof that verification causes activity. It may reflect account eligibility, user intent, or data-generation assumptions.")
+    st.markdown("**Recommended action:** validate the verification-state lifecycle and check whether users can meaningfully use the product before verification. In production, compare cohorts and measure the verification funnel before changing onboarding.")
+
+    st.markdown("#### Account status distribution")
+    account_status_summary = pd.DataFrame([
+        {"Account status":"Active","Users":568,"Share of profiles":56.8,"Active in 30 days":205,"30-day active share":36.1},
+        {"Account status":"Inactive","Users":283,"Share of profiles":28.3,"Active in 30 days":95,"30-day active share":33.6},
+        {"Account status":"Suspended","Users":77,"Share of profiles":7.7,"Active in 30 days":25,"30-day active share":32.5},
+        {"Account status":"Pending Verification","Users":72,"Share of profiles":7.2,"Active in 30 days":0,"30-day active share":0.0},
+    ])
+    st.dataframe(account_status_summary, hide_index=True, use_container_width=True)
+    st.markdown("**Data-definition risk:** some records labelled Inactive or Suspended still have the is_active_30d flag set to Yes. This may be legitimate if fields use different definitions or snapshots, but it must be reconciled before reporting an active-user KPI.")
+    st.markdown("**Recommended action:** ask Product/Engineering to define the precedence and timestamp semantics for account_status versus activity flags; add a documented consistency check rather than assuming one field is wrong.")
+
     st.markdown("### Findings → business risk → recommended action")
     findings = [
         {
