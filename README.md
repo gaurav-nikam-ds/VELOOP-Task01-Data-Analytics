@@ -30,6 +30,7 @@ Proposed fields, events, KPI definitions, data models, governance controls and p
 
 - [Analytics foundation implementation pack](docs/ANALYTICS_FOUNDATION_IMPLEMENTATION_PACK.md) — source register, product/data coverage map, event contract, identity/grain model, quality controls, 30+ proposed KPIs, seven-dashboard blueprint, pipeline, governance, gaps, verification register, backlog and acceptance checklist.
 - [Source data profile & quality audit](docs/SOURCE_DATA_PROFILE_AND_QUALITY_AUDIT.md) — recalculated Task 01 workbook profile, missingness, duplicate IDs and cross-tab findings.
+- [Data dictionary field index](docs/DATA_DICTIONARY_FIELD_INDEX.md) — 90-field inventory and field governance rules.
 - [Developer analytics handoff](docs/DEVELOPER_ANALYTICS_HANDOFF.md) — proposed event contract, lifecycle events and 15 acceptance tests.
 - [Seven-dashboard visual specifications](docs/DASHBOARD_VISUAL_SPECIFICATIONS.md) — visual-level formulas, sources, filters, questions and decisions for all seven areas.
 - [Analytics change log & operating model](docs/ANALYTICS_CHANGE_LOG_AND_OPERATING_MODEL.md) — ownership, review workflow, monitoring, incident handling and release acceptance.
