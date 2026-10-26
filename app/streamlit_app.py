@@ -74,6 +74,37 @@ elif page == "Insights & recommendations":
     c.metric("Last-login timestamp missing", "7.2%", "72 of 1,000 clean profiles")
     d.metric("Repeated IDs in messy tab", "8", "in 1,008 rows")
 
+    st.markdown("### Descriptive engagement patterns in the supplied simulated user file")
+    st.caption("These are calculations on the 1,000-row simulated Users_1000_Clean sheet only. They are useful for demonstrating analytical method, but must not be represented as actual VELOOP performance.")
+    e1,e2,e3,e4 = st.columns(4)
+    e1.metric("Active in last 7 days", "7.8%", "78 / 1,000 profiles")
+    e2.metric("Active in last 30 days", "32.5%", "325 / 1,000 profiles")
+    e3.metric("Onboarding completed", "72.2%", "722 / 1,000 profiles")
+    e4.metric("Email verified", "85.5%", "855 / 1,000 profiles")
+
+    st.markdown("#### 30-day activity by acquisition source")
+    source_activity = pd.DataFrame([
+        {"Acquisition source":"Telegram","Users":55,"Active in 30 days":27,"30-day active share":49.1},
+        {"Acquisition source":"Referral","Users":119,"Active in 30 days":43,"30-day active share":36.1},
+        {"Acquisition source":"Other","Users":102,"Active in 30 days":34,"30-day active share":33.3},
+        {"Acquisition source":"Organic Search","Users":244,"Active in 30 days":80,"30-day active share":32.8},
+        {"Acquisition source":"WhatsApp","Users":103,"Active in 30 days":32,"30-day active share":31.1},
+        {"Acquisition source":"Social Media","Users":160,"Active in 30 days":49,"30-day active share":30.6},
+        {"Acquisition source":"Direct","Users":217,"Active in 30 days":60,"30-day active share":27.6},
+    ])
+    st.dataframe(source_activity, hide_index=True, use_container_width=True)
+    st.markdown("**Dataset-only interpretation:** in this simulated file, 30-day active share varies from 27.6% for Direct to 49.1% for Telegram. Telegram has the smallest listed group (55 users), so its higher share should be treated as a hypothesis to validate—not proof that the channel causes better retention.")
+    st.markdown("**Recommended next analysis:** validate the active-30-day definition and observation window, compare cohorts by registration date, and check sample sizes and user mix before suggesting acquisition-budget changes.")
+
+    st.markdown("#### Onboarding status and 30-day activity")
+    onboarding_activity = pd.DataFrame([
+        {"Onboarding status":"Completed","Users":722,"Active in 30 days":249,"30-day active share":34.5},
+        {"Onboarding status":"Not Started","Users":132,"Active in 30 days":38,"30-day active share":28.8},
+        {"Onboarding status":"Started","Users":146,"Active in 30 days":38,"30-day active share":26.0},
+    ])
+    st.dataframe(onboarding_activity, hide_index=True, use_container_width=True)
+    st.markdown("**Dataset-only interpretation:** completed-onboarding profiles have a higher 30-day active share (34.5%) than profiles marked Started (26.0%). This is an association in simulated data, not evidence that onboarding completion causes retention. Confirm event definitions and analyze real cohorts before product changes.")
+
     st.markdown("### Findings → business risk → recommended action")
     findings = [
         {
