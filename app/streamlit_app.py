@@ -118,8 +118,18 @@ else:
     start_date,end_date=tasks.date.min(),tasks.date.max()
 filtered=tasks[tasks.date.between(start_date,end_date)&tasks.domain.isin(domains)].copy()
 if filtered.empty:
-    filtered=tasks[tasks.domain.isin(domains)].copy()
-    st.info("No records in that date/domain combination. Showing available domain records instead.")
+    st.info("No records match the selected date window and domains. Clear or widen the filters in the sidebar to see task activity.")
+    filtered=tasks.iloc[0:0].copy()
+
+# Lightweight exports make the prototype easier to review and inspect.
+export_summary = pd.DataFrame([
+    {"Metric":"Filtered task records","Value":int(len(filtered)),"Definition":"Number of synthetic task records after current sidebar filters"},
+    {"Metric":"Completion rate (%)","Value":round(float(filtered["completed_flag"].mean()*100),2) if len(filtered) else 0,"Definition":"Completed records divided by displayed task records"},
+    {"Metric":"Distinct demo users","Value":int(filtered["user_id"].nunique()),"Definition":"Distinct synthetic user IDs in displayed task records"},
+    {"Metric":"Points on completed tasks","Value":int(filtered.loc[filtered["completed_flag"],"points"].sum()),"Definition":"Illustrative points on completed task records; not cash value"},
+])
+st.sidebar.download_button("Download filtered task CSV",data=filtered.to_csv(index=False).encode("utf-8"),file_name="velop_demo_filtered_tasks.csv",mime="text/csv",use_container_width=True,disabled=filtered.empty)
+st.sidebar.download_button("Download KPI summary CSV",data=export_summary.to_csv(index=False).encode("utf-8"),file_name="velop_demo_kpi_summary.csv",mime="text/csv",use_container_width=True)
 
 st.markdown(f"""
 <div class="hero">
@@ -166,6 +176,10 @@ if view=="Executive overview":
         fig.update_layout(title="Domain comparison · volume vs completion",showlegend=False)
         st.plotly_chart(polish(fig,330),use_container_width=True)
     st.markdown('<div class="insight"><b>How to read this:</b> Compare volume with completion rate rather than ranking domains by volume alone. In a production dashboard, confirm eligible-task definitions, deduplication and final task states before interpreting these metrics.</div>',unsafe_allow_html=True)
+    with st.expander("Inspect filtered demo records"):
+        st.caption("Exports and preview contain synthetic sample records only.")
+        st.dataframe(filtered.sort_values("date",ascending=False),hide_index=True,use_container_width=True)
+        st.download_button("Export visible task records (CSV)",data=filtered.to_csv(index=False).encode("utf-8"),file_name="velop_visible_task_records.csv",mime="text/csv",disabled=filtered.empty)
 
 elif view=="Engagement & tasks":
     section("02 / ENGAGEMENT","Engagement & tasks","Explore when sample activity occurs, which domains are active, and how lifecycle statuses differ.")
