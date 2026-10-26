@@ -45,6 +45,7 @@ with st.sidebar:
         "Deliverable tracker",
         "Seven-dashboard blueprint",
         "Acceptance blockers",
+        "Implementation library",
     ])
     st.markdown("---")
     st.caption("Evidence basis: supplied Task 01 PDF, Task 01 workbook, separate Task 02 workbook and assignment email.")
@@ -270,6 +271,45 @@ elif page == "Seven-dashboard blueprint":
             st.write("**Source/approval dependency:** " + dependency)
             st.write("**Specification status:** Blueprint only; visual-level metric formulas, dimensions, filters, date range and refresh rules are in the submission report/workbook and require owner validation.")
     st.caption("This page describes the seven dashboard areas required by the assignment. It does not claim that production dashboards have been implemented.")
+
+elif page == "Implementation library":
+    st.subheader("Task 01 implementation specifications")
+    st.caption("These are deliverable specifications and source-file findings. Proposed product behavior is not represented as implemented production functionality.")
+    library = [
+        ("Source data profile & quality audit", "Evidence-backed row/column counts, missingness, duplicate IDs, invalid chronology, cross-tabs and data-quality acceptance rules.", "https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/blob/main/docs/SOURCE_DATA_PROFILE_AND_QUALITY_AUDIT.md"),
+        ("Developer analytics handoff", "Event envelope, lifecycle event catalogue, ledger/state rules and 15 engineering acceptance tests.", "https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/blob/main/docs/DEVELOPER_ANALYTICS_HANDOFF.md"),
+        ("Seven-dashboard visual specifications", "Visual-by-visual measures, calculations, source dependencies, filters, questions and decisions for all seven dashboard areas.", "https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/blob/main/docs/DASHBOARD_VISUAL_SPECIFICATIONS.md"),
+        ("Analytics change log & operating model", "Change log schema, review workflow, domain ownership, incident response and release acceptance.", "https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/blob/main/docs/ANALYTICS_CHANGE_LOG_AND_OPERATING_MODEL.md"),
+        ("Analytics foundation implementation pack", "Product map, event contract, logical model, quality controls, KPI catalogue, governance, gaps, verification register and backlog.", "https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/blob/main/docs/ANALYTICS_FOUNDATION_IMPLEMENTATION_PACK.md"),
+        ("Requirements-to-evidence checklist", "Traceability across all 21 assignment deliverables and explicit acceptance blockers.", "https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/blob/main/docs/TASK01_REQUIREMENTS_CHECKLIST.md"),
+        ("Supplied-source audit", "Source scope, what can and cannot be concluded, and the Task 02 separation guardrail.", "https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/blob/main/docs/THREE_SOURCE_FILES_AUDIT.md"),
+    ]
+    for title, description, url in library:
+        with st.container(border=True):
+            st.markdown("**" + title + "**")
+            st.write(description)
+            st.markdown("[Open document](" + url + ")")
+    st.markdown("### Minimum event contract")
+    st.dataframe(pd.DataFrame([
+        {"Field":"event_id","Requirement":"Unique event identity; deduplicate safely"},
+        {"Field":"event_name / event_version","Requirement":"Approved event name and versioned schema"},
+        {"Field":"event_timestamp / received_timestamp","Requirement":"Occurrence time and ingestion time kept separately"},
+        {"Field":"user_id / session_id","Requirement":"Stable identifiers under approved anonymous-event rules"},
+        {"Field":"transaction_id / attempt_id","Requirement":"Business transaction and task retry identities where applicable"},
+        {"Field":"feature_name / platform / environment","Requirement":"Controlled values; environment must not be inferred"},
+        {"Field":"source_system / status / properties","Requirement":"Producer, approved state and allow-listed properties"},
+        {"Field":"idempotency_key / correlation_id","Requirement":"Retry safety and workflow traceability"},
+    ]), hide_index=True, use_container_width=True)
+    st.markdown("### Critical quality gates")
+    st.dataframe(pd.DataFrame([
+        {"Gate":"Identity integrity","Acceptance":"Required IDs present; uniqueness and foreign-key checks pass or exceptions are quarantined"},
+        {"Gate":"Timestamp integrity","Acceptance":"Parseable UTC event and received timestamps; impossible chronology flagged"},
+        {"Gate":"State integrity","Acceptance":"Only approved state transitions; unknown values are not silently mapped"},
+        {"Gate":"Financial integrity","Acceptance":"Reward/wallet/withdrawal ledger transactions reconcile to approved sources"},
+        {"Gate":"Freshness","Acceptance":"Stale sources are visible and affected KPIs are marked unavailable/stale"},
+        {"Gate":"Authenticity","Acceptance":"Simulated values remain explicitly labelled; no production performance claims"},
+    ]), hide_index=True, use_container_width=True)
+    st.info("The assignment's data-authenticity policy is mandatory: supplied workbook metrics are simulated. The workbook alone does not support actual reward, wallet, withdrawal, referral-conversion or production-retention claims.")
 
 elif page == "Acceptance blockers":
     st.subheader("Items preventing an honest claim of full completion")
