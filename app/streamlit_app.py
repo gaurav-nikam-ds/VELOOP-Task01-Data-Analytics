@@ -306,9 +306,9 @@ else:
     quality_checks = [
         quality_result("Task rows with any missing values", tasks.isna().any(axis=1).sum(), "Rows containing at least one missing task field"),
         quality_result("Exact duplicate task rows", tasks.duplicated().sum(), "Exact duplicate rows in the synthetic task table"),
-        quality_result("Task dates outside configured sample window",
-                       ((tasks["date"] < tasks["date"].min()) | (tasks["date"] > tasks["date"].max())).sum(),
-                       "Rows outside the generated task date range"),
+        quality_result("Task dates in the future",
+                       (tasks["date"].dt.normalize() > pd.Timestamp.today().normalize()).sum(),
+                       "Task dates later than the current local date; generated demo data should not be future-dated"),
         quality_result("Negative task points", tasks["points"].lt(0).sum(), "Task records with points below zero"),
         quality_result("Unknown task status values", (~tasks["status"].isin(allowed_task_status)).sum(), "Statuses outside the documented demo set"),
         quality_result("Completion flag/status mismatch",
