@@ -109,8 +109,13 @@ with st.sidebar:
     date_range=st.date_input("Activity window",value=(tasks.date.min().date(),tasks.date.max().date()),min_value=tasks.date.min().date(),max_value=tasks.date.max().date())
     domains=st.multiselect("Task domains",options=sorted(tasks.domain.unique()),default=sorted(tasks.domain.unique()))
     st.markdown("---")
-    st.caption("Prototype build 02 · Synthetic data")
+    st.caption("Prototype build 03 · Synthetic data")
     st.caption("No production source connection")
+    st.markdown("**Submission documents**")
+    st.markdown("[Task 01 checklist](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/blob/main/docs/TASK01_REQUIREMENTS_CHECKLIST.md)")
+    st.markdown("[Three-file audit](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/blob/main/docs/THREE_SOURCE_FILES_AUDIT.md)")
+    st.markdown("[Data gaps & KPI guardrails](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/blob/main/docs/data_gaps_and_kpi_guardrails.md)")
+    st.markdown("[Repository README](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics)")
 
 if isinstance(date_range,(tuple,list)) and len(date_range)==2:
     start_date,end_date=pd.Timestamp(date_range[0]),pd.Timestamp(date_range[1])
