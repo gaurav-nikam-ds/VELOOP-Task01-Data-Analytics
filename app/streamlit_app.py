@@ -175,7 +175,29 @@ if view=="Executive overview":
         fig.update_traces(textposition="top center",marker=dict(opacity=.82,line=dict(width=1,color="#ffffff")))
         fig.update_layout(title="Domain comparison · volume vs completion",showlegend=False)
         st.plotly_chart(polish(fig,330),use_container_width=True)
-    st.markdown('<div class="insight"><b>How to read this:</b> Compare volume with completion rate rather than ranking domains by volume alone. In a production dashboard, confirm eligible-task definitions, deduplication and final task states before interpreting these metrics.</div>',unsafe_allow_html=True)
+    # Decision-oriented interpretation generated from the currently filtered synthetic sample.
+    top_domain = domain_summary.sort_values("records", ascending=False).iloc[0] if not domain_summary.empty else None
+    best_rate = domain_summary.sort_values("completion_rate", ascending=False).iloc[0] if not domain_summary.empty else None
+    lowest_rate = domain_summary.sort_values("completion_rate", ascending=True).iloc[0] if not domain_summary.empty else None
+    rejected_share = (filtered["status"].eq("Rejected").mean() * 100) if len(filtered) else 0
+    expired_share = (filtered["status"].eq("Expired").mean() * 100) if len(filtered) else 0
+    insight_cols = st.columns(3)
+    insight_cols[0].metric("Highest-volume domain", str(top_domain["domain"]) if top_domain is not None else "—",
+                           f'{int(top_domain["records"]):,} records' if top_domain is not None else None)
+    insight_cols[1].metric("Highest completion-rate domain", str(best_rate["domain"]) if best_rate is not None else "—",
+                           f'{best_rate["completion_rate"]:.1f}%' if best_rate is not None else None)
+    insight_cols[2].metric("Rejected + expired", f"{rejected_share + expired_share:.1f}%",
+                           "Share of filtered demo task records")
+    if top_domain is not None and best_rate is not None and lowest_rate is not None:
+        st.markdown(
+            f'<div class="insight"><b>Decision notes · synthetic sample only</b><br>'
+            f'• <b>{top_domain["domain"]}</b> has the largest record volume ({int(top_domain["records"]):,}). '
+            f'• <b>{best_rate["domain"]}</b> has the highest observed sample completion rate '
+            f'({best_rate["completion_rate"]:.1f}%), while <b>{lowest_rate["domain"]}</b> is lowest '
+            f'({lowest_rate["completion_rate"]:.1f}%).<br>'
+            f'• Rejected and expired statuses account for {rejected_share + expired_share:.1f}% of the filtered sample. '
+            f'For a real decision, validate eligible-task denominators, final states, duplicate handling and event timestamps first.</div>',
+            unsafe_allow_html=True)
     with st.expander("Inspect filtered demo records"):
         st.caption("Exports and preview contain synthetic sample records only.")
         st.dataframe(filtered.sort_values("date",ascending=False),hide_index=True,use_container_width=True)
@@ -269,25 +291,58 @@ else:
     ],columns=["Data domain","Evidence available","Validation needed","Priority"])
     st.dataframe(gaps,hide_index=True,use_container_width=True)
 
-    # Transparent profiling checks over the synthetic demo datasets.
+    # Transparent, reproducible checks over synthetic prototype tables only.
+    allowed_task_status = ["Completed", "Started", "Validated", "Rejected", "Expired"]
+    allowed_reward_types = ["Earned", "Redeemed", "Reversed", "Pending"]
+    allowed_units = ["VE", "XP", "Gems"]
+    allowed_wallet_movements = ["Credit", "Debit", "Reversal"]
+    allowed_withdrawal_status = ["Completed", "Pending", "Under review", "Failed"]
+    allowed_referral_stages = ["Registered", "Activated", "Converted", "Pending"]
+
+    def quality_result(name, observed, interpretation, severity="REVIEW"):
+        return {"Check": name, "Observed": int(observed), "Result": "PASS" if int(observed) == 0 else severity,
+                "Interpretation": interpretation}
+
     quality_checks = [
-        {"Check":"Task records with missing values","Observed":int(tasks.isna().any(axis=1).sum()),"Result":"PASS" if not tasks.isna().any(axis=1).any() else "REVIEW","Interpretation":"Rows containing at least one missing field"},
-        {"Check":"Duplicate full task rows","Observed":int(tasks.duplicated().sum()),"Result":"PASS" if not tasks.duplicated().any() else "REVIEW","Interpretation":"Exact duplicate rows in the synthetic task sample"},
-        {"Check":"Negative task points","Observed":int(tasks["points"].lt(0).sum()),"Result":"PASS" if not tasks["points"].lt(0).any() else "REVIEW","Interpretation":"Task records with points below zero"},
-        {"Check":"Unknown task statuses","Observed":int((~tasks["status"].isin(["Completed","Started","Validated","Rejected","Expired"])).sum()),"Result":"PASS" if tasks["status"].isin(["Completed","Started","Validated","Rejected","Expired"]).all() else "REVIEW","Interpretation":"Statuses outside the documented demo set"},
-        {"Check":"Unknown reward units","Observed":int((~rewards["unit"].isin(["VE","XP","Gems"])).sum()),"Result":"PASS" if rewards["unit"].isin(["VE","XP","Gems"]).all() else "REVIEW","Interpretation":"Reward units outside the demo unit set"},
-        {"Check":"Negative wallet movements","Observed":int(wallet["amount"].lt(0).sum()),"Result":"PASS" if not wallet["amount"].lt(0).any() else "REVIEW","Interpretation":"Negative amounts; business sign conventions must be confirmed in production"},
-        {"Check":"Negative withdrawal amounts","Observed":int(withdrawals["amount"].lt(0).sum()),"Result":"PASS" if not withdrawals["amount"].lt(0).any() else "REVIEW","Interpretation":"Withdrawal records with amounts below zero"},
+        quality_result("Task rows with any missing values", tasks.isna().any(axis=1).sum(), "Rows containing at least one missing task field"),
+        quality_result("Exact duplicate task rows", tasks.duplicated().sum(), "Exact duplicate rows in the synthetic task table"),
+        quality_result("Task dates outside configured sample window",
+                       ((tasks["date"] < tasks["date"].min()) | (tasks["date"] > tasks["date"].max())).sum(),
+                       "Rows outside the generated task date range"),
+        quality_result("Negative task points", tasks["points"].lt(0).sum(), "Task records with points below zero"),
+        quality_result("Unknown task status values", (~tasks["status"].isin(allowed_task_status)).sum(), "Statuses outside the documented demo set"),
+        quality_result("Completion flag/status mismatch",
+                       (tasks["completed_flag"] != tasks["status"].eq("Completed")).sum(),
+                       "completed_flag should agree with the Completed status"),
+        quality_result("Negative task duration", tasks["duration_min"].lt(0).sum(), "Task duration below zero minutes"),
+        quality_result("Reward rows with missing values", rewards.isna().any(axis=1).sum(), "Rows containing at least one missing reward field"),
+        quality_result("Unknown reward types", (~rewards["type"].isin(allowed_reward_types)).sum(), "Reward states outside the documented demo set"),
+        quality_result("Unknown reward units", (~rewards["unit"].isin(allowed_units)).sum(), "Reward units outside the documented demo set"),
+        quality_result("Negative reward amount", rewards["amount"].lt(0).sum(), "Reward amount below zero; production sign rules require approval"),
+        quality_result("Unknown wallet movement types", (~wallet["movement"].isin(allowed_wallet_movements)).sum(), "Wallet movement types outside the demo set"),
+        quality_result("Negative wallet amounts", wallet["amount"].lt(0).sum(), "Negative wallet amount; confirm whether signs encode movement direction"),
+        quality_result("Unknown withdrawal status values", (~withdrawals["status"].isin(allowed_withdrawal_status)).sum(), "Withdrawal statuses outside the documented demo set"),
+        quality_result("Negative withdrawal amounts", withdrawals["amount"].lt(0).sum(), "Withdrawal amounts below zero"),
+        quality_result("Negative withdrawal processing time", withdrawals["processing_hours"].lt(0).sum(), "Processing duration below zero hours"),
+        quality_result("Unknown referral stage values", (~referrals["stage"].isin(allowed_referral_stages)).sum(), "Referral stages outside the documented demo set"),
+        quality_result("Empty task sample", int(tasks.empty), "Task table should contain synthetic rows"),
+        quality_result("Empty reward sample", int(rewards.empty), "Reward table should contain synthetic rows"),
+        quality_result("Empty wallet sample", int(wallet.empty), "Wallet table should contain synthetic rows"),
+        quality_result("Empty withdrawal sample", int(withdrawals.empty), "Withdrawal table should contain synthetic rows"),
+        quality_result("Empty referral sample", int(referrals.empty), "Referral table should contain synthetic rows"),
     ]
     quality_df = pd.DataFrame(quality_checks)
     pass_count = int(quality_df["Result"].eq("PASS").sum())
-    q1,q2,q3 = st.columns(3)
-    q1.metric("Demo quality checks",len(quality_df))
-    q2.metric("Checks passed",pass_count)
-    q3.metric("Checks needing review",len(quality_df)-pass_count)
+    review_count = int(quality_df["Result"].eq("REVIEW").sum())
+    q1,q2,q3,q4 = st.columns(4)
+    q1.metric("Quality rules", len(quality_df))
+    q2.metric("Passed", pass_count)
+    q3.metric("Needs review", review_count)
+    q4.metric("Prototype tables", 5)
     st.dataframe(quality_df,hide_index=True,use_container_width=True)
-    st.download_button("Download data quality checks (CSV)",data=quality_df.to_csv(index=False).encode("utf-8"),file_name="velop_demo_data_quality_checks.csv",mime="text/csv",use_container_width=True)
-    st.caption("These checks profile synthetic demo tables only. Passing checks do not establish production data quality or business correctness.")
+    st.download_button("Download full data-quality report (CSV)",data=quality_df.to_csv(index=False).encode("utf-8"),
+                       file_name="velop_task01_data_quality_report.csv",mime="text/csv",use_container_width=True)
+    st.caption("These automated checks run on synthetic prototype tables only. A PASS means the specific programmed rule passed; it does not prove production data quality, financial correctness or business validity.")
 
     c1,c2=st.columns(2)
     with c1:
