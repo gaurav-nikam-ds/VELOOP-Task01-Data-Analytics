@@ -16,6 +16,8 @@ The workbook labels the assignment data as simulated. All results below describe
 | Synthetic_Summary | Source-provided summary | Inspect source tab before reuse | — | Source sheet retained |
 | README_Data_Status | Source-provided data status and caveats | Inspect source tab before reuse | — | Source sheet retained |
 
+**Column-count reconciliation note (28 October 2026):** this detailed profile records 27 columns for `Users_1000_Clean`, while `docs/THREE_SOURCE_FILES_AUDIT.md` previously recorded 28. The original workbook was not available for direct byte-level inspection during this documentation pass, so the clean-sheet column count remains unverified and must not be treated as reconciled. The row count and other findings below reflect the existing audit record; re-open the source workbook and update both documents from the same sheet header count before final sign-off.
+
 ## Clean user-profile findings
 
 | Check | Result | Interpretation |
