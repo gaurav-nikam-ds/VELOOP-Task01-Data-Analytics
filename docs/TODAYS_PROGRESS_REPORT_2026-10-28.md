@@ -18,7 +18,7 @@
 | Current website | Documentation aligned | Vercel workspace: https://velop-task01-data-analytics.vercel.app/ — seven navigation sections for status, findings, data audit, deliverables, dashboard blueprint, blockers and documents. |
 | Streamlit prototype | Clearly separated | https://velop-task01-data-analytics.streamlit.app/ — legacy prototype references (five views and 22 synthetic quality checks) are now explicitly identified as belonging to this app, not automatically attributed to Vercel. |
 | Data authenticity | Guardrails retained | Supplied and supplemental datasets are simulated. No production database/API is connected, and synthetic results must not be reported as company performance. |
-| Testing / verification | Partial evidence | Source workbook header/ID/duplicate checks were rerun. The repo records owner-reported manual Vercel checks, but independent fresh browser verification was blocked by the QA environment; latest Vercel status was pending. See `docs/FUNCTIONAL_TESTING_EVIDENCE_2026-10-28.md`. |
+| Testing / verification | Screenshot evidence reviewed | Existing screenshots supplied in the conversation show Home, Findings, supplied data audit, deliverable tracker, dashboard blueprint and implementation library; a completed tracker CSV download and findings priority-filter states are visible. User also reported link/mobile checks. Fresh independent browser session after the latest commit remains separate. See `docs/FUNCTIONAL_TESTING_EVIDENCE_2026-10-28.md`. |
 
 ## 3. Key analytical findings and limitations
 - The Task 01 user workbook does not contain the full task/reward/wallet/withdrawal/referral/event transaction-level pack described by the wider design.
