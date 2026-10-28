@@ -10,7 +10,7 @@
 - [Existing Streamlit evidence workspace](https://velop-task01-data-analytics.streamlit.app/)
 - Vercel app source and deployment instructions: [vercel-app/README.md](vercel-app/README.md)
 
-The deployed Vercel workspace has been manually tested by the project owner, including navigation across all seven sections, findings filters, CSV exports, document links and responsive/mobile layout. See the [Vercel build workflow](.github/workflows/vercel-app-build.yml) for automated build validation. A passing build or manual UI check does not prove that the public deployment has refreshed after every commit.
+The project owner has recorded manual checks of the deployed Vercel workspace (seven sections, filters, CSV exports, links and responsive layout). In this review, an independent fresh browser fetch could not be completed and the latest Vercel status was pending; do not treat deployment-after-latest-commit as verified. See [Testing evidence & pending QA](docs/FUNCTIONAL_TESTING_EVIDENCE_2026-10-28.md) and [Implemented vs planned features](docs/IMPLEMENTED_VS_PLANNED_FEATURES.md). The [Vercel build workflow](.github/workflows/vercel-app-build.yml) runs the Next.js build for relevant changes.
 
 ## What the workspace contains
 
@@ -43,6 +43,8 @@ Proposed fields, events, KPI definitions, data models, governance controls and p
 - [Seven-dashboard visual specifications](docs/DASHBOARD_VISUAL_SPECIFICATIONS.md) — visual-level formulas, sources, filters, questions and decisions for all seven areas.
 - [Analytics change log & operating model](docs/ANALYTICS_CHANGE_LOG_AND_OPERATING_MODEL.md) — ownership, review workflow, monitoring, incident handling and release acceptance.
 - [Task 01 requirements-to-evidence checklist](docs/TASK01_REQUIREMENTS_CHECKLIST.md)
+- [Implemented vs planned features](docs/IMPLEMENTED_VS_PLANNED_FEATURES.md)
+- [Functional testing evidence and pending QA](docs/FUNCTIONAL_TESTING_EVIDENCE_2026-10-28.md)
 - [Three-source-file audit and acceptance status](docs/THREE_SOURCE_FILES_AUDIT.md)
 - [Data gaps and KPI guardrails](docs/data_gaps_and_kpi_guardrails.md)
 - [Streamlit smoke test workflow](.github/workflows/streamlit-smoke-test.yml)
