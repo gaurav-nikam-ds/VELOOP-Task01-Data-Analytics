@@ -4,9 +4,10 @@
 **Assignment:** Product Analytics, Data Readiness & Data Management Blueprint  
 **Status:** Source-grounded review workspace; production analytics are not connected or verified.
 
-## Live workspace
+## Live workspaces
 
-[Open the published Streamlit workspace](https://velop-task01-data-analytics.streamlit.app/)
+- [Existing Streamlit evidence workspace](https://velop-task01-data-analytics.streamlit.app/)
+- **Vercel version:** deploy the `vercel-app` directory using the instructions in [vercel-app/README.md](vercel-app/README.md). The Vercel URL is not published here until a Vercel project has actually been created and deployed.
 
 The workspace is being changed to use only findings grounded in the supplied assignment files and audit. A GitHub commit or passing CI run does not by itself prove that the public deployment has refreshed; confirm the deployed page after Streamlit finishes redeploying.
 
@@ -40,12 +41,16 @@ Proposed fields, events, KPI definitions, data models, governance controls and p
 - [Data gaps and KPI guardrails](docs/data_gaps_and_kpi_guardrails.md)
 - [GitHub Actions smoke test](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/workflows/streamlit-smoke-test.yml)
 
-## Local run
+## Local run — Streamlit version
 
 ```bash
 pip install -r requirements.txt
 streamlit run app/streamlit_app.py
 ```
+
+## Vercel version
+
+The Next.js web app is in `vercel-app/` to keep the existing Streamlit app intact. Import this GitHub repository into Vercel and set **Root Directory** to `vercel-app`. See [vercel-app/README.md](vercel-app/README.md) for deployment and QA steps.
 
 ## Known acceptance gates
 
