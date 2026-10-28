@@ -51,7 +51,6 @@ const findings = [
 {title:"Last-login timestamp missing",metric:"72 / 1,000 · 7.2%",evidence:"Task 01 workbook · Users_1000_Clean",risk:"Last-login activity or recency metrics may undercount or misclassify users.",action:"Confirm the authoritative activity event, timezone, null semantics and update behavior.",priority:"High"},
 {title:"Repeated IDs in messy audit tab",metric:"1,008 rows · 8 repeated IDs",evidence:"Task 01 workbook · Users_Messy_Audit",risk:"Naive row counts or joins can double-count users and distort profile-level metrics.",action:"Apply uniqueness tests at the agreed grain and quarantine duplicates with traceable exceptions.",priority:"High"},
 {title:"Invalid or missing registration dates",metric:"4 negative tenure values · 1 missing registration timestamp",evidence:"Task 01 workbook · Users_Messy_Audit",risk:"Derived tenure and cohort calculations may be invalid when chronology is impossible.",action:"Recompute tenure from the canonical registration timestamp and flag impossible chronology.",priority:"High"},
-{title:"Task 02 event audit has duplicate rows",metric:"35,714 rows · 10 exact duplicate rows",evidence:"Separate Task 02 workbook; not merged into Task 01",risk:"Duplicate events can inflate activity counts if event identity and idempotency rules are not enforced.",action:"Ask the coordinator to confirm Task 02 reuse; if approved, define a unique event key and deduplication test.",priority:"Medium"}
 ];
 
 const sources = [
