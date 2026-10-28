@@ -17,9 +17,11 @@ Original workbook inspected: `VELoop_Rewards_Data_01(2).xlsx`. The original file
 
 The clean sheet has **28 physical header cells but only 27 named fields** because the final header cell is blank. The earlier discrepancy was a difference in counting conventions, not evidence of a 27-field versus 28-field named schema. Documentation now states both counts. The source workbook was not modified; do not treat the blank trailing column as a usable field.
 
-## 2. Deployed website functional QA — evidence boundary
+## 2. Deployed website functional QA — existing screenshot evidence reviewed
 
-The repository's `vercel-app/README.md` records that the project owner manually checked the deployed site on 28 October 2026. The checks recorded as owner-reported are:
+The screenshots already supplied in this conversation were retrieved and reviewed; the user does not need to resend them. The screenshots include the Vercel workspace in Chrome and show the Executive status/Home, Insights & recommendations, Supplied data audit, Deliverable tracker, Seven-dashboard blueprint, and Implementation library sections. The Findings screenshots show the priority filter and findings CSV export control; the Deliverable tracker screenshot shows the CSV download completed. The screenshots are visual evidence of the UI state at the capture time, not automated test logs. The user also previously reported testing implementation-library links and mobile layout.
+
+The available screenshot evidence supports the following:
 
 - Seven navigation sections open.
 - Findings search and priority filters work.
@@ -29,18 +31,18 @@ The repository's `vercel-app/README.md` records that the project owner manually 
 - Data-limitation disclosure is visible.
 - Supplied-data audit, deliverable tracker and dashboard blueprint render.
 
-**Independent verification status:** A fresh browser fetch of the public Vercel URL could not be completed from this QA environment (the web retrieval returned a cache-miss/internal fetch error). This is an environment limitation; it does **not** prove the website is down or broken. Therefore, these checks remain owner-reported rather than independently re-run in this pass. Attach screenshots or a browser-run log to make the evidence package stronger.
+**Evidence boundary:** Existing screenshots are now treated as user-provided visual evidence; no request to resend them is needed. They show the app rendered in Chrome at capture time. A new independent live browser session was not run in this pass, so the screenshots do not independently prove the latest deployment or every interaction. The captured screenshots show six of the seven main sections; the Acceptance blockers section is listed in the sidebar but no standalone screenshot for that view was identified in the set reviewed. Mobile layout and link behavior were previously reported by the user as tested, but no distinct mobile screenshot was identified in this subset.
 
 | Test ID | Test | Current result | Evidence status / next action |
 |---|---|---|---|
-| WEB-01 | Public Vercel URL responds in a fresh browser session | Not independently verified in this environment | Re-run in Chrome and record timestamp/status |
-| WEB-02 | All seven navigation sections render | Owner-reported PASS | Attach screenshot(s) or screen recording |
-| WEB-03 | Findings search and priority filters | Owner-reported PASS | Capture a before/after filtered result |
-| WEB-04 | CSV export downloads and opens | Owner-reported PASS | Attach exported sample and screenshot; confirm caveat is included |
-| WEB-05 | Source/document links open | Owner-reported PASS | Capture link destinations or click-through evidence |
-| WEB-06 | Desktop layout | Owner-reported PASS | Attach desktop screenshot |
-| WEB-07 | Mobile/narrow layout | Owner-reported PASS | Attach narrow viewport/mobile screenshot |
-| WEB-08 | Data authenticity notice visible | Owner-reported PASS | Capture notice in deployed UI |
+| WEB-01 | Public Vercel URL responds in a fresh browser session | Screenshot evidence shows the Vercel URL rendered in Chrome at capture time | Fresh-session status after the latest commit remains unverified |
+| WEB-02 | Navigation sections render | Screenshot evidence shows Home, Findings, Data audit, Deliverable tracker, Dashboard blueprint and Implementation library; Acceptance blockers is visible in the sidebar but no dedicated screenshot identified | Existing screenshots retained as evidence; dedicated blockers-view screenshot not identified |
+| WEB-03 | Findings search and priority filters | Screenshot shows priority filter set to High and corresponding findings; another screenshot shows Medium | Visual evidence captured; search interaction itself not independently rerun |
+| WEB-04 | CSV export downloads and opens | Screenshot shows a completed deliverable-tracker CSV download; findings CSV export control is visible | Download evidence exists for deliverable tracker; findings CSV completion/opening not separately evidenced in this screenshot subset |
+| WEB-05 | Source/document links open | Screenshot shows implementation library cards and visible GitHub link destination preview; user also reported links tested | User-reported pass plus visible link UI; no full click-through log |
+| WEB-06 | Desktop layout | Multiple Chrome screenshots show desktop layout | Visual evidence available |
+| WEB-07 | Mobile/narrow layout | User previously reported mobile layout tested; screenshot subset reviewed here is desktop | User-reported pass; no narrow-viewport screenshot identified in this subset |
+| WEB-08 | Data authenticity notice visible | Screenshot shows the data limitation banner on Home, Findings and Deliverable tracker views | Visual evidence available |
 | WEB-09 | No production connection or actual company KPI claims | Owner-reported PASS; docs/code claims reviewed | Final visual recheck required |
 | WEB-10 | Latest Vercel deployment is ready after current commits | Pending | Check Vercel deployment status before final submission |
 
