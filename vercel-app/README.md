@@ -33,16 +33,16 @@ The repository has a dedicated [Vercel app build workflow](../.github/workflows/
 
 ## Manual acceptance checklist
 
-**Status:** These are owner-reported manual checks dated 2026-10-28, not independently re-run by the current assistant QA environment. A fresh independent request to the deployed URL could not be completed in this pass. Automated browser tests are not configured by the current Vercel workflow.
+**Status:** Existing user-provided screenshots from 2026-10-28 have been reviewed and are retained as visual evidence; the user does not need to resend them. Screenshots show Home, Findings, Supplied data audit, Deliverable tracker, Seven-dashboard blueprint and Implementation library; Findings priority-filter states and a completed deliverable-tracker CSV download are visible. The user also reported testing links and mobile layout. A fresh independent browser session after the latest repository commit has not been run. Automated browser tests are not configured by the current Vercel workflow.
 
-- [x] Deployed page loads and the seven navigation sections work.
-- [x] Findings search and priority filters work.
-- [x] CSV exports download and open.
-- [x] Source/document links open.
-- [x] Desktop and mobile layouts are readable.
+- [x] Existing screenshots show the deployed page rendered and six main sections open; the Acceptance blockers view is listed in the sidebar but a dedicated screenshot was not identified in the reviewed set.
+- [x] Findings screenshots show the priority filter at High and Medium and the corresponding findings; the text search interaction itself was not independently re-run.
+- [x] Screenshot shows a completed deliverable-tracker CSV download; findings export control is visible. User also reported testing downloads.
+- [x] Implementation-library document links are visible; user reported checking link behavior.
+- [x] Desktop screenshots available; user reported mobile layout check (no mobile screenshot identified in reviewed subset).
 - [x] Data-limitation disclosure is visible.
 - [x] The UI does not imply a production connection or claim company performance.
-- [x] Supplied-data audit, deliverable tracker and dashboard blueprint render.
+- [x] Screenshots show supplied-data audit, deliverable tracker and seven-dashboard blueprint rendering.
 
 ## Implemented versus planned
 
