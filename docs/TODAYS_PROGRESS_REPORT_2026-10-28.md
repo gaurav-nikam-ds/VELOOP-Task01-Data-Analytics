@@ -18,7 +18,7 @@
 | Current website | Documentation aligned | Vercel workspace: https://velop-task01-data-analytics.vercel.app/ — seven navigation sections for status, findings, data audit, deliverables, dashboard blueprint, blockers and documents. |
 | Streamlit prototype | Clearly separated | https://velop-task01-data-analytics.streamlit.app/ — legacy prototype references (five views and 22 synthetic quality checks) are now explicitly identified as belonging to this app, not automatically attributed to Vercel. |
 | Data authenticity | Guardrails retained | Supplied and supplemental datasets are simulated. No production database/API is connected, and synthetic results must not be reported as company performance. |
-| Testing / verification | Deferred | Per current instruction, no new browser QA or deployment verification is claimed in this report. |
+| Testing / verification | Partial evidence | Source workbook header/ID/duplicate checks were rerun. The repo records owner-reported manual Vercel checks, but independent fresh browser verification was blocked by the QA environment; latest Vercel status was pending. See `docs/FUNCTIONAL_TESTING_EVIDENCE_2026-10-28.md`. |
 
 ## 3. Key analytical findings and limitations
 - The Task 01 user workbook does not contain the full task/reward/wallet/withdrawal/referral/event transaction-level pack described by the wider design.
@@ -27,7 +27,7 @@
 - The clean user-profile sheet is documented as 1,000 rows, with 1,000 unique/non-null user IDs and no exact duplicate rows in the existing detailed audit. Its column count must be reconciled directly from the source workbook.
 
 ## 4. Remaining actions
-1. Reopen the original Task 01 workbook and verify the exact number of columns in `Users_1000_Clean`; update all documents consistently.
+1. Completed: reopened the original Task 01 workbook. `Users_1000_Clean` has 28 header cells, 27 named fields, and one blank trailing header; source audit documents now state this consistently.
 2. Obtain coordinator feedback and confirm whether any Task 02 data can be used for Task 01.
 3. Obtain Product/Engineering/Operations/Finance/Security input on feature status, identifiers, reward units, wallet/withdrawal definitions, KPI formulas, ownership and governance.
 4. Run final website/browser checks later, as requested, after the documentation and scope questions are addressed.
