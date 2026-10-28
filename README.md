@@ -10,7 +10,7 @@
 - [Existing Streamlit evidence workspace](https://velop-task01-data-analytics.streamlit.app/)
 - Vercel app source and deployment instructions: [vercel-app/README.md](vercel-app/README.md)
 
-The project owner has recorded manual checks of the deployed Vercel workspace (seven sections, filters, CSV exports, links and responsive layout). In this review, an independent fresh browser fetch could not be completed and the latest Vercel status was pending; do not treat deployment-after-latest-commit as verified. See [Testing evidence & pending QA](docs/FUNCTIONAL_TESTING_EVIDENCE_2026-10-28.md) and [Implemented vs planned features](docs/IMPLEMENTED_VS_PLANNED_FEATURES.md). The [Vercel build workflow](.github/workflows/vercel-app-build.yml) runs the Next.js build for relevant changes.
+The user-provided screenshots already in the conversation were reviewed and linked as visual QA evidence for the Vercel workspace: Home, Findings, Supplied data audit, Deliverable tracker, Dashboard blueprint and Implementation library are visible; Findings filter controls and a completed deliverable-tracker CSV download are also shown. The user has additionally reported checking links and mobile layout. A fresh independent browser session after the latest commit remains a separate verification step. See [Testing evidence & pending QA](docs/FUNCTIONAL_TESTING_EVIDENCE_2026-10-28.md) and [Implemented vs planned features](docs/IMPLEMENTED_VS_PLANNED_FEATURES.md). The [Vercel build workflow](.github/workflows/vercel-app-build.yml) runs the Next.js build for relevant changes.
 
 ## What the workspace contains
 
