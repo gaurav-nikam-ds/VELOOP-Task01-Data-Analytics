@@ -59,7 +59,7 @@ The Task 01 analytical design is largely documented. The current Vercel workspac
 | Public GitHub repository | Present |
 | Professional README | Present |
 | Responsive implementation | Responsive CSS exists; repository records owner-reported manual desktop/mobile checks on 28 October; independent fresh re-run remains unverified in this environment |
-| Deploy on Vercel or Netlify | **Not satisfied by current Streamlit Community Cloud URL** unless coordinator grants an exception |
+| Deploy on Vercel or Netlify | Vercel reviewer workspace exists; latest commit's Vercel status is pending, so final readiness must be confirmed |
 | Submit GitHub + live link | Links exist, but hosting mismatch must be resolved |
 | Technology stack | No named stack found in the supplied PDF; ask whether a separate stack document exists |
 | Deadline | PDF cover says 22–24 days while suggested schedule runs to day 25; no explicit calendar deadline found in extracted PDF text. Confirm with coordinator. |
@@ -82,8 +82,8 @@ The app’s tautological “Task dates outside configured sample window” check
 
 ## Hosting and demo delivery status
 
-- Current live app: https://velop-task01-data-analytics.streamlit.app/
-- The supplied assignment email explicitly asks for Vercel or Netlify. Streamlit Community Cloud does not meet that stated hosting requirement unless the coordinator approves it in writing.
+- Primary reviewer workspace: https://velop-task01-data-analytics.vercel.app/ (latest repository commit's Vercel status is pending; confirm deployment Ready before submission).\n- Legacy Streamlit prototype: https://velop-task01-data-analytics.streamlit.app/ (separate app; not the primary Vercel deliverable).
+- The supplied assignment email explicitly asks for Vercel or Netlify. The Vercel reviewer workspace now exists, but confirm that the latest deployment is Ready and use the Vercel URL for submission.
 - GitHub Actions smoke workflow: `.github/workflows/streamlit-smoke-test.yml`. Latest verified run at audit time: [Run #5](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40292822224) — **success** for dependency install, Python compilation, Streamlit startup and health endpoint. This does not test every interactive view in a real browser.
 - The app sidebar links to the requirements checklist, this source audit, KPI guardrails and repository README so the live demo points reviewers to supporting documentation.
 - Do not upload personal names/emails from simulated user workbooks to a public repository without a privacy review. Keep the public demo privacy-minimized and clearly labelled as synthetic.
