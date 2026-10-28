@@ -22,3 +22,14 @@
 .review-step b{font-size:13px}.review-step small{font-size:11px;color:var(--muted);line-height:1.5;margin-top:4px}
 .step-arrow{margin-left:auto;color:#087c85;font-size:19px}
 @media(max-width:720px){.clarity-grid{grid-template-columns:1fr}.clarity-card p{min-height:0}.review-step{padding:12px;gap:10px}.step-number{width:32px;height:32px}}
+
+
+/* Plain-English glossary and status legend for first-time reviewers */
+.glossary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.glossary-item{border:1px solid var(--line);border-radius:9px;padding:14px;background:#fbfdff;min-width:0}
+.glossary-item b{font-size:12px;color:#173d50}
+.glossary-item p,.status-guide p{font-size:12px;line-height:1.65;color:#617084;margin:6px 0 0}
+.status-guide{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.status-guide>div{padding:13px;border:1px solid var(--line);border-radius:9px;background:#fff}
+.accepted-chip{display:inline-block;background:#e9edff;color:#344e9b;border-radius:99px;padding:5px 8px;font-size:10px;font-weight:800}
+@media(max-width:720px){.glossary-grid,.status-guide{grid-template-columns:1fr}}
