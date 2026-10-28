@@ -30,6 +30,10 @@ The assignment brief identifies the supplied data as simulated. The Task 01 work
 
 Proposed fields, events, KPI definitions, data models, governance controls and pipeline steps require confirmation by Product, Engineering, Operations/Finance and Security/Legal before implementation or production reporting.
 
+## Today's progress report
+
+- [Daily progress report — 28 October 2026](docs/TODAYS_PROGRESS_REPORT_2026-10-28.md) — today's documentation/scope alignment, remaining dependencies, and coordinator questions about work quality, errors, improvements and additions.
+
 ## Requirements and evidence
 
 - [Analytics foundation implementation pack](docs/ANALYTICS_FOUNDATION_IMPLEMENTATION_PACK.md) — source register, product/data coverage map, event contract, identity/grain model, quality controls, proposed KPIs, seven-dashboard blueprint, pipeline, governance, gaps, verification register, backlog and acceptance checklist.
