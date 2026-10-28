@@ -2,22 +2,25 @@
 
 **Prepared by:** Gaurav Nikam  
 **Assignment:** Product Analytics, Data Readiness & Data Management Blueprint  
-**Status:** Source-grounded review workspace; production analytics are not connected or verified.
+**Status:** Deployed evidence workspace; production analytics are not connected or verified.
 
 ## Live workspaces
 
+- **Current Vercel workspace:** https://velop-task01-data-analytics.vercel.app/
 - [Existing Streamlit evidence workspace](https://velop-task01-data-analytics.streamlit.app/)
-- **Vercel version:** deploy the `vercel-app` directory using the instructions in [vercel-app/README.md](vercel-app/README.md). The Vercel URL is not published here until a Vercel project has actually been created and deployed.
+- Vercel app source and deployment instructions: [vercel-app/README.md](vercel-app/README.md)
 
-The workspace is being changed to use only findings grounded in the supplied assignment files and audit. A GitHub commit or passing CI run does not by itself prove that the public deployment has refreshed; confirm the deployed page after Streamlit finishes redeploying.
+The deployed Vercel workspace has been manually tested by the project owner, including navigation across all seven sections, findings filters, CSV exports, document links and responsive/mobile layout. See the [Vercel build workflow](.github/workflows/vercel-app-build.yml) for automated build validation. A passing build or manual UI check does not prove that the public deployment has refreshed after every commit.
 
 ## What the workspace contains
 
 - **Executive status:** scope, evidence status and data-authenticity guardrail.
+- **Insights & recommendations:** findings grounded in the supplied assignment audit.
 - **Supplied data audit:** source-workbook row counts and documented quality findings.
-- **Deliverable tracker:** all 21 required final deliverables and their outstanding dependencies.
-- **Seven-dashboard blueprint:** the dashboard areas required by the assignment and their source/approval dependencies.
-- **Acceptance blockers:** hosting, production data, scope, owner sign-off and browser-QA gates.
+- **Deliverable tracker:** 21 tracked deliverables and outstanding dependencies.
+- **Seven-dashboard blueprint:** dashboard areas required by the assignment and their source/approval dependencies.
+- **Acceptance blockers:** production data, scope, owner sign-off and remaining acceptance gates.
+- **Implementation library:** implementation specifications and handoff documents.
 
 ## Source and authenticity rules
 
@@ -29,35 +32,47 @@ Proposed fields, events, KPI definitions, data models, governance controls and p
 
 ## Requirements and evidence
 
-- [Analytics foundation implementation pack](docs/ANALYTICS_FOUNDATION_IMPLEMENTATION_PACK.md) — source register, product/data coverage map, event contract, identity/grain model, quality controls, 30+ proposed KPIs, seven-dashboard blueprint, pipeline, governance, gaps, verification register, backlog and acceptance checklist.
+- [Analytics foundation implementation pack](docs/ANALYTICS_FOUNDATION_IMPLEMENTATION_PACK.md) — source register, product/data coverage map, event contract, identity/grain model, quality controls, proposed KPIs, seven-dashboard blueprint, pipeline, governance, gaps, verification register, backlog and acceptance checklist.
 - [Source data profile & quality audit](docs/SOURCE_DATA_PROFILE_AND_QUALITY_AUDIT.md) — recalculated Task 01 workbook profile, missingness, duplicate IDs and cross-tab findings.
 - [Data dictionary field index](docs/DATA_DICTIONARY_FIELD_INDEX.md) — 90-field inventory and field governance rules.
-- [Developer analytics handoff](docs/DEVELOPER_ANALYTICS_HANDOFF.md) — proposed event contract, lifecycle events and 15 acceptance tests.
+- [Developer analytics handoff](docs/DEVELOPER_ANALYTICS_HANDOFF.md) — proposed event contract, lifecycle events and acceptance tests.
 - [Seven-dashboard visual specifications](docs/DASHBOARD_VISUAL_SPECIFICATIONS.md) — visual-level formulas, sources, filters, questions and decisions for all seven areas.
 - [Analytics change log & operating model](docs/ANALYTICS_CHANGE_LOG_AND_OPERATING_MODEL.md) — ownership, review workflow, monitoring, incident handling and release acceptance.
-
 - [Task 01 requirements-to-evidence checklist](docs/TASK01_REQUIREMENTS_CHECKLIST.md)
 - [Three-source-file audit and acceptance status](docs/THREE_SOURCE_FILES_AUDIT.md)
 - [Data gaps and KPI guardrails](docs/data_gaps_and_kpi_guardrails.md)
-- [GitHub Actions smoke test](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/workflows/streamlit-smoke-test.yml)
+- [Streamlit smoke test workflow](.github/workflows/streamlit-smoke-test.yml)
+- [Vercel app build workflow](.github/workflows/vercel-app-build.yml)
 
-## Local run — Streamlit version
+## Run locally
+
+### Vercel / Next.js version
+
+```bash
+cd vercel-app
+npm install
+npm run dev
+```
+
+Build validation:
+
+```bash
+npm install
+npm run build
+```
+
+### Streamlit version
 
 ```bash
 pip install -r requirements.txt
 streamlit run app/streamlit_app.py
 ```
 
-## Vercel version
+## Remaining external acceptance gates
 
-The Next.js web app is in `vercel-app/` to keep the existing Streamlit app intact. Import this GitHub repository into Vercel and set **Root Directory** to `vercel-app`. See [vercel-app/README.md](vercel-app/README.md) for deployment and QA steps.
-
-## Known acceptance gates
-
-1. The assignment email specifies **Vercel or Netlify**. The current Streamlit Community Cloud URL does not meet that instruction unless the coordinator approves an exception.
-2. Authorized production datasets were not supplied; actual company KPIs cannot be calculated.
-3. Task 02 scope must be confirmed before reuse.
-4. Company owners must approve canonical identifiers, event triggers/payloads, reward units, wallet semantics, withdrawal states and KPI definitions.
-5. GitHub Actions checks dependency installation, Python compilation, app startup and health endpoint. Full interactive browser and responsive QA remains separate.
+1. Authorized production datasets were not supplied; actual company KPIs cannot be calculated.
+2. Task 02 scope must be confirmed before reuse.
+3. Company owners must approve canonical identifiers, event triggers/payloads, reward units, wallet semantics, withdrawal states and KPI definitions.
+4. The project owner/coordinator must confirm whether any additional company-specific submission or sign-off is required.
 
 **Integrity rule:** do not claim production readiness or company performance without direct evidence and owner approval.
