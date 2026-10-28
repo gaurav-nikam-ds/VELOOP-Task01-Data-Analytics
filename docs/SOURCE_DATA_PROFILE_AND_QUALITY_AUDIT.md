@@ -10,20 +10,20 @@ The workbook labels the assignment data as simulated. All results below describe
 
 | Sheet | Grain / purpose | Rows | Columns | Review status |
 |---|---|---:|---:|---|
-| Users_1000_Clean | Simulated user-profile table | 1,000 | 27 | Profiled |
+| Users_1000_Clean | Simulated user-profile table | 1,000 | 28 header cells (27 named fields + 1 blank trailing header) | Profiled; header count directly rechecked 28 October 2026 |
 | Users_Messy_Audit | Intentionally messy user-profile audit table | 1,008 | 28 | Profiled |
 | Data_Dictionary | Supplied field definitions | 25 | 5 | Reviewed |
 | Synthetic_Summary | Source-provided summary | Inspect source tab before reuse | — | Source sheet retained |
 | README_Data_Status | Source-provided data status and caveats | Inspect source tab before reuse | — | Source sheet retained |
 
-**Column-count reconciliation note (28 October 2026):** this detailed profile records 27 columns for `Users_1000_Clean`, while `docs/THREE_SOURCE_FILES_AUDIT.md` previously recorded 28. The original workbook was not available for direct byte-level inspection during this documentation pass, so the clean-sheet column count remains unverified and must not be treated as reconciled. The row count and other findings below reflect the existing audit record; re-open the source workbook and update both documents from the same sheet header count before final sign-off.
+**Column-count reconciliation (verified 28 October 2026):** the original `VELoop_Rewards_Data_01(2).xlsx` workbook was reopened and the `Users_1000_Clean` header row was counted directly. It contains **28 header cells, of which 27 are named fields and the final header cell is blank (`None`)**. `Users_Messy_Audit` contains 28 named fields, including `data_environment`. The earlier 27-vs-28 discrepancy arose from counting only non-empty clean-sheet header names in one record versus all header cells in another. For schema clarity, report both counts: 28 physical header cells / 27 named fields. The source workbook remains unchanged.
 
 ## Clean user-profile findings
 
 | Check | Result | Interpretation |
 |---|---:|---|
 | Row count | 1,000 | Supplied simulated profile records |
-| Column count | 27 | Includes profile, acquisition, activity flags, consent and platform fields |
+| Header cells / named fields | 28 / 27 | The last header cell is blank; 27 fields have names. Do not treat the blank header as a usable field. |
 | Unique non-null user IDs | 1,000 | User ID is unique at the row grain in this sheet |
 | Exact duplicate rows | 0 | No exact duplicate rows detected |
 | Missing referral_source_detail | 881 / 1,000 (88.1%) | High missingness; confirm whether detail is optional, not collected, unknown, or not applicable |
