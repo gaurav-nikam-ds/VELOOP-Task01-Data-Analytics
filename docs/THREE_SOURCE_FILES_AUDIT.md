@@ -4,21 +4,21 @@ Audit date: 28 October 2026. This audit uses the three uploaded files and the as
 
 ## Executive conclusion
 
-The Task 01 analytical design is largely documented. The current Vercel workspace is the primary reviewer-facing site; the Streamlit app is a separate prototype. The remaining non-QA items are direct source-workbook reconciliation for the clean-sheet column count, coordinator scope/feedback, and company validation of proposed definitions. Browser QA is intentionally deferred at the project owner's request. Hosting compliance must be judged against the exact assignment email: a Vercel workspace now exists, but any final link/submission expectations still require the coordinator's confirmation.
+The Task 01 analytical design is largely documented. The current Vercel workspace is the primary reviewer-facing site; the Streamlit app is a separate prototype. The clean-sheet header mismatch has now been reconciled directly against the original workbook: 28 header cells, 27 named fields, and one blank trailing header. Remaining external items include coordinator scope/feedback and company validation of proposed definitions. The repository records owner-reported manual checks for the Vercel UI; an independent fresh browser re-run could not be completed from this environment because the deployed URL was not retrievable here. Hosting/submission requirements should still be confirmed against the assignment email.
 
 ## Source files
 
 | File | What it contains | Decision |
 |---|---|---|
 | `Data_Analyst_01 (4)(2).pdf` | Governing 44-page Task 01 brief; work packages A–S and 21 final deliverables. | Source of truth for Task 01. |
-| `VELoop_Rewards_Data_01(2).xlsx` | `Users_1000_Clean`: 1,000 data rows; column count is inconsistent across existing project documents (27 in the detailed source profile, 28 in this audit). `Users_Messy_Audit`: 1,008 data rows × 28 columns. The source workbook itself was not available in the current repository review context to independently settle the clean-sheet column count; therefore neither count is promoted as re-verified here. This is an explicit source-reconciliation item, not a resolved fact. | Task 01 supplied simulated user-profile data, not a full transaction/event working pack. |
+| `VELoop_Rewards_Data_01(2).xlsx` | `Users_1000_Clean`: 1,000 data rows; 28 header cells, of which 27 have field names and the last is blank. `Users_Messy_Audit`: 1,008 data rows × 28 named columns. Directly rechecked against the original workbook on 28 October 2026. | Task 01 supplied simulated user-profile data, not a full transaction/event working pack. |
 | `VELOOP_Simulated_User_Behavior_1000(2).xlsx` | README calls it “VELOOP Task 02 — User Behavior & Engagement Intelligence”; includes 1,000 users, 7,913 sessions, 35,704 feature events, 6,667 daily activity rows, 9,846 task activity rows, 4,799 milestones, 15 feature-summary rows and 35,714-row event audit. | Keep separate from Task 01 unless coordinator explicitly approves reuse. |
 
 ## Measured data findings
 
 | Dataset / check | Result | Assessment |
 |---|---|---|
-| Task 01 clean users | 1,000 data rows; clean-sheet column count requires direct workbook recheck because the source profile says 27 while this audit previously said 28; 1,000 unique/non-null `user_id`; 0 exact duplicate rows (per existing detailed audit). | Primary key passes on this simulated sheet. |
+| Task 01 clean users | 1,000 data rows; 28 header cells / 27 named fields (one blank trailing header); 1,000 unique/non-null `user_id`; 0 exact duplicate rows (per existing detailed audit). | Primary key passes on this simulated sheet. |
 | Clean-user missingness | 881 missing `referral_source_detail`; 72 missing `last_login_datetime`. | Define conditional requiredness; missing last-login can be legitimate for never-logged-in users. |
 | Task 01 messy users | 1,008 rows; 1,000 unique IDs; 8 repeated IDs; 1 missing registration timestamp; 73 missing last-login timestamps; 885 missing referral details; 4 negative `days_since_registration` values. | Audit defects/edge cases; do not silently delete duplicates or infer corrections. |
 | Task 02 sessions | 7,913 data rows; 984 distinct user IDs; no user IDs orphaned against Task 02 user profiles. | Simulated relationship check passes for this workbook only. |
@@ -58,7 +58,7 @@ The Task 01 analytical design is largely documented. The current Vercel workspac
 |---|---|
 | Public GitHub repository | Present |
 | Professional README | Present |
-| Responsive implementation | Responsive CSS exists; owner has reported manual desktop/mobile checks for the Vercel app on 28 October; fresh post-commit checks are deferred |
+| Responsive implementation | Responsive CSS exists; repository records owner-reported manual desktop/mobile checks on 28 October; independent fresh re-run remains unverified in this environment |
 | Deploy on Vercel or Netlify | **Not satisfied by current Streamlit Community Cloud URL** unless coordinator grants an exception |
 | Submit GitHub + live link | Links exist, but hosting mismatch must be resolved |
 | Technology stack | No named stack found in the supplied PDF; ask whether a separate stack document exists |
@@ -72,11 +72,11 @@ The app’s tautological “Task dates outside configured sample window” check
 
 ## Final remaining actions
 
-1. Directly reopen the original Task 01 workbook and settle the clean-sheet column count; update every report consistently.
+1. Workbook column-count mismatch resolved: clean sheet has 28 header cells / 27 named fields because its final header cell is blank. Ensure all related documents use this wording.
 2. Ask the coordinator to confirm whether Task 02 data may supplement Task 01; do not merge it without approval.
 3. Obtain feedback on analytical quality, errors, missing requirements, improvements and additions.
 4. Obtain company confirmation of live/planned features, event implementation, canonical IDs, reward units, wallet ledger, withdrawal states, KPI definitions, data owners and governance.
-5. Run final browser QA after the project owner says testing can begin.
+5. Obtain/retain screenshot or browser-run evidence for the owner-reported Vercel checks; perform an independent post-change browser QA when the deployed URL is reachable.
 
 **Integrity guardrail:** all supplied and supplemental records are simulated. Proposed events and KPIs are designs, not proof of production implementation. Do not present synthetic metrics as actual VELOOP performance.
 
