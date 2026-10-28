@@ -14,8 +14,8 @@ The deployed Vercel workspace has been manually tested by the project owner, inc
 
 ## What the workspace contains
 
-- **Executive status:** scope, evidence status and data-authenticity guardrail.
-- **Insights & recommendations:** findings grounded in the supplied assignment audit.
+- **Executive status:** scope, evidence status, data-authenticity guardrail, plain-English glossary and status legend.
+- **Insights & recommendations:** four Task 01 user-profile findings; the Task 02 event audit stays separate until scope approval.
 - **Supplied data audit:** source-workbook row counts and documented quality findings.
 - **Deliverable tracker:** 21 tracked deliverables and outstanding dependencies.
 - **Seven-dashboard blueprint:** dashboard areas required by the assignment and their source/approval dependencies.
