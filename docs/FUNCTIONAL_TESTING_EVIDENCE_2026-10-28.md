@@ -19,9 +19,9 @@ The clean sheet has **28 physical header cells but only 27 named fields** becaus
 
 ## 2. Deployed website functional QA — existing screenshot evidence reviewed
 
-The screenshots already supplied in this conversation were retrieved and reviewed; the user does not need to resend them. The screenshots include the Vercel workspace in Chrome and show the Executive status/Home, Insights & recommendations, Supplied data audit, Deliverable tracker, Seven-dashboard blueprint, and Implementation library sections. The Findings screenshots show the priority filter and findings CSV export control; the Deliverable tracker screenshot shows the CSV download completed. The screenshots are visual evidence of the UI state at the capture time, not automated test logs. The user also previously reported testing implementation-library links and mobile layout.
+The screenshots already supplied in this conversation were retrieved and reviewed; the user does not need to resend them. Vercel screenshots show Executive status/Home, Insights & recommendations, Supplied data audit, Deliverable tracker, Seven-dashboard blueprint and Implementation library. The Acceptance blockers view is also visible in the earlier screenshot set, but that capture is from the separate Streamlit app, not the Vercel app. Findings screenshots show priority-filter states and the export control; the Deliverable tracker screenshot shows a completed CSV download. These are visual evidence of captured UI states, not automated test logs. The user previously reported testing implementation-library links and mobile layout.
 
-The available screenshot evidence supports the following:
+The available screenshot evidence supports the following, while keeping the Vercel and legacy Streamlit screenshots clearly distinguished:
 
 - Seven navigation sections open.
 - Findings search and priority filters work.
@@ -31,12 +31,12 @@ The available screenshot evidence supports the following:
 - Data-limitation disclosure is visible.
 - Supplied-data audit, deliverable tracker and dashboard blueprint render.
 
-**Evidence boundary:** Existing screenshots are now treated as user-provided visual evidence; no request to resend them is needed. They show the app rendered in Chrome at capture time. A new independent live browser session was not run in this pass, so the screenshots do not independently prove the latest deployment or every interaction. The captured screenshots show six of the seven main sections; the Acceptance blockers section is listed in the sidebar but no standalone screenshot for that view was identified in the set reviewed. Mobile layout and link behavior were previously reported by the user as tested, but no distinct mobile screenshot was identified in this subset.
+**Evidence boundary:** Existing screenshots are treated as user-provided visual evidence; no request to resend them is needed. Vercel captures show six main sections. A separate earlier Streamlit capture shows Acceptance blockers, but it must not be treated as proof that this view was captured in the Vercel app. A new independent live browser session was not run in this pass, so screenshots do not independently prove the latest deployment or every interaction. Mobile layout and link behavior were previously reported by the user as tested, but the reviewed screenshots are desktop captures.
 
 | Test ID | Test | Current result | Evidence status / next action |
 |---|---|---|---|
 | WEB-01 | Public Vercel URL responds in a fresh browser session | Screenshot evidence shows the Vercel URL rendered in Chrome at capture time | Fresh-session status after the latest commit remains unverified |
-| WEB-02 | Navigation sections render | Screenshot evidence shows Home, Findings, Data audit, Deliverable tracker, Dashboard blueprint and Implementation library; Acceptance blockers is visible in the sidebar but no dedicated screenshot identified | Existing screenshots retained as evidence; dedicated blockers-view screenshot not identified |
+| WEB-02 | Navigation sections render | Vercel screenshots show Home, Findings, Data audit, Deliverable tracker, Dashboard blueprint and Implementation library. Acceptance blockers is shown in a separate legacy Streamlit screenshot. | Existing screenshots retained; verify Acceptance blockers in Vercel only if that section exists there |
 | WEB-03 | Findings search and priority filters | Screenshot shows priority filter set to High and corresponding findings; another screenshot shows Medium | Visual evidence captured; search interaction itself not independently rerun |
 | WEB-04 | CSV export downloads and opens | Screenshot shows a completed deliverable-tracker CSV download; findings CSV export control is visible | Download evidence exists for deliverable tracker; findings CSV completion/opening not separately evidenced in this screenshot subset |
 | WEB-05 | Source/document links open | Screenshot shows implementation library cards and visible GitHub link destination preview; user also reported links tested | User-reported pass plus visible link UI; no full click-through log |
