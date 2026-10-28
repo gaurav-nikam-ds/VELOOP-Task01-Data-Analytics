@@ -63,13 +63,12 @@ const sources = [
 ];
 
 const blockers = [
-["Hosting platform","Open","Assignment email specifies Vercel or Netlify; this app is being prepared for Vercel."],
-["Production data","Open","No authorized production extracts, API credentials or database connection were supplied."],
-["Scope confirmation","Open","The behavior workbook identifies itself as Task 02; do not merge without coordinator approval."],
-["Company definitions","Open","Product/Engineering must confirm event implementation and KPI semantics."],
-["Finance/Operations sign-off","Open","Reward units, wallet ledger semantics and withdrawal states require owner confirmation."],
-["Browser QA","Open","Run deployed browser QA for all sections, exports, links and responsive layouts."],
-["Live deployment freshness","Unverified","A GitHub commit or successful build alone does not prove the public deployment is current."]
+["Vercel deployment","Verified","The live website is deployed and the project owner has confirmed the live-site checks."],
+["Website usability checks","Verified","Navigation, findings filters, CSV downloads, document links and mobile layout have been checked by the project owner."],
+["Production data access","External dependency","No authorized production extracts, API credentials or database connection were supplied. This is not a website defect."],
+["Task 02 scope approval","External dependency","The behavior workbook identifies itself as Task 02. Keep it separate unless the coordinator approves reuse."],
+["KPI and event definitions","External dependency","Product/Engineering must confirm event implementation, canonical identifiers and KPI definitions."],
+["Rewards, wallet and withdrawals","External dependency","Finance/Operations must confirm reward units, ledger semantics, withdrawal states and reconciliation rules."]
 ];
 
 function downloadCSV(filename, rows) {
@@ -119,39 +118,40 @@ export default function Home() {
       <div className="content">
       {active==="Executive status" && <>
         <div className="page-title"><div><span className="eyebrow">WORKSPACE OVERVIEW</span><h2>Current submission status</h2></div><span className="status-chip">Prototype · Review pending</span></div>
-        <div className="metrics-grid"><Metric label="Required final deliverables" value="21"/><Metric label="Proposed KPI definitions" value="36"/><Metric label="Proposed dictionary fields" value="90"/><Metric label="Production connections" value="0"/></div>
+        <div className="metrics-grid"><Metric label="Tracked assignment deliverables" value="21" sub="Evidence and dependencies recorded"/><Metric label="Proposed KPIs" value="36" sub="Require owner approval"/><Metric label="Proposed data fields" value="90" sub="Logical design, not production schema"/><Metric label="Production data connections" value="0" sub="No live company data supplied"/></div>
+        <Panel title="Start here: how to read this workspace" subtitle="A quick guide before exploring the details"><ul className="evidence-list"><li><b>Insights & recommendations:</b> what the supplied files show, why it matters and what to do next.</li><li><b>Supplied data audit:</b> counts and quality issues found in the assignment workbooks.</li><li><b>Deliverable tracker:</b> what has been documented and what still depends on approval or missing data.</li><li><b>Seven-dashboard blueprint:</b> a proposed design for future dashboards—not seven live production dashboards.</li><li><b>Acceptance blockers:</b> remaining business dependencies that cannot be resolved from the supplied files alone.</li><li><b>Implementation library:</b> detailed technical documents for reviewers and developers.</li></ul></Panel>
         <Panel title="What the evidence supports" subtitle="Conclusions grounded in the supplied assignment files"><ul className="evidence-list"><li>The assignment is a product-analytics and data-readiness blueprint.</li><li>The Task 01 workbook includes clean and messy user-profile tabs plus dictionary/summary tabs.</li><li>The separate behavior workbook labels itself Task 02 and remains separate pending coordinator approval.</li><li>Reward, wallet, withdrawal and referral business performance cannot be measured from the supplied Task 01 user-profile tabs alone.</li></ul></Panel>
         <div className="decision-callout"><b>Decision rule</b><p>Improve data reliability and confirm authoritative business sources before calculating or interpreting production KPIs. Do not publish simulated figures as actual VELOOP performance.</p></div>
         <Panel title="Readiness at a glance" subtitle="Items that still need evidence or owner confirmation"><DataTable headers={["Gate","Status","Required next step"]} rows={blockers.slice(0,5)}/><div className="panel-actions"><button className="button secondary" onClick={()=>setActive("Acceptance blockers")}>Review all blockers →</button></div></Panel>
       </>}
       {active==="Insights & recommendations" && <>
-        <div className="page-title"><div><span className="eyebrow">EVIDENCE-BASED FINDINGS</span><h2>What can an analyst conclude?</h2><p className="lead">These are source-file quality insights, not production performance insights.</p></div></div>
+        <div className="page-title"><div><span className="eyebrow">EVIDENCE-BASED FINDINGS</span><h2>What did the supplied data show?</h2><p className="lead">Each finding includes the evidence, why it matters and a recommended next step. These are simulated assignment-data findings—not actual VELOOP business results.</p></div></div>
         <div className="filter-row"><input aria-label="Search findings" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search findings, risks or actions…"/><select aria-label="Filter by priority" value={priority} onChange={e=>setPriority(e.target.value)}><option>All</option><option>High</option><option>Medium</option></select><button className="button secondary" onClick={exportFindings}>Export findings CSV ↓</button></div>
         <div className="finding-grid">{filteredFindings.map((f,i)=><article className="finding-card" key={f.title}><div className="finding-top"><span className="finding-index">FINDING {findings.indexOf(f)+1}</span><span className={f.priority==="High"?"priority high":"priority medium"}>{f.priority} priority</span></div><h3>{f.title}</h3><div className="finding-metric">{f.metric}</div><div className="evidence-tag">{f.evidence}</div><div className="finding-section"><b>Business risk / limitation</b><p>{f.risk}</p></div><div className="finding-section"><b>Recommended action</b><p>{f.action}</p></div></article>)}</div>
       </>}
       {active==="Supplied data audit" && <>
-        <div className="page-title"><div><span className="eyebrow">SOURCE QUALITY</span><h2>Supplied workbook audit</h2><p className="lead">Row counts and issues below refer to the supplied simulated workbooks.</p></div></div>
+        <div className="page-title"><div><span className="eyebrow">SOURCE QUALITY</span><h2>What is in the supplied files?</h2><p className="lead">These counts and issues come from the simulated assignment workbooks. Task 02 is shown separately and is not combined with Task 01.</p></div></div>
         <div className="metrics-grid"><Metric label="Clean user profiles" value="1,000"/><Metric label="Clean-sheet columns" value="27"/><Metric label="Messy audit rows" value="1,008"/><Metric label="Repeated IDs in messy tab" value="8"/></div>
         <Panel title="Task 01 source workbook" subtitle="Workbook-level profile and quality findings"><DataTable headers={["Source sheet","Rows","Columns","Finding"]} rows={sources}/></Panel>
         <Panel title="Separate Task 02 workbook — not merged" subtitle="Shown only as a separate source audit"><DataTable headers={["Dataset","Rows","Audited finding"]} rows={[["Sessions","7,913","984 distinct user IDs; no orphan user IDs against Task 02 profiles"],["Primary feature events","35,704","35,704 unique event IDs; date range 2026-04-02 to 2026-09-15; no user ID orphans"],["Event audit","35,714","10 exact duplicate rows"],["Daily activity","6,667","Task 02 workbook summary; not treated as Task 01 source"]]}/></Panel>
         <div className="decision-callout"><b>Interpretation guardrail</b><p>Task 02 data must not be merged into Task 01 analysis without coordinator approval. Source-level counts do not establish production-system correctness.</p></div>
       </>}
       {active==="Deliverable tracker" && <>
-        <div className="page-title"><div><span className="eyebrow">TRACEABILITY</span><h2>Task 01 required deliverables</h2><p className="lead">Evidence status and remaining dependencies. Status does not imply company approval.</p></div><button className="button primary" onClick={exportDeliverables}>Export deliverable tracker ↓</button></div>
+        <div className="page-title"><div><span className="eyebrow">ASSIGNMENT CHECKLIST</span><h2>Required deliverables and what remains</h2><p className="lead">“Documented” means included in the handoff; it does not mean the company has approved or implemented it.</p></div><button className="button primary" onClick={exportDeliverables}>Export deliverable tracker ↓</button></div>
         <div className="metrics-grid compact"><Metric label="Tracked deliverables" value="21"/><Metric label="Proposed KPIs" value="36"/><Metric label="Dictionary fields" value="90"/></div>
         <DataTable headers={["#","Deliverable","Evidence status","Remaining dependency"]} rows={deliverables.map((d,i)=>[String(i+1).padStart(2,"0"),d[0],<span className="status-text" key={d[0]}>{d[1]}</span>,d[2]])}/>
       </>}
       {active==="Seven-dashboard blueprint" && <>
-        <div className="page-title"><div><span className="eyebrow">VISUAL SPECIFICATION</span><h2>Dashboard areas required by the assignment</h2><p className="lead">This is a blueprint, not a claim that seven production dashboards have been implemented.</p></div></div>
+        <div className="page-title"><div><span className="eyebrow">PROPOSED DESIGN</span><h2>Seven dashboards the business could use</h2><p className="lead">Open each item to see its purpose, intended stakeholder and the data/approval needed. These dashboards are specified, not connected to live company data.</p></div></div>
         <div className="blueprint-list">{dashboardAreas.map(d=><details className="blueprint-card" key={d[0]}><summary><span className="blueprint-number">{d[0]}</span><span>{d[1]}</span><span className="summary-arrow">+</span></summary><div className="blueprint-detail"><div><b>Business measures</b><p>{d[2]}</p></div><div><b>Primary stakeholder</b><p>{d[3]}</p></div><div><b>Source / approval dependency</b><p>{d[4]}</p></div><div className="blueprint-status">Specification status: Blueprint only; formulas, dimensions, filters, date range and refresh rules require owner validation.</div></div></details>)}</div>
       </>}
       {active==="Acceptance blockers" && <>
-        <div className="page-title"><div><span className="eyebrow">RELEASE GATES</span><h2>Items preventing a full-completion claim</h2><p className="lead">Mark a gate complete only when supporting evidence exists.</p></div></div>
-        <Panel title="Acceptance blocker register" subtitle="Open items, including the Vercel hosting requirement"><DataTable headers={["Gate","Status","Evidence / next action"]} rows={blockers.map(b=>[b[0],<span className={b[1]==="Open"?"open-status":"status-chip"} key={b[0]}>{b[1]}</span>,b[2]])}/></Panel>
+        <div className="page-title"><div><span className="eyebrow">STATUS & DEPENDENCIES</span><h2>What is done—and what still needs others</h2><p className="lead">Website checks are complete. Remaining items require company data or decisions from the coordinator and business owners.</p></div></div>
+        <Panel title="Remaining dependencies" subtitle="These are external business/data requirements, not unfinished website features"><DataTable headers={["Gate","Status","Evidence / next action"]} rows={blockers.map(b=>[b[0],<span className={b[1]==="External dependency"?"dependency-chip":b[1]==="Verified"?"verified-chip":"status-chip"} key={b[0]}>{b[1]}</span>,b[2]])}/></Panel>
         <div className="decision-callout"><b>Acceptance rule</b><p>Do not replace missing company facts with invented transaction data. Production readiness requires approved data, owner definitions and validation evidence.</p></div>
       </>}
       {active==="Implementation library" && <>
-        <div className="page-title"><div><span className="eyebrow">HANDOFF DOCUMENTS</span><h2>Task 01 implementation specifications</h2><p className="lead">Open the source-grounded documents in the repository. Proposed behavior is not represented as implemented production functionality.</p></div></div>
+        <div className="page-title"><div><span className="eyebrow">DETAILS FOR REVIEWERS</span><h2>Technical documents and handoff files</h2><p className="lead">Start with the source audit for evidence, the requirements checklist for coverage, or the developer handoff for implementation details.</p></div></div>
         <div className="library-grid">{[
 ["Source data profile & quality audit","Evidence-backed row/column counts, missingness, duplicate IDs and quality rules.","SOURCE_DATA_PROFILE_AND_QUALITY_AUDIT.md"],
 ["Data dictionary field index","90-field logical inventory, metadata contract, sensitivity and validation rules.","DATA_DICTIONARY_FIELD_INDEX.md"],
