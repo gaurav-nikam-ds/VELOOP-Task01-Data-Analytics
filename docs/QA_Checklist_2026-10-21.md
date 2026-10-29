@@ -1,3 +1,5 @@
+> **Historical snapshot — 21 October 2026.** This checklist describes the earlier Streamlit prototype and its then-current checks. It is not the current application acceptance record. The active application is the Vercel/Next.js reviewer workspace. For current results, see [Functional Testing Evidence](FUNCTIONAL_TESTING_EVIDENCE_2026-10-28.md) and [the latest 11/11 live QA run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636363).
+
 # Task 01 — QA checklist (21 October 2026)
 
 ## Automated checks completed
