@@ -1,18 +1,18 @@
 # VELOOP Task 01 — Vercel app
 
-This is the deployed Next.js web version of the evidence workspace. The Vercel website is the sole active application and QA target.
+This is the deployed Next.js reviewer workspace and the sole active website/QA target for this repository. It documents the Task 01 analytics proposal and source-data findings; it is **not** connected to VELOOP production systems.
 
 ## Live deployment
 
-https://veloop-task01-data-analytics.vercel.app/
+https://velop-task01-data-analytics.vercel.app/
 
 ## Deploy to Vercel
 
 1. Import `gaurav-nikam-ds/VELOOP-Task01-Data-Analytics` into Vercel.
-2. In **Configure Project → Root Directory**, select `vercel-app`.
-3. Framework preset: **Next.js**. Build command: `npm run build`. Leave output directory on the framework's auto-detected/default value.
-4. Deploy and confirm the deployment is ready.
-5. Run the acceptance checks below against the deployed URL after any material UI change.
+2. Set **Root Directory** to `vercel-app`.
+3. Framework preset: **Next.js**. Build command: `npm run build`. Keep the framework default output directory.
+4. Deploy and confirm the deployment is Ready.
+5. After UI changes, run the live browser QA workflow and review its report.
 
 ## Local run and build
 
@@ -22,43 +22,48 @@ npm install
 npm run dev
 ```
 
-To verify a production build locally:
+Production build check:
 
 ```bash
 npm install
 npm run build
 ```
 
-The repository has a dedicated [Vercel app build workflow](../.github/workflows/vercel-app-build.yml). It installs the app dependencies and runs the Next.js production build on relevant pushes and pull requests.
+The [Vercel build workflow](../.github/workflows/vercel-app-build.yml) checks the Next.js production build. The [live browser QA workflow](../.github/workflows/live-vercel-qa.yml) tests the deployed site.
 
-## Manual acceptance checklist
+## Latest verified QA
 
-**Status:** Existing user-provided screenshots from 2026-10-28 have been reviewed and are retained as visual evidence; the user does not need to resend them. Screenshots show Home, Findings, Supplied data audit, Deliverable tracker, Seven-dashboard blueprint and Implementation library; Findings priority-filter states and a completed deliverable-tracker CSV download are visible. The user also reported testing links and mobile layout. A fresh independent browser session after the latest repository commit has not been run. A separate live-browser QA workflow tests the deployed Vercel website.
+**29 October 2026:** [Live browser QA run passed 11/11 tests](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636363). The [production build also passed](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636252).
 
-- [x] Existing screenshots show the deployed page rendered and six main sections open; the Acceptance blockers view is listed in the sidebar but a dedicated screenshot was not identified in the reviewed set.
-- [x] Findings screenshots show the priority filter at High and Medium and the corresponding findings; the text search interaction itself was not independently re-run.
-- [x] Screenshot shows a completed deliverable-tracker CSV download; findings export control is visible. User also reported testing downloads.
-- [x] Implementation-library document links are visible; user reported checking link behavior.
-- [x] Desktop screenshots available; user reported mobile layout check (no mobile screenshot identified in reviewed subset).
-- [x] Data-limitation disclosure is visible.
-- [x] The UI does not imply a production connection or claim company performance.
-- [x] Screenshots show supplied-data audit, deliverable tracker and seven-dashboard blueprint rendering.
+The browser suite verifies:
+- Public page response and visible data-authenticity notice
+- All seven navigation sections
+- Findings search and priority filter
+- Findings and deliverable-tracker CSV exports, filenames, headers and row counts
+- Narrow mobile use and overflow across 320, 360, 390, 768, 1024 and 1440 pixel widths
+- All eight implementation-library links
+- Accessible names and unique element IDs
+- Automated WCAG 2.1 A/AA checks on all seven sections
+- No failed requests/HTTP error responses and no browser JavaScript or console errors
 
-## Implemented versus planned
+These are automated browser checks against the deployed reviewer workspace. They do not prove production analytics integrations, business correctness of unapproved KPI definitions, or coordinator acceptance.
 
-The Vercel workspace is a reviewer/evidence interface. Its seven navigation sections and their rendered reviewer content are implemented UI features; they are not seven production analytics dashboards. Search/priority filtering, CSV exports and document links are listed as owner-reported manual checks in the acceptance checklist below. No production database/API connection or live analytics pipeline is configured.
+## Implemented versus proposed
 
-| Feature area | Status | Evidence / caveat |
+| Area | Status | Boundary |
 |---|---|---|
-| Seven reviewer navigation sections and reviewer pages | Implemented in the workspace UI | Reviewer pages only; not separate production dashboards |
-| Findings search and priority filters | Owner-reported as tested | Attach screenshots or browser-run evidence to the final QA package |
-| CSV exports | Owner-reported as tested | Synthetic/profile-audit content only; retain caveats in exports |
-| Document/source links | Owner-reported as tested | Independent post-change recheck pending |
-| Responsive layout | Owner-reported as tested | Independent post-change recheck pending |
-| Seven dashboard specifications | Planned/proposed analytics design | Not seven live production dashboards |
-| Production data connection, event tracking, data pipeline | Not implemented / not configured in this workspace | Requires engineering implementation, approved source systems and internal sign-off |
-| Task 02 behavior data inside Task 01 | Blocked pending approval | Keep separate unless coordinator approves reuse |
+| Seven reviewer navigation sections | Implemented | These are workspace pages, not seven live production dashboards |
+| Findings search and priority filtering | Automated browser-tested | Shows Task 01 simulated-source audit findings |
+| CSV exports | Automated browser-tested | Exported reviewer/audit content is not production performance data |
+| Implementation-library document links | Automated browser-tested | Eight links return successful HTTP responses |
+| Responsive layout | Automated browser-tested | No horizontal overflow at tested viewport widths |
+| Automated accessibility | WCAG 2.1 A/AA scan passes | Automated scan is not a full manual accessibility audit |
+| Seven dashboard areas | Proposed specification | Not deployed production dashboards |
+| Production database/API, event tracking and analytics pipeline | Not implemented/configured here | Requires approved source systems and engineering work |
+| Task 02 behavior data inside Task 01 | Blocked pending coordinator approval | Keep scopes separate unless written approval is received |
 
 ## Data authenticity
 
-All metrics shown are findings from the supplied simulated assignment workbooks. The separate behavior workbook is labeled Task 02 and is not merged into Task 01. This site has no production database/API connection. Proposed KPIs, event contracts, data models and business rules require company owner approval.
+The supplied assignment workbooks are simulated. The Task 01 source workbook provides user-profile clean/messy tabs, not a complete authoritative task/reward/wallet/withdrawal/referral/event transaction pack. The separate behavior workbook identifies itself as Task 02 and is not merged into Task 01. No production database/API connection is configured.
+
+**Do not present simulated rows, sample counts, proposed KPIs or synthetic metrics as actual VELOOP company performance.** Proposed fields, event contracts, KPI definitions, data models, governance controls and pipeline steps require review and approval by the relevant company owners.
