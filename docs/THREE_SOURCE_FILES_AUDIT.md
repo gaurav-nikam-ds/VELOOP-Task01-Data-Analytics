@@ -4,7 +4,7 @@ Audit date: 28 October 2026. This audit uses the three uploaded files and the as
 
 ## Executive conclusion
 
-The Task 01 analytical design is largely documented. The current Vercel workspace is the primary reviewer-facing site; the Streamlit app is a separate prototype. The clean-sheet header mismatch has now been reconciled directly against the original workbook: 28 header cells, 27 named fields, and one blank trailing header. Remaining external items include coordinator scope/feedback and company validation of proposed definitions. The repository records owner-reported manual checks for the Vercel UI; an independent fresh browser re-run could not be completed from this environment because the deployed URL was not retrievable here. Hosting/submission requirements should still be confirmed against the assignment email.
+The Task 01 analytical design is largely documented. The Vercel workspace is the sole active reviewer-facing site. The clean-sheet header mismatch has been reconciled against the original workbook: 28 header cells, 27 named fields and one blank trailing header. On 29 October 2026, live Playwright QA passed 11/11 tests and the Next.js production build passed. Remaining external items are coordinator scope/feedback, availability of all required submission artifacts and company validation of proposed definitions.
 
 ## Source files
 
@@ -52,41 +52,23 @@ The Task 01 analytical design is largely documented. The current Vercel workspac
 | 20 Implementation backlog | Prioritized proposal | Company approval of owners/priorities |
 | 21 Final consolidated report | Prepared | Submit with companion files and honest limitations |
 
-## Email requirements
+## Submission requirements and current evidence
 
 | Requirement | Status |
 |---|---|
 | Public GitHub repository | Present |
-| Professional README | Present |
-| Responsive implementation | Responsive CSS exists; repository records owner-reported manual desktop/mobile checks on 28 October; independent fresh re-run remains unverified in this environment |
-| Deploy on Vercel or Netlify | Vercel reviewer workspace exists; latest commit's Vercel status is pending, so final readiness must be confirmed |
-| Submit GitHub + live link | Links exist, but hosting mismatch must be resolved |
-| Technology stack | No named stack found in the supplied PDF; ask whether a separate stack document exists |
-| Deadline | PDF cover says 22–24 days while suggested schedule runs to day 25; no explicit calendar deadline found in extracted PDF text. Confirm with coordinator. |
+| Professional README and requirements-to-evidence map | Present; README updated for Vercel-only workspace |
+| Live interactive workspace | Vercel URL is the active target: https://velop-task01-data-analytics.vercel.app/ |
+| Production build | Passed: [GitHub Actions run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636252) |
+| Deployed browser QA | Passed 11/11: [GitHub Actions run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636363) |
+| Report, design workbook and companion diagrams | Verify all required files are published or attached in the assignment's required submission location |
+| Company/coordinator approval | Pending; cannot be completed from repository changes alone |
 
-## Verified engineering test
+## QA scope and remaining actions
 
-GitHub Actions smoke test passed: dependencies installed, Python source compiled, Streamlit started, and the Streamlit health endpoint responded. This is a startup smoke test, **not** proof of full interactive browser correctness or public deployment success.
+The browser suite verifies the current Vercel reviewer workspace: all seven sections, findings search/priority filtering, two CSV exports, eight document links, responsive widths, automated WCAG 2.1 A/AA checks, network responses and browser errors. It does not validate production analytics because no production connection is configured.
 
-The app’s tautological “Task dates outside configured sample window” check was replaced in GitHub with a future-date check. The new commit is `b68b39899d8b14d52ea470735dd3db078787ec2a`; rerun CI and manually test the deployed app after redeployment.
-
-## Final remaining actions
-
-1. Workbook column-count mismatch resolved: clean sheet has 28 header cells / 27 named fields because its final header cell is blank. Ensure all related documents use this wording.
-2. Ask the coordinator to confirm whether Task 02 data may supplement Task 01; do not merge it without approval.
-3. Obtain feedback on analytical quality, errors, missing requirements, improvements and additions.
-4. Obtain company confirmation of live/planned features, event implementation, canonical IDs, reward units, wallet ledger, withdrawal states, KPI definitions, data owners and governance.
-5. Obtain/retain screenshot or browser-run evidence for the owner-reported Vercel checks; perform an independent post-change browser QA when the deployed URL is reachable.
-
-**Integrity guardrail:** all supplied and supplemental records are simulated. Proposed events and KPIs are designs, not proof of production implementation. Do not present synthetic metrics as actual VELOOP performance.
-
-## Hosting and demo delivery status
-
-- Primary reviewer workspace: https://velop-task01-data-analytics.vercel.app/ (latest repository commit's Vercel status is pending; confirm deployment Ready before submission).\n- Legacy Streamlit prototype: https://velop-task01-data-analytics.streamlit.app/ (separate app; not the primary Vercel deliverable).
-- The supplied assignment email explicitly asks for Vercel or Netlify. The Vercel reviewer workspace now exists, but confirm that the latest deployment is Ready and use the Vercel URL for submission.
-- GitHub Actions smoke workflow: `.github/workflows/streamlit-smoke-test.yml`. Latest verified run at audit time: [Run #5](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40292822224) — **success** for dependency install, Python compilation, Streamlit startup and health endpoint. This does not test every interactive view in a real browser.
-- The app sidebar links to the requirements checklist, this source audit, KPI guardrails and repository README so the live demo points reviewers to supporting documentation.
-- Do not upload personal names/emails from simulated user workbooks to a public repository without a privacy review. Keep the public demo privacy-minimized and clearly labelled as synthetic.
+The source data and supplemental test records are simulated. Task 02 must remain separate unless the coordinator approves reuse. Proposed events, KPI definitions, canonical IDs, reward units, wallet/withdrawal semantics, data ownership and governance require relevant company-owner approval.
 
 ## Final acceptance gates
 
