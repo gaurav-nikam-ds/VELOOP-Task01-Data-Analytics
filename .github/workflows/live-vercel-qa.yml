@@ -1,0 +1,49 @@
+name: Live Vercel browser QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "tests/live-qa.spec.js"
+      - ".github/workflows/live-vercel-qa.yml"
+  schedule:
+    - cron: "30 3 * * 1-5"
+
+permissions:
+  contents: read
+
+jobs:
+  live-browser-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Playwright test runner
+        run: npm install --no-save @playwright/test
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run live website QA against Vercel
+        env:
+          BASE_URL: https://velop-task01-data-analytics.vercel.app/
+        run: npx playwright test tests/live-qa.spec.js --reporter=list,html
+
+      - name: Upload test report and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-vercel-qa-report
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 14
