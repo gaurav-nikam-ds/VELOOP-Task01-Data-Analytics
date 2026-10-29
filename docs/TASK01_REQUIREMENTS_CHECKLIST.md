@@ -39,43 +39,27 @@
 
 The current reviewer-facing website is the Next.js/Vercel app at https://velop-task01-data-analytics.vercel.app/. It has seven sections: Executive status (Home), Insights & recommendations (Findings), Supplied data audit (Data audit), Deliverable tracker (Deliverables), Seven-dashboard blueprint (Dashboard plan), Acceptance blockers (What remains), and Implementation library (Documents). These are seven navigation sections in a design/evidence workspace, **not seven live production dashboards**.
 
-The separate Streamlit app at https://velop-task01-data-analytics.streamlit.app/ is a legacy/prototype evidence workspace. References below to five navigation views, 22 programmed quality checks, synthetic task/reward/wallet/withdrawal/referral tables, and CSV quality reports describe that Streamlit prototype only; they must not be attributed to the current Vercel app unless the same feature is independently confirmed there.
+The Vercel/Next.js website is the sole active reviewer workspace and QA target: https://velop-task01-data-analytics.vercel.app/. It has seven navigation sections, which are reviewer pages in a design/evidence workspace—not seven live production dashboards.
 
-## Current interactive demo: legacy Streamlit prototype notes
+## Current live QA status (29 October 2026)
 
-1. Decision notes on the Executive Overview calculate the highest-volume domain, highest observed sample completion-rate domain, and rejected/expired share from the selected synthetic sample.
-2. Data Readiness now evaluates 22 programmed quality rules across task, reward, wallet, withdrawal and referral prototype tables.
-3. The quality table reports observed counts, PASS/REVIEW and an interpretation for each rule.
-4. A downloadable CSV quality report is available from the Data Readiness view.
-5. The existing date/domain filters and filtered task/KPI CSV exports remain in place.
-6. Synthetic-data and no-production-connection warnings remain explicit.
+- [x] Live Playwright browser QA passed **11/11 tests**: [GitHub Actions run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636363).
+- [x] Next.js production build passed: [GitHub Actions run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636252).
+- [x] All seven navigation sections, findings search/priority filter, two CSV exports, eight implementation-library links, accessible control names/unique IDs, and no failed requests or browser errors were tested.
+- [x] Responsive overflow check passed at 320, 360, 390, 768, 1024 and 1440 px.
+- [x] Automated WCAG 2.1 A/AA scan passed on all seven sections.
+- [x] Data-authenticity notice is checked by the browser suite.
+- [ ] Obtain coordinator/company approval for scope and proposed specifications.
+- [ ] Publish or attach the required final report, design workbook and companion diagrams in the submission location specified by the assignment.
 
 ## Validation boundaries
 
-- A passing programmed check means only that the specific rule passed on the generated synthetic records.
-- The sample data is not evidence of actual VELOOP performance or production data quality.
-- No production database/API integration is configured.
-- Company confirmation, production extracts, event implementation, metric approval, reconciliation and governance sign-off remain dependencies.
-- The Streamlit prototype uses five navigation views. The current Vercel workspace has seven navigation sections. Neither should be described as seven independent production dashboards; the seven dashboard areas are a documented blueprint.
-- Test the deployed URL after the hosting service finishes redeploying. A successful GitHub commit does not by itself confirm successful deployment or browser rendering.
-
-## Review checklist and evidence status (28 October 2026)
-
-- [x] Reopened the original Task 01 workbook and counted the clean-sheet header cells directly: 28 total header cells, 27 named fields, one blank trailing header.
-- [x] Reconciled the count wording in the source profile and three-source audit.
-- [x] Recorded owner-reported manual checks for the Vercel UI in `vercel-app/README.md` (seven sections, filters, CSV export, links, responsive layout and data caveat).
-- [ ] Attach or link dated screenshots/browser-run evidence for those manual checks.
-- [ ] Independently rerun the deployed Vercel UI after the latest repository changes; the deployment URL could not be fetched by the QA environment during this pass.
-- [ ] Confirm synthetic-data warnings are visible in the deployed Vercel UI and no view presents synthetic records as production results.
-- [ ] Test the separate Streamlit prototype only if the coordinator confirms it remains in scope; do not confuse its five views/22 rules with the Vercel app.
-
-
-## Automated smoke-check workflow
-
-A GitHub Actions workflow is now configured at `.github/workflows/streamlit-smoke-test.yml`. On pushes to `main`, pull requests targeting `main`, or manual dispatch, it installs the declared dependencies, compiles the Streamlit app, starts the app headlessly and checks the Streamlit health endpoint. This validates startup/health only; it does not replace interactive browser testing of each view, filter, chart and download.
-
-**Current verification status:** workflow file committed; no completed green workflow result has been confirmed yet. The live Streamlit URL could not be fetched from the current environment, so deployment status and rendered UI remain unverified here.
-
+- A passing programmed check only confirms the tested behavior on the deployed reviewer workspace.
+- The supplied assignment data is simulated; it is not evidence of actual VELOOP performance or production data quality.
+- No production database/API integration, event instrumentation or analytics pipeline is configured.
+- Task 02 behavior data must remain separate from Task 01 unless the coordinator explicitly approves reuse.
+- Seven dashboard areas are documented specifications, not seven deployed production dashboards.
+- Company confirmation, authoritative production extracts, event implementation, metric approval, reconciliation and governance sign-off remain external dependencies.
 
 ## Requirement-to-evidence map (reviewer navigation)
 
