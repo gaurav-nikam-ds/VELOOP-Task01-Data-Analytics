@@ -42,6 +42,7 @@ Proposed fields, events, KPI definitions, data models, governance controls and p
 - [Seven-dashboard visual specifications](docs/DASHBOARD_VISUAL_SPECIFICATIONS.md) — visual-level formulas, sources, filters, questions and decisions for all seven areas.
 - [Analytics change log & operating model](docs/ANALYTICS_CHANGE_LOG_AND_OPERATING_MODEL.md) — ownership, review workflow, monitoring, incident handling and release acceptance.
 - [Task 01 requirements-to-evidence checklist](docs/TASK01_REQUIREMENTS_CHECKLIST.md)
+- [Final submission overview and artifact/approval checklist](docs/FINAL_SUBMISSION_OVERVIEW.md)
 - [Implemented vs planned features](docs/IMPLEMENTED_VS_PLANNED_FEATURES.md)
 - [Functional testing evidence and pending QA](docs/FUNCTIONAL_TESTING_EVIDENCE_2026-10-28.md)
 - [Three-source-file audit and acceptance status](docs/THREE_SOURCE_FILES_AUDIT.md)
