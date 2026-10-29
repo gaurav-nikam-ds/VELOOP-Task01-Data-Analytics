@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-const baseURL = process.env.BASE_URL || "https://velop-task01-data-analytics.vercel.app/";
+const baseURL = process.env.BASE_URL || "https://veloop-task01-data-analytics.vercel.app/";
 
 test.describe("VELOOP live reviewer workspace", () => {
   test("loads the public site and shows the data-authenticity notice", async ({ page }) => {
