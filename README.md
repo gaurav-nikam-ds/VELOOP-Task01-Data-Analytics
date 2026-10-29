@@ -6,11 +6,10 @@
 
 ## Live workspaces
 
-- **Current Vercel workspace:** https://velop-task01-data-analytics.vercel.app/
-- [Existing Streamlit evidence workspace](https://velop-task01-data-analytics.streamlit.app/)
+- **Current Vercel workspace:** https://veloop-task01-data-analytics.vercel.app/
 - Vercel app source and deployment instructions: [vercel-app/README.md](vercel-app/README.md)
 
-The user-provided screenshots already in the conversation were reviewed and linked as visual QA evidence for the Vercel workspace: Home, Findings, Supplied data audit, Deliverable tracker, Dashboard blueprint and Implementation library are visible; Findings filter controls and a completed deliverable-tracker CSV download are also shown. The user has additionally reported checking links and mobile layout. A fresh independent browser session after the latest commit remains a separate verification step. See [Testing evidence & pending QA](docs/FUNCTIONAL_TESTING_EVIDENCE_2026-10-28.md) and [Implemented vs planned features](docs/IMPLEMENTED_VS_PLANNED_FEATURES.md). The [Vercel build workflow](.github/workflows/vercel-app-build.yml) runs the Next.js build for relevant changes.
+The user-provided screenshots already in the conversation were reviewed and linked as visual QA evidence for the Vercel workspace: Home, Findings, Supplied data audit, Deliverable tracker, Dashboard blueprint and Implementation library are visible; Findings filter controls and a completed deliverable-tracker CSV download are also shown. The user has additionally reported checking links and mobile layout. A fresh independent browser session after the latest commit remains a separate verification step. See [Testing evidence & pending QA](docs/FUNCTIONAL_TESTING_EVIDENCE_2026-10-28.md) and [Implemented vs planned features](docs/IMPLEMENTED_VS_PLANNED_FEATURES.md). The [Vercel build workflow](.github/workflows/vercel-app-build.yml) runs the Next.js build for relevant changes, and the live-browser QA workflow tests the deployed Vercel website.
 
 ## What the workspace contains
 
@@ -47,7 +46,6 @@ Proposed fields, events, KPI definitions, data models, governance controls and p
 - [Functional testing evidence and pending QA](docs/FUNCTIONAL_TESTING_EVIDENCE_2026-10-28.md)
 - [Three-source-file audit and acceptance status](docs/THREE_SOURCE_FILES_AUDIT.md)
 - [Data gaps and KPI guardrails](docs/data_gaps_and_kpi_guardrails.md)
-- [Streamlit smoke test workflow](.github/workflows/streamlit-smoke-test.yml)
 - [Vercel app build workflow](.github/workflows/vercel-app-build.yml)
 
 ## Run locally
@@ -65,13 +63,6 @@ Build validation:
 ```bash
 npm install
 npm run build
-```
-
-### Streamlit version
-
-```bash
-pip install -r requirements.txt
-streamlit run app/streamlit_app.py
 ```
 
 ## Remaining external acceptance gates
