@@ -60,7 +60,7 @@ test.describe("VELOOP live reviewer workspace", () => {
     expect(findingsDownload.suggestedFilename()).toBe("velop-task01-evidence-findings.csv");
     const findingsPath = await findingsDownload.path();
     const findingsCsv = await readFile(findingsPath, "utf8");
-    const findingsLines = findingsCsv.trim().split(/\\r?\\n/);
+    const findingsLines = findingsCsv.trim().split(/\r?\n/);
     expect(findingsLines.length, "Findings export should contain a header and data rows").toBeGreaterThan(1);
     expect(findingsLines[0].trim().length).toBeGreaterThan(0);
     expect(findingsLines[0]).toContain(",");
@@ -72,7 +72,7 @@ test.describe("VELOOP live reviewer workspace", () => {
     expect(deliverablesDownload.suggestedFilename()).toBe("velop-task01-deliverable-tracker.csv");
     const deliverablesPath = await deliverablesDownload.path();
     const deliverablesCsv = await readFile(deliverablesPath, "utf8");
-    const deliverablesLines = deliverablesCsv.trim().split(/\\r?\\n/);
+    const deliverablesLines = deliverablesCsv.trim().split(/\r?\n/);
     expect(deliverablesLines.length, "Deliverables export should contain a header and data rows").toBeGreaterThan(1);
     expect(deliverablesLines[0].trim().length).toBeGreaterThan(0);
     expect(deliverablesLines[0]).toContain(",");
