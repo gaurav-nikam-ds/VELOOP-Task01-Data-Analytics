@@ -8,7 +8,7 @@ The workspace is **not connected to VELOOP production systems**. It does not est
 
 ## Review links
 
-- **Live Vercel reviewer workspace:** https://velop-task01-data-analytics.vercel.app/
+- **Live Vercel reviewer workspace:** https://veloop-task01-data-analytics.vercel.app/
 - **Source repository:** https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics
 - [Requirements-to-evidence checklist](TASK01_REQUIREMENTS_CHECKLIST.md)
 - [Supplied-source audit and open gates](THREE_SOURCE_FILES_AUDIT.md)
