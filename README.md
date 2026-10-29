@@ -35,6 +35,8 @@ Proposed fields, events, KPI definitions, data models, governance controls and p
 
 ## Requirements and evidence
 
+- [Final deliverable audit — 29 October 2026](docs/FINAL_DELIVERABLE_AUDIT_2026-10-29.md) — required deliverables, verified QA, artifact availability and remaining acceptance gates.
+
 - [Analytics foundation implementation pack](docs/ANALYTICS_FOUNDATION_IMPLEMENTATION_PACK.md) — source register, product/data coverage map, event contract, identity/grain model, quality controls, proposed KPIs, seven-dashboard blueprint, pipeline, governance, gaps, verification register, backlog and acceptance checklist.
 - [Source data profile & quality audit](docs/SOURCE_DATA_PROFILE_AND_QUALITY_AUDIT.md) — recalculated Task 01 workbook profile, missingness, duplicate IDs and cross-tab findings.
 - [Data dictionary field index](docs/DATA_DICTIONARY_FIELD_INDEX.md) — 90-field inventory and field governance rules.
