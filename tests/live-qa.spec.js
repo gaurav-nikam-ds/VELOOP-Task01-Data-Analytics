@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { readFile } from "node:fs/promises";
 
 const baseURL = process.env.BASE_URL || "https://veloop-task01-data-analytics.vercel.app/";
 
@@ -57,12 +58,22 @@ test.describe("VELOOP live reviewer workspace", () => {
     await page.getByRole("button", { name: /Export findings CSV/ }).click();
     const findingsDownload = await findingsDownloadPromise;
     expect(findingsDownload.suggestedFilename()).toBe("velop-task01-evidence-findings.csv");
+    const findingsPath = await findingsDownload.path();
+    const findingsCsv = await readFile(findingsPath, "utf8");
+    const findingsLines = findingsCsv.trim().split(/\\r?\\n/);
+    expect(findingsLines.length, "Findings export should contain a header and data rows").toBeGreaterThan(1);
+    expect(findingsLines[0].toLowerCase()).toContain("finding");
 
     await page.getByRole("navigation").getByRole("button", { name: "Deliverables" }).click();
     const deliverablesDownloadPromise = page.waitForEvent("download");
     await page.getByRole("button", { name: /Export deliverable tracker/ }).click();
     const deliverablesDownload = await deliverablesDownloadPromise;
     expect(deliverablesDownload.suggestedFilename()).toBe("velop-task01-deliverable-tracker.csv");
+    const deliverablesPath = await deliverablesDownload.path();
+    const deliverablesCsv = await readFile(deliverablesPath, "utf8");
+    const deliverablesLines = deliverablesCsv.trim().split(/\\r?\\n/);
+    expect(deliverablesLines.length, "Deliverables export should contain a header and data rows").toBeGreaterThan(1);
+    expect(deliverablesLines[0].toLowerCase()).toContain("deliverable");
   });
 
   test("the site remains usable at a narrow mobile viewport", async ({ page }) => {
@@ -75,11 +86,14 @@ test.describe("VELOOP live reviewer workspace", () => {
 
   test("no uncaught JavaScript page errors occur while navigating", async ({ page }) => {
     const pageErrors = [];
+    const consoleErrors = [];
     page.on("pageerror", error => pageErrors.push(error.message));
+    page.on("console", message => { if (message.type() === "error") consoleErrors.push(message.text()); });
     await page.goto(baseURL, { waitUntil: "domcontentloaded" });
     for (const nav of ["Findings", "Data audit", "Deliverables", "Dashboard plan", "What remains", "Documents", "Home"]) {
       await page.getByRole("navigation").getByRole("button", { name: nav }).click();
     }
     expect(pageErrors, "Uncaught browser errors: " + pageErrors.join(" | ")).toEqual([]);
+    expect(consoleErrors, "Browser console errors: " + consoleErrors.join(" | ")).toEqual([]);
   });
 });
