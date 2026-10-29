@@ -10,6 +10,7 @@ The workspace is **not connected to VELOOP production systems**. It does not est
 
 - **Live Vercel reviewer workspace:** https://veloop-task01-data-analytics.vercel.app/
 - **Source repository:** https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics
+- [Final deliverable audit — 29 October 2026](FINAL_DELIVERABLE_AUDIT_2026-10-29.md)
 - [Requirements-to-evidence checklist](TASK01_REQUIREMENTS_CHECKLIST.md)
 - [Supplied-source audit and open gates](THREE_SOURCE_FILES_AUDIT.md)
 - [KPI/data-gap guardrails](data_gaps_and_kpi_guardrails.md)
