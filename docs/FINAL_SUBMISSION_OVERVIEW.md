@@ -70,3 +70,37 @@ On 29 October 2026:
 3. Obtain company sign-off for product feature status, canonical identifiers, event definitions, reward units, wallet/withdrawal states, KPI formulas and governance.
 4. Confirm any additional submission format, deadline or sign-off required by the coordinator.
 
+
+
+## Submission readiness checklist — updated 29 October 2026
+
+### Verified technical checks
+
+- [x] Next.js production build passed: [GitHub Actions build run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636252).
+- [x] Live Playwright browser QA passed 11/11 tests: [GitHub Actions browser QA run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636363).
+- [x] Seven navigation sections, findings search/priority filter, two CSV exports, eight document links, responsive overflow, automated WCAG 2.1 A/AA scans, network responses and browser errors were checked.
+
+### Required submission artifacts — availability check
+
+The current GitHub repository tree includes the Vercel app, documentation, Power BI starter CSV/DAX/theme assets and QA evidence screenshots. The current tree does **not** show a consolidated final report PDF/DOCX or the original analytics design workbook and ERD source files as standalone repository files.
+
+- [ ] Publish/attach the consolidated report in the required format.
+- [ ] Publish/attach the analytics design workbook (coverage matrix, event catalogue, data dictionary and KPI catalogue).
+- [ ] Publish/attach the logical ERD and required diagram/wireframe source/export files.
+- [ ] Confirm that all assignment-required companion artifacts are accessible to the reviewer from the intended handoff location.
+- [ ] Add README links only after exact artifact paths/URLs are verified.
+
+### External acceptance gates
+
+- [ ] Obtain coordinator approval before reusing Task 02 data in Task 01.
+- [ ] Obtain Product/Engineering approval for live/planned feature status, canonical IDs, event definitions, statuses and schema constraints.
+- [ ] Obtain Operations/Finance approval for reward units, wallet/ledger semantics, withdrawal states and reconciliation rules.
+- [ ] Obtain owner approval for KPI formulas, denominators, sources and refresh expectations.
+- [ ] Obtain Security/Legal review of privacy, access, retention and governance proposals.
+- [ ] Confirm submission format, deadline and any additional coordinator sign-off.
+
+### Data integrity
+
+The supplied assignment data is simulated. The reviewer workspace has no production database/API connection, event instrumentation or analytics pipeline. Seven website sections are reviewer pages; the seven dashboard areas are specifications, not deployed production dashboards. Do not describe proposed features or synthetic metrics as production results.
+
+**Current recommendation:** the recorded automated technical checks pass. Do not call the assignment submission fully complete until required report/workbook/diagram artifacts are accessible and the applicable coordinator/company approval gates are resolved.
