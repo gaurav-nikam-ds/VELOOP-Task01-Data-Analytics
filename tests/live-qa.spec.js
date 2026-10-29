@@ -90,6 +90,64 @@ test.describe("VELOOP live reviewer workspace", () => {
     await expect(page.getByRole("heading", { name: "What needs attention in the supplied files?" })).toBeVisible();
   });
 
+  test("responsive layouts do not create horizontal page overflow", async ({ page }) => {
+    for (const width of [320, 360, 390, 768, 1024, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto(baseURL, { waitUntil: "domcontentloaded" });
+      const dimensions = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
+      expect(dimensions.page, `Horizontal overflow at width ${width}: ${JSON.stringify(dimensions)}`).toBeLessThanOrEqual(dimensions.viewport + 1);
+      await page.getByRole("navigation").getByRole("button", { name: "Findings" }).click();
+      await expect(page.getByRole("heading", { name: "What needs attention in the supplied files?" })).toBeVisible();
+    }
+  });
+
+  test("all eight implementation-library document links resolve", async ({ page, request }) => {
+    await page.goto(baseURL, { waitUntil: "domcontentloaded" });
+    await page.getByRole("navigation").getByRole("button", { name: "Documents" }).click();
+    const links = await page.locator("a.library-card").evaluateAll(nodes => nodes.map(a => ({ title: a.querySelector("h3")?.textContent?.trim() || a.textContent.trim(), href: a.href })));
+    expect(links.length).toBe(8);
+    for (const link of links) {
+      const response = await request.get(link.href, { timeout: 20000 });
+      expect(response.status(), `Broken document link: ${link.title} -> ${link.href}`).toBeLessThan(400);
+    }
+  });
+
+  test("interactive controls have accessible names and IDs are unique", async ({ page }) => {
+    await page.goto(baseURL, { waitUntil: "domcontentloaded" });
+    const unnamed = await page.locator("button, a, input, select").evaluateAll(nodes => nodes.filter(node => {
+      if (node.matches("input,select")) return !(node.getAttribute("aria-label") || node.labels?.length || node.getAttribute("title"));
+      return !((node.getAttribute("aria-label") || node.innerText || node.getAttribute("title") || "").trim());
+    }).map(node => node.outerHTML.slice(0, 180)));
+    expect(unnamed, "Interactive controls without accessible names").toEqual([]);
+    const ids = await page.locator("[id]").evaluateAll(nodes => nodes.map(node => node.id));
+    expect(ids.length, "Duplicate id attributes detected").toBe(new Set(ids).size);
+  });
+
+  test("automated accessibility scan reports no WCAG 2.1 A/AA violations", async ({ page }) => {
+    await page.goto(baseURL, { waitUntil: "domcontentloaded" });
+    for (const nav of ["Home", "Findings", "Data audit", "Deliverables", "Dashboard plan", "What remains", "Documents"]) {
+      await page.getByRole("navigation").getByRole("button", { name: nav }).click();
+      const scan = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"]).analyze();
+      expect(scan.violations.map(v => ({ id: v.id, impact: v.impact, help: v.help, nodes: v.nodes.length })), `Accessibility violations in ${nav}`).toEqual([]);
+    }
+  });
+
+  test("no failed requests or HTTP error responses while navigating", async ({ page }) => {
+    const failed = [];
+    const badResponses = [];
+    page.on("requestfailed", request => {
+      const url = request.url();
+      if (!url.startsWith("data:") && !url.startsWith("blob:")) failed.push(`${request.method()} ${url}: ${request.failure()?.errorText || "request failed"}`);
+    });
+    page.on("response", response => { if (response.status() >= 400) badResponses.push(`${response.status()} ${response.url()}`); });
+    await page.goto(baseURL, { waitUntil: "networkidle" });
+    for (const nav of ["Findings", "Data audit", "Deliverables", "Dashboard plan", "What remains", "Documents", "Home"]) {
+      await page.getByRole("navigation").getByRole("button", { name: nav }).click();
+    }
+    expect(failed, "Failed requests: " + failed.join(" | ")).toEqual([]);
+    expect(badResponses, "HTTP error responses: " + badResponses.join(" | ")).toEqual([]);
+  });
+
   test("no uncaught JavaScript page errors occur while navigating", async ({ page }) => {
     const pageErrors = [];
     const consoleErrors = [];
