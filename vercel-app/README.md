@@ -1,10 +1,10 @@
 # VELOOP Task 01 — Vercel app
 
-This is the deployed Next.js web version of the evidence workspace. It lives in `vercel-app/` so the existing Streamlit app remains intact.
+This is the deployed Next.js web version of the evidence workspace. The Vercel website is the sole active application and QA target.
 
 ## Live deployment
 
-https://velop-task01-data-analytics.vercel.app/
+https://veloop-task01-data-analytics.vercel.app/
 
 ## Deploy to Vercel
 
@@ -33,7 +33,7 @@ The repository has a dedicated [Vercel app build workflow](../.github/workflows/
 
 ## Manual acceptance checklist
 
-**Status:** Existing user-provided screenshots from 2026-10-28 have been reviewed and are retained as visual evidence; the user does not need to resend them. Screenshots show Home, Findings, Supplied data audit, Deliverable tracker, Seven-dashboard blueprint and Implementation library; Findings priority-filter states and a completed deliverable-tracker CSV download are visible. The user also reported testing links and mobile layout. A fresh independent browser session after the latest repository commit has not been run. Automated browser tests are not configured by the current Vercel workflow.
+**Status:** Existing user-provided screenshots from 2026-10-28 have been reviewed and are retained as visual evidence; the user does not need to resend them. Screenshots show Home, Findings, Supplied data audit, Deliverable tracker, Seven-dashboard blueprint and Implementation library; Findings priority-filter states and a completed deliverable-tracker CSV download are visible. The user also reported testing links and mobile layout. A fresh independent browser session after the latest repository commit has not been run. A separate live-browser QA workflow tests the deployed Vercel website.
 
 - [x] Existing screenshots show the deployed page rendered and six main sections open; the Acceptance blockers view is listed in the sidebar but a dedicated screenshot was not identified in the reviewed set.
 - [x] Findings screenshots show the priority filter at High and Medium and the corresponding findings; the text search interaction itself was not independently re-run.
