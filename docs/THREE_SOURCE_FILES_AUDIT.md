@@ -66,6 +66,8 @@ The Task 01 analytical design is largely documented. The Vercel workspace is the
 
 ## QA scope and remaining actions
 
+Updated 29 October 2026: the latest live Vercel Playwright run passed 11/11 tests and the Next.js build passed. The final artifact audit is documented in `FINAL_DELIVERABLE_AUDIT_2026-10-29.md`.
+
 The browser suite verifies the current Vercel reviewer workspace: all seven sections, findings search/priority filtering, two CSV exports, eight document links, responsive widths, automated WCAG 2.1 A/AA checks, network responses and browser errors. It does not validate production analytics because no production connection is configured.
 
 The source data and supplemental test records are simulated. Task 02 must remain separate unless the coordinator approves reuse. Proposed events, KPI definitions, canonical IDs, reward units, wallet/withdrawal semantics, data ownership and governance require relevant company-owner approval.
@@ -75,6 +77,6 @@ The source data and supplemental test records are simulated. Task 02 must remain
 1. Coordinator confirms whether the Task 02 workbook may supplement Task 01.
 2. Vercel reviewer workspace is deployed and automated browser QA/build pass; confirm any additional submission evidence with the coordinator.
 3. Live browser QA covers all views, filters, chart rendering, exports, narrow screens and empty-filter behavior.
-4. The final consolidated report and companion workbook/diagrams are discoverable from the public repository, not only in a separate ZIP.
+4. Make the final consolidated report PDF/DOCX, QA-checked master workbook and companion diagrams accessible from the coordinator-approved submission location; Library copies alone are not public GitHub assets. See `FINAL_DELIVERABLE_AUDIT_2026-10-29.md`.
 5. Product/Engineering/Operations owners approve proposed events, IDs, statuses, KPI formulas, units, governance and retention.
 6. No synthetic result is described as a VELOOP production metric.
