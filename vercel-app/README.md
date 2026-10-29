@@ -4,7 +4,7 @@ This is the deployed Next.js reviewer workspace and the sole active website/QA t
 
 ## Live deployment
 
-https://velop-task01-data-analytics.vercel.app/
+https://veloop-task01-data-analytics.vercel.app/
 
 ## Deploy to Vercel
 
@@ -67,3 +67,9 @@ These are automated browser checks against the deployed reviewer workspace. They
 The supplied assignment workbooks are simulated. The Task 01 source workbook provides user-profile clean/messy tabs, not a complete authoritative task/reward/wallet/withdrawal/referral/event transaction pack. The separate behavior workbook identifies itself as Task 02 and is not merged into Task 01. No production database/API connection is configured.
 
 **Do not present simulated rows, sample counts, proposed KPIs or synthetic metrics as actual VELOOP company performance.** Proposed fields, event contracts, KPI definitions, data models, governance controls and pipeline steps require review and approval by the relevant company owners.
+
+
+## Supporting assignment artifacts
+
+The live website is the reviewer workspace; it is not a substitute for the full report and workbook deliverables. The assignment audit is tracked in [the final deliverable audit](../docs/FINAL_DELIVERABLE_AUDIT_2026-10-29.md). Before marking the assignment ready for final submission, confirm that the consolidated report (PDF and editable DOCX), QA-checked master workbook, proposed ERD and dashboard wireframes are individually accessible from this repository or the coordinator-approved submission location. Do not claim these files are hosted here until their links have been verified.
+
