@@ -2,63 +2,71 @@
 
 ## Purpose and scope
 
-This repository implements a proposed product-analytics foundation for VELOOP Rewards Task 01. It is an analytical design and synthetic-data prototype. It is not connected to VELOOP production systems, and it does not establish company performance.
+This repository presents a product-analytics foundation proposal for VELOOP Rewards Task 01. It includes source-data profiling, an analytics specification, proposed KPI and event definitions, dashboard specifications, governance recommendations and a Vercel reviewer workspace.
+
+The workspace is **not connected to VELOOP production systems**. It does not establish actual company performance, and proposed event tracking, KPI definitions and pipelines must not be described as deployed production features.
 
 ## Review links
 
-- Live interactive prototype: https://velop-task01-data-analytics.streamlit.app/
-- Source repository: https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics
-- Requirements-to-evidence checklist: [TASK01_REQUIREMENTS_CHECKLIST.md](TASK01_REQUIREMENTS_CHECKLIST.md)
-- Supplied-source audit and open gates: [THREE_SOURCE_FILES_AUDIT.md](THREE_SOURCE_FILES_AUDIT.md)
-- KPI/data-gap guardrails: [data_gaps_and_kpi_guardrails.md](data_gaps_and_kpi_guardrails.md)
-- CI smoke test: https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/workflows/streamlit-smoke-test.yml
+- **Live Vercel reviewer workspace:** https://velop-task01-data-analytics.vercel.app/
+- **Source repository:** https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics
+- [Requirements-to-evidence checklist](TASK01_REQUIREMENTS_CHECKLIST.md)
+- [Supplied-source audit and open gates](THREE_SOURCE_FILES_AUDIT.md)
+- [KPI/data-gap guardrails](data_gaps_and_kpi_guardrails.md)
+- [Implemented vs planned features](IMPLEMENTED_VS_PLANNED_FEATURES.md)
+- [Functional testing evidence and current QA results](FUNCTIONAL_TESTING_EVIDENCE_2026-10-28.md)
+- [Latest successful live browser QA — 11/11 tests](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636363)
+- [Latest successful Next.js build](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636252)
 
 ## Required deliverables and current status
 
 | # | Deliverable | Evidence/status | Acceptance dependency |
 |---:|---|---|---|
-| 1 | Executive summary | Included in consolidated submission package; summarized in source audit | Review of assumptions and internal unknowns |
+| 1 | Executive summary | Documented | Review assumptions and internal unknowns |
 | 2 | Product data audit | Documented analytical design | Product owner confirms live vs planned features |
-| 3 | Data coverage matrix | Included in design workbook | Verify against authoritative source systems |
+| 3 | Data coverage matrix | Included in design artifacts | Verify against authoritative source systems |
 | 4 | User/account specification | Documented proposal | Confirm IDs, statuses and privacy requirements |
-| 5 | Earning/reward specification | Documented proposal | Task 01 workbook lacks the full authoritative reward ledger |
+| 5 | Earning/reward specification | Documented proposal | Authoritative Task 01 reward ledger was not supplied |
 | 6 | Wallet/withdrawal specification | Documented proposal | Operations/Finance approve ledger and payout semantics |
 | 7 | Referral/engagement specification | Documented proposal | Approve activation/conversion definitions |
 | 8 | Event tracking plan | Proposed event catalogue | Engineering review and staging validation |
 | 9 | Data dictionary | 90 proposed field definitions | Physical schema and field constraints require approval |
 | 10 | Logical model and ERD | Proposed model and diagram | Not a verified production schema |
 | 11 | KPI catalogue | 36 proposed KPIs | Approve formula, denominator, source, units and frequency |
-| 12 | Simulated profiling | Task 01 user workbook profiled; Task 02 workbook separately audited | Do not silently mix task scopes |
+| 12 | Simulated profiling | Task 01 user workbook profiled; Task 02 workbook separately audited | Keep task scopes separate |
 | 13 | Data quality audit | Source-specific profile and synthetic prototype checks | Run on authorized source data when supplied |
-| 14 | Dashboard blueprint | Seven dashboard areas specified; interactive prototype groups them into five views | Prototype is not seven deployed production dashboards |
+| 14 | Dashboard blueprint | Seven dashboard areas specified | Blueprint is not seven deployed production dashboards |
 | 15 | Developer handoff | Proposed implementation specification | Engineering sign-off |
 | 16 | Data pipeline proposal | Documented design | Confirm source systems, ownership and operating constraints |
 | 17 | Privacy/governance | Proposed controls and access model | Security/Legal review |
 | 18 | Analytics readiness assessment | Documented scorecard/design | Owners confirm evidence and readiness state |
 | 19 | Assumption/verification register | Documented | Resolve outstanding verification items |
 | 20 | Implementation backlog | Prioritized proposal | Company confirms owners, dependencies and priorities |
-| 21 | Final consolidated report | Prepared in the QA-clean submission package | Companion artifacts must be published alongside the repository for a complete GitHub handover |
+| 21 | Final consolidated report | Referenced in the project documentation | Verify all required companion files are available to the reviewer in the intended submission package |
 
-## Interactive prototype
+## Interactive reviewer workspace
 
-The live app has five views: Executive overview; Engagement & tasks; Rewards & wallet; Withdrawals & referrals; Data readiness. Sidebar controls filter the synthetic task sample by date and domain. Exports are prototype-level CSVs. The app sidebar links back to this repository's checklist, audit and guardrail documents.
+The live Vercel site has seven navigation sections: Home, Findings, Data audit, Deliverables, Dashboard plan, What remains and Documents. The workspace supports findings search/priority filtering, CSV exports and an implementation-library document index. These are reviewer-facing features, not production analytics dashboards.
 
 ## Verification
 
-The GitHub Actions workflow installs dependencies, compiles the Python app, starts Streamlit and checks its health endpoint. A green workflow is a startup smoke test only; it does not certify all charts, interactions, downloads, responsive layouts or the hosted deployment.
+On 29 October 2026:
+- Live Playwright browser QA passed **11/11 tests**, including navigation, filtering, exports, links, responsive overflow, accessibility scans and browser/network errors.
+- The Next.js production build workflow passed.
+- The QA run is evidence for the deployed reviewer workspace only; it is not proof of production data integrations or company acceptance.
 
 ## Non-negotiable integrity rules
 
-- Label every generated dataset and metric as simulated.
+- Label generated datasets and metrics as simulated.
 - Do not report synthetic counts, rates, withdrawals, rewards or retention as actual VELOOP performance.
-- Treat proposed events and fields as proposed until engineering confirms implementation.
-- Do not add Task 02 data to Task 01 reporting unless the coordinator authorizes reuse.
-- Do not claim full hosting compliance until the email's Vercel/Netlify requirement is met or written approval for Streamlit is obtained.
+- Treat proposed events and fields as proposed until Engineering confirms implementation.
+- Do not add Task 02 data to Task 01 reporting unless the coordinator authorizes it.
+- Keep external assumptions and approval gates explicit.
 
-## Final blockers before calling this fully complete
+## Remaining acceptance gates
 
-1. Publish the report, design workbook, synthetic test workbook and diagrams as individual repository artifacts or a clearly versioned release asset.
-2. Complete live browser QA on desktop and mobile/narrow viewport.
-3. Meet the Vercel/Netlify hosting requirement or obtain written approval for the current Streamlit host.
-4. Obtain company sign-off for internal assumptions and proposed specifications.
-5. Re-run final smoke tests after all changes and record the result.
+1. Confirm whether the coordinator permits any Task 02 data to supplement Task 01.
+2. Publish/attach the required final report, design workbook and companion diagrams in the submission location required by the assignment.
+3. Obtain company sign-off for product feature status, canonical identifiers, event definitions, reward units, wallet/withdrawal states, KPI formulas and governance.
+4. Confirm any additional submission format, deadline or sign-off required by the coordinator.
+
