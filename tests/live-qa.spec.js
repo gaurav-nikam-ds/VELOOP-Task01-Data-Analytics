@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
+import AxeBuilder from "@axe-core/playwright";
 
 const baseURL = process.env.BASE_URL || "https://veloop-task01-data-analytics.vercel.app/";
 
@@ -62,8 +63,10 @@ test.describe("VELOOP live reviewer workspace", () => {
     const findingsCsv = await readFile(findingsPath, "utf8");
     const findingsLines = findingsCsv.trim().split(/\r?\n/);
     expect(findingsLines.length, "Findings export should contain a header and data rows").toBeGreaterThan(1);
-    expect(findingsLines[0].trim().length).toBeGreaterThan(0);
-    expect(findingsLines[0]).toContain(",");
+    expect(findingsLines[0]).toBe('"Finding","Metric","Evidence","Risk","Recommended action","Priority"');
+    expect(findingsLines).toHaveLength(5);
+    expect(findingsCsv).toContain('"Repeated IDs in messy audit tab"');
+    expect(findingsCsv).toContain('"High"');
 
     await page.getByRole("navigation").getByRole("button", { name: "Deliverables" }).click();
     const deliverablesDownloadPromise = page.waitForEvent("download");
@@ -74,8 +77,9 @@ test.describe("VELOOP live reviewer workspace", () => {
     const deliverablesCsv = await readFile(deliverablesPath, "utf8");
     const deliverablesLines = deliverablesCsv.trim().split(/\r?\n/);
     expect(deliverablesLines.length, "Deliverables export should contain a header and data rows").toBeGreaterThan(1);
-    expect(deliverablesLines[0].trim().length).toBeGreaterThan(0);
-    expect(deliverablesLines[0]).toContain(",");
+    expect(deliverablesLines[0]).toBe('"Deliverable","Evidence status","Remaining dependency"');
+    expect(deliverablesLines).toHaveLength(22);
+    expect(deliverablesCsv).toContain('"Final handoff and recommendations"');
   });
 
   test("the site remains usable at a narrow mobile viewport", async ({ page }) => {
