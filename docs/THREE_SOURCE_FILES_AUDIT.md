@@ -1,6 +1,6 @@
 # Task 01 — Three-File Audit & Completion Status
 
-Audit date: 28 October 2026. This audit uses the three uploaded files and the assignment email text supplied by the user. It distinguishes supplied facts, proposed design, synthetic test assets and external dependencies.
+Audit date: 29 October 2026. This audit uses the three uploaded files and the assignment email text supplied by the user. It distinguishes supplied facts, proposed design, synthetic test assets and external dependencies.
 
 ## Executive conclusion
 
@@ -58,7 +58,7 @@ The Task 01 analytical design is largely documented. The Vercel workspace is the
 |---|---|
 | Public GitHub repository | Present |
 | Professional README and requirements-to-evidence map | Present; README updated for Vercel-only workspace |
-| Live interactive workspace | Vercel URL is the active target: https://velop-task01-data-analytics.vercel.app/ |
+| Live interactive workspace | Vercel URL is the active target: https://veloop-task01-data-analytics.vercel.app/ |
 | Production build | Passed: [GitHub Actions run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636252) |
 | Deployed browser QA | Passed 11/11: [GitHub Actions run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636363) |
 | Report, design workbook and companion diagrams | Verify all required files are published or attached in the assignment's required submission location |
