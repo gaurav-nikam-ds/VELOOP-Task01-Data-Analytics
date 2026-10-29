@@ -17,7 +17,7 @@
 |---|---|---|
 | Product analytics blueprint | Documented | Product/data coverage, proposed event tracking, logical model, 90-field data dictionary, 36 KPI catalogue, seven dashboard specifications, governance and backlog are represented in project docs. |
 | Supplied data audit | Source-limited | Task 01 workbook findings are based on simulated user-profile sheets. The clean-sheet column count is inconsistent in existing documents (27 vs 28) and needs a direct check against the original workbook before final sign-off. |
-| Current website | Documentation aligned | Vercel workspace: https://velop-task01-data-analytics.vercel.app/ — seven navigation sections for status, findings, data audit, deliverables, dashboard blueprint, blockers and documents. |
+| Current website | Documentation aligned | Vercel workspace: https://veloop-task01-data-analytics.vercel.app/ — seven navigation sections for status, findings, data audit, deliverables, dashboard blueprint, blockers and documents. |
 | Retired prototype references | Historical only | The older Streamlit prototype is not part of the current delivery. Do not use its former five-view/22-check claims as evidence for the Vercel workspace. |
 | Data authenticity | Guardrails retained | Supplied and supplemental datasets are simulated. No production database/API is connected, and synthetic results must not be reported as company performance. |
 | Testing / verification | Screenshot evidence reviewed | Existing screenshots supplied in the conversation show Home, Findings, supplied data audit, deliverable tracker, dashboard blueprint and implementation library; a completed tracker CSV download and findings priority-filter states are visible. User also reported link/mobile checks. Fresh independent browser session after the latest commit remains separate. See `docs/FUNCTIONAL_TESTING_EVIDENCE_2026-10-28.md`. |
@@ -49,7 +49,7 @@ I would appreciate direct feedback on the work completed so far. Please review t
 I would prefer specific, actionable feedback—even if substantial changes are required—so I can correct issues before final submission.
 
 ## 6. Review links
-- Vercel workspace: https://velop-task01-data-analytics.vercel.app/
+- Vercel workspace: https://veloop-task01-data-analytics.vercel.app/
 - GitHub repository: https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics
 - Retired prototype: excluded from the current delivery; use the Vercel workspace and its current QA evidence.
 
