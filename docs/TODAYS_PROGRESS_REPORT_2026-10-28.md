@@ -1,3 +1,5 @@
+> **Historical progress snapshot — 28 October 2026.** This report records the project state before the latest Vercel QA and documentation cleanup. The Vercel workspace is now the sole active application; live browser QA passed 11/11 tests and the Next.js production build passed on 29 October 2026. Current evidence: [QA run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636363) · [build run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636252). References to the Streamlit prototype below are historical context, not the current delivery target.
+
 # VELOOP Rewards — Daily Progress Report
 **Date:** 28 October 2026  
 **Prepared by:** Gaurav Nikam  
