@@ -1,7 +1,7 @@
 # VELOOP Task 01 — Testing Evidence & QA Status
 
 **Updated:** 29 October 2026  
-**Live reviewer workspace:** https://velop-task01-data-analytics.vercel.app/  
+**Live reviewer workspace:** https://veloop-task01-data-analytics.vercel.app/  
 **Repository:** https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics
 
 ## 1. Source workbook validation
