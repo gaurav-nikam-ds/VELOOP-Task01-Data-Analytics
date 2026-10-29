@@ -32,7 +32,7 @@ The objective is to define what must be collected, how it should be structured, 
 | SRC-06 | Current production event coverage, database schema and source-of-truth systems | Not supplied | Unknown | To Be Verified | Product + Engineering |
 | SRC-07 | Reward units, conversion rules and ledger semantics | Not supplied | Unknown | To Be Verified | Finance / Operations |
 | SRC-08 | Withdrawal state machine and authoritative payout timestamps | Not supplied | Unknown | To Be Verified | Finance / Operations |
-| SRC-09 | Hosting approval for Streamlit instead of Vercel/Netlify | Assignment email requests Vercel or Netlify; current URL is Streamlit | Internal instruction / current deployment | To Be Verified | Obtain written exception or deploy compliant frontend |
+| SRC-09 | Hosting compliance | Assignment email requests Vercel or Netlify; current reviewer workspace is deployed on Vercel | Internal instruction / current deployment | Vercel workspace exists; latest browser QA and build passed | Confirm any remaining hosting/submission requirements with coordinator |
 
 ## 3. Product area and data coverage map
 
@@ -264,7 +264,7 @@ This is a design proposal, not a deployed production pipeline.
 | A005 | How is referral source assigned and retained? | Attribution | Biased channel reporting | Task 01 user workbook | To Be Verified | Product/Growth |
 | A006 | What is the official active-user definition? | DAU/WAU/MAU/retention | Incomparable metrics | No approved definition supplied | To Be Verified | Product Analytics |
 | A007 | Is Task 02 data authorized for Task 01 use? | Scope integrity | Unapproved mixing | Task 02 workbook title | To Be Verified | Coordinator |
-| A008 | Is Streamlit accepted despite email requesting Vercel/Netlify? | Submission compliance | Hosting requirement unmet | Assignment email | To Be Verified | Coordinator |
+| A008 | Does the coordinator require any additional hosting or submission evidence? | Submission compliance | Final handoff requirements | Assignment email | To Be Verified | Coordinator |
 
 ## 13. Prioritized implementation backlog
 
