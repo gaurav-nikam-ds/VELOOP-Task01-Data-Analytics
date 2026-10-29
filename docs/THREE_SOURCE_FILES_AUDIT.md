@@ -43,7 +43,7 @@ The Task 01 analytical design is largely documented. The Vercel workspace is the
 | 11 KPI catalogue | 36 KPIs documented | Approve formulas, sources, units, denominators |
 | 12 Simulated profiling | Partial/source-limited | Full transaction/event sheets were not supplied in the Task 01 user workbook; Task 02 must remain separate |
 | 13 Data-quality audit | Partial/simulated-only | No production data; audit results must stay source-specific |
-| 14 Dashboard blueprint | Seven areas documented | Interactive demo groups content into five views; blueprint is not seven production dashboards |
+| 14 Dashboard blueprint | Seven areas documented | Vercel workspace has seven reviewer sections; blueprint is not seven production dashboards |
 | 15 Developer handoff | Documented proposal | Engineering sign-off |
 | 16 Pipeline proposal | Documented proposal | Not deployed; sources/owners pending |
 | 17 Privacy/governance | Documented proposal | Internal review |
@@ -73,7 +73,7 @@ The source data and supplemental test records are simulated. Task 02 must remain
 ## Final acceptance gates
 
 1. Coordinator confirms whether the Task 02 workbook may supplement Task 01.
-2. Hosting requirement is met through Vercel/Netlify, or written approval is received for Streamlit.
+2. Vercel reviewer workspace is deployed and automated browser QA/build pass; confirm any additional submission evidence with the coordinator.
 3. Live browser QA covers all views, filters, chart rendering, exports, narrow screens and empty-filter behavior.
 4. The final consolidated report and companion workbook/diagrams are discoverable from the public repository, not only in a separate ZIP.
 5. Product/Engineering/Operations owners approve proposed events, IDs, statuses, KPI formulas, units, governance and retention.
