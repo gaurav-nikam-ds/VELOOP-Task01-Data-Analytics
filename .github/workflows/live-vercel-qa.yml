@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - "tests/live-qa.spec.js"
+      - "vercel-app/**"
       - ".github/workflows/live-vercel-qa.yml"
   schedule:
     - cron: "30 3 * * 1-5"
@@ -27,7 +28,7 @@ jobs:
           node-version: "20"
 
       - name: Install Playwright test runner
-        run: npm install --no-save @playwright/test
+        run: npm install --no-save @playwright/test @axe-core/playwright
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
@@ -35,7 +36,7 @@ jobs:
       - name: Run live website QA against Vercel
         env:
           BASE_URL: https://veloop-task01-data-analytics.vercel.app/
-        run: npx playwright test tests/live-qa.spec.js --reporter=list,html
+        run: npx playwright test tests/live-qa.spec.js --reporter=list,html --trace=retain-on-failure
 
       - name: Upload test report and screenshots
         if: always()
