@@ -35,11 +35,11 @@
 | 21 | Prioritized implementation backlog | Requirement, reason, dependency, owner and stage | Documented | Reprioritize after engineering/product review |
 | 22 | Data authenticity policy | Synthetic data must never be reported as actual users, earnings, withdrawals, revenue, retention, conversion or performance | Explicit warnings in report and app | Preserve warning in screenshots, exports and reviews |
 
-## Current interactive workspace: scope and evidence (updated 28 October 2026)
+## Current interactive workspace: scope and evidence (updated 29 October 2026)
 
-The current reviewer-facing website is the Next.js/Vercel app at https://velop-task01-data-analytics.vercel.app/. It has seven sections: Executive status (Home), Insights & recommendations (Findings), Supplied data audit (Data audit), Deliverable tracker (Deliverables), Seven-dashboard blueprint (Dashboard plan), Acceptance blockers (What remains), and Implementation library (Documents). These are seven navigation sections in a design/evidence workspace, **not seven live production dashboards**.
+The current reviewer-facing website is the Next.js/Vercel app at https://veloop-task01-data-analytics.vercel.app/. It has seven sections: Executive status (Home), Insights & recommendations (Findings), Supplied data audit (Data audit), Deliverable tracker (Deliverables), Seven-dashboard blueprint (Dashboard plan), Acceptance blockers (What remains), and Implementation library (Documents). These are seven navigation sections in a design/evidence workspace, **not seven live production dashboards**.
 
-The Vercel/Next.js website is the sole active reviewer workspace and QA target: https://velop-task01-data-analytics.vercel.app/. It has seven navigation sections, which are reviewer pages in a design/evidence workspace—not seven live production dashboards.
+The Vercel/Next.js website is the sole active reviewer workspace and QA target: https://veloop-task01-data-analytics.vercel.app/. It has seven navigation sections, which are reviewer pages in a design/evidence workspace—not seven live production dashboards.
 
 ## Current live QA status (29 October 2026)
 
@@ -67,7 +67,7 @@ The Vercel/Next.js website is the sole active reviewer workspace and QA target: 
 |---|---|---|---|
 | Executive summary, findings and recommendations | Consolidated report; `docs/ANALYTICS_FOUNDATION_IMPLEMENTATION_PACK.md` | Executive status; Insights & recommendations | Design and simulated profile findings; not production performance |
 | Product/data coverage and source inventory | Implementation pack; source register; `docs/THREE_SOURCE_FILES_AUDIT.md` | Supplied data audit; Implementation library | Source-limited; Task 02 stays separate pending approval |
-| User/account data profile and quality | `docs/SOURCE_DATA_PROFILE_AND_QUALITY_AUDIT.md` | Supplied data audit | Simulated Task 01 user-profile workbook only; clean-sheet column count needs direct source recheck |
+| User/account data profile and quality | `docs/SOURCE_DATA_PROFILE_AND_QUALITY_AUDIT.md` | Supplied data audit | Simulated Task 01 user-profile workbook only; clean sheet verified as 28 header cells, 27 named fields and one blank trailing header |
 | Data dictionary (90 proposed fields) | `docs/DATA_DICTIONARY_FIELD_INDEX.md` | Implementation library | Proposed field inventory; physical schema needs Engineering confirmation |
 | KPI catalogue (36 proposed KPIs) | `docs/ANALYTICS_FOUNDATION_IMPLEMENTATION_PACK.md`; companion design workbook | Seven-dashboard blueprint; Implementation library | Definitions need owner approval and authoritative data |
 | Logical model / ERD | Implementation pack and proposed ERD companion artifact | Implementation library | Logical proposal, not verified production schema |
@@ -75,5 +75,5 @@ The Vercel/Next.js website is the sole active reviewer workspace and QA target: 
 | Seven dashboard areas | `docs/DASHBOARD_VISUAL_SPECIFICATIONS.md` | Seven-dashboard blueprint | Blueprint/specification, not seven live dashboards |
 | Pipeline, governance and change control | `docs/ANALYTICS_CHANGE_LOG_AND_OPERATING_MODEL.md` | Implementation library; Acceptance blockers | Proposed operating model; owner/security review pending |
 | Gaps, assumptions and implementation backlog | `docs/ANALYTICS_FOUNDATION_IMPLEMENTATION_PACK.md`; `docs/data_gaps_and_kpi_guardrails.md` | Acceptance blockers; Deliverable tracker | External decisions and approvals remain open |
-| Website architecture and deployment instructions | `vercel-app/README.md`; repository workflows | Current Vercel workspace | Current site is a reviewer workspace; owner-reported manual checks are documented, but independent post-change browser re-run remains unverified |
+| Website architecture and deployment instructions | `vercel-app/README.md`; repository workflows | Current Vercel workspace | Current site is a reviewer workspace; independent live Playwright QA passed 11/11 tests on 29 October 2026 (linked QA evidence) |
 | Today's work and requested coordinator feedback | `docs/TODAYS_PROGRESS_REPORT_2026-10-28.md` | Linked from README after this update | Progress report; asks for quality, errors, improvements, additions and priorities |
