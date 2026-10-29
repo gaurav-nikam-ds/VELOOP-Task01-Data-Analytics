@@ -34,7 +34,7 @@ jobs:
 
       - name: Run live website QA against Vercel
         env:
-          BASE_URL: https://velop-task01-data-analytics.vercel.app/
+          BASE_URL: https://veloop-task01-data-analytics.vercel.app/
         run: npx playwright test tests/live-qa.spec.js --reporter=list,html
 
       - name: Upload test report and screenshots
