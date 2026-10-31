@@ -14,7 +14,7 @@ The coordinator's latest known WhatsApp instruction was to provide progress upda
 
 ## Verified technical evidence
 
-- Live Playwright browser QA: **12/12 tests passed** on 31 October 2026 — [run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170725246).
+- Live Playwright browser QA: **12/12 tests passed** on 31 October 2026 — [run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41171422812).
 - Next.js production build: **passed** — [run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41171409019).
 - Coverage includes exactly seven navigation sections (no technology showcase tab), integrated profile evidence in Data audit, findings search and priority filter, both CSV exports, eight document links, responsive widths 320/360/390/768/1024/1440 px, automated WCAG 2.1 A/AA scans, accessible names/unique IDs, network errors and JavaScript/console errors.
 - Source workbook header mismatch resolved: `Users_1000_Clean` has 28 header cells, 27 named fields and one blank trailing header. The original source remains unchanged.
@@ -105,4 +105,4 @@ The Vercel application keeps the original seven-section reviewer structure. Orig
 - [ ] Keep the progress-update-only instruction until the coordinator explicitly authorizes final submission.
 - [ ] Mark company-dependent decisions as pending rather than fabricating approvals.
 
-**Current status (31 October 2026):** The corrected seven-section website is live and passed 12/12 independent browser tests; the Next.js production build passed on the page-change commit. The analysis evidence is integrated into the existing Data audit page. Required PDF/DOCX/XLSX/PNG companion files remain in the working Library and are not individually published as verified public GitHub assets. The final artifact handoff and company/coordinator acceptance remain open. Production implementation is out of scope for this assignment evidence.
+**Current status (31 October 2026):** The corrected seven-section website is live and passed 12/12 independent browser tests; the Next.js production build passed on the page-change commit. The analysis evidence is integrated into the existing Data audit page. The synthetic layer transparently flags one self-referral and 52 unmatched polymorphic wallet reference IDs for review. Required PDF/DOCX/XLSX/PNG companion files remain in the working Library and are not individually published as verified public GitHub assets. The final artifact handoff and company/coordinator acceptance remain open. Production implementation is out of scope for this assignment evidence.
