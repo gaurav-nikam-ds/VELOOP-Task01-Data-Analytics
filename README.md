@@ -9,7 +9,7 @@
 - **Current Vercel workspace:** https://veloop-task01-data-analytics.vercel.app/
 - Vercel app source and deployment instructions: [vercel-app/README.md](vercel-app/README.md)
 
-The user-provided screenshots already in the conversation were reviewed and linked as visual QA evidence for the Vercel workspace: Home, Findings, Supplied data audit, Deliverable tracker, Dashboard blueprint and Implementation library are visible; Findings filter controls and a completed deliverable-tracker CSV download are also shown. The user has additionally reported checking links and mobile layout. The latest independent Playwright browser run passed all 11 tests, including all seven navigation sections, filters, CSV exports, eight document links, six responsive widths (320–1440px), WCAG 2.1 A/AA scans, network responses and browser errors. See the linked QA run and testing evidence. See [Testing evidence & pending QA](docs/FUNCTIONAL_TESTING_EVIDENCE_2026-10-28.md) and [Implemented vs planned features](docs/IMPLEMENTED_VS_PLANNED_FEATURES.md). The [Vercel build workflow](.github/workflows/vercel-app-build.yml) runs the Next.js build for relevant changes, and the live-browser QA workflow tests the deployed Vercel website.
+The user-provided screenshots already in the conversation were reviewed and linked as visual QA evidence for the Vercel workspace: Home, Findings, Supplied data audit, Deliverable tracker, Dashboard blueprint and Implementation library are visible; Findings filter controls and a completed deliverable-tracker CSV download are also shown. The user has additionally reported checking links and mobile layout. The latest independent Playwright browser run passed all 12 tests on 31 October, including the seven navigation sections and integrated source-profile evidence, filters, CSV exports, eight document links, six responsive widths (320–1440px), WCAG 2.1 A/AA scans, network responses and browser errors. See the linked QA run and testing evidence. See [Testing evidence & pending QA](docs/FUNCTIONAL_TESTING_EVIDENCE_2026-10-28.md) and [Implemented vs planned features](docs/IMPLEMENTED_VS_PLANNED_FEATURES.md). The [Vercel build workflow](.github/workflows/vercel-app-build.yml) runs the Next.js build for relevant changes, and the live-browser QA workflow tests the deployed Vercel website.
 
 ## What the workspace contains
 
@@ -72,7 +72,7 @@ npm run build
 
 ## Current verification
 
-- Latest previously recorded live browser QA: [11/11 tests passed on 29 October](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636363). This run predates the 31 October Python + SQL page update; a fresh run is required to verify the current website.
+- Latest live browser QA: [12/12 tests passed on 31 October](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170725246). The run verifies the corrected seven-section website, including profile analysis integrated into the existing Data audit page.
 - Latest Next.js production build: [passed](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636252).
 - Automated QA does not replace coordinator/company approval or validate production integrations that are not configured.
 
@@ -91,7 +91,7 @@ npm run build
 - [Python + SQL analysis evidence](docs/PYTHON_SQL_ANALYSIS_EVIDENCE.md) — reproducible profile, measured quality findings, SQL checks, chart and limitations.
 
 
-The project now includes a reproducible Task 01 analytics workflow using Python/pandas and SQLite SQL, with aggregate evidence and a visualization:
+The project uses a reproducible Task 01 profiling workflow and validation queries to support the findings shown inside the existing Data audit page. The website presents the evidence in the context of the data audit; it does not advertise implementation technologies as separate navigation items.
 
 - [Analytics workflow guide](analytics/README.md)
 - [Python profiling script](analytics/python/analyze_task01.py)
