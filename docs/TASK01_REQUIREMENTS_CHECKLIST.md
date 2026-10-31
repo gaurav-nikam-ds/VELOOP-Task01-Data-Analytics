@@ -44,7 +44,7 @@ The Vercel/Next.js website is the sole active reviewer workspace and QA target: 
 ## Current live QA status (31 October 2026)
 
 - [x] Live Playwright browser QA passed **12/12 tests**: [GitHub Actions run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170725246).
-- [x] Next.js production build passed: [GitHub Actions run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636252).
+- [x] Next.js production build passed: [GitHub Actions run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170709789).
 - [x] Exactly seven navigation sections, integrated profile evidence in Data audit, findings search/priority filter, two CSV exports, eight implementation-library links, responsive widths, automated accessibility, accessible control names/unique IDs, and no failed requests or browser errors were tested.
 - [x] Responsive overflow check passed at 320, 360, 390, 768, 1024 and 1440 px.
 - [x] Automated WCAG 2.1 A/AA scan passed on all seven sections.
