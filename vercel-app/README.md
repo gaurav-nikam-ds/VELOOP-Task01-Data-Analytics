@@ -33,10 +33,11 @@ The [Vercel build workflow](../.github/workflows/vercel-app-build.yml) checks th
 
 ## Latest verified QA
 
-**31 October 2026:** [Live browser QA passed 12/12 tests](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170725246). The [Next.js production build passed](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170709789).
+**31 October 2026:** [Live browser QA passed 12/12 tests](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170915811). The [Next.js production build passed](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170709789).
 
 The browser suite verifies:
 - Public page response and visible data-authenticity notice
+- Profile evidence and the supplemental synthetic test-pack panel inside Data audit
 - All seven navigation sections
 - Findings search and priority filter
 - Findings and deliverable-tracker CSV exports, filenames, headers and row counts
