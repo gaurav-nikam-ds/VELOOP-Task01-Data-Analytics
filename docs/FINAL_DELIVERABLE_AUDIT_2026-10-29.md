@@ -37,7 +37,7 @@ The source brief lists 21 required deliverables, a minimum of 75 data-dictionary
 | 9 | Data dictionary (75+ fields) | 90 proposed fields in master workbook | Numeric requirement met; schema approval pending |
 | 10 | Logical data model and ERD | Proposed ERD image and relationship sheet | Design exists; not a verified physical schema |
 | 11 | KPI catalogue (30+ KPIs) | 36 proposed KPI definitions | Numeric requirement met; formulas and denominators require owner approval |
-| 12 | Simulated data profiling | Excel source audit plus reproducible Python/pandas profiling, SQLite SQL and aggregate visualization in `analytics/` | Implemented and locally executed against Task 01 user-profile sheets; never label simulated results as company performance |
+| 12 | Simulated data profiling | Original Task 01 user-profile sheets plus a separately labelled QA-checked synthetic test pack; reproducible profile, relationship checks, SQL and aggregate visualizations in `analytics/` | Implemented and locally executed; Task 02 remains separate; never label synthetic results as company performance |
 | 13 | Data quality audit | Excel QA sheets plus Python missingness/duplicate/chronology checks, SQL queries and aggregate evidence | Source-specific checks executed; production audit still requires authorized source data and approved thresholds |
 | 14 | Dashboard blueprint | Seven-dashboard wireframes and specifications | Design exists; not seven live production dashboards |
 | 15 | Developer analytics handoff | Handoff document/workbook | Proposed; Engineering review and staging validation pending |
@@ -71,14 +71,14 @@ These Library files are **not automatically public GitHub repository assets**. D
 - Added `analytics/sql/task01_analysis.sql` with SQLite-compatible descriptive and data-quality queries.
 - Added aggregate evidence under `analytics/evidence/`: quality summary JSON, missingness CSV, account-status CSV and missing-field SVG visualization.
 - Added `docs/PYTHON_SQL_ANALYSIS_EVIDENCE.md` with the measured results, interpretation and limitations.
-- Initially added a separate technology-labelled navigation section; on review, this was removed and the evidence was integrated into the existing Supplied data audit page. The deliverable tracker now describes the analysis outputs rather than advertising tools.
+- Initially added a separate technology-labelled navigation section; on review, this was removed. User-profile evidence and the separate supplemental synthetic test-pack evidence are now integrated into the existing Supplied data audit page. The deliverable tracker describes analytical outputs rather than advertising tools.
 - Results: 1,000 clean rows, 27 named columns, 1,000 unique IDs, zero clean-sheet duplicate IDs, 953 missing cells (3.53%), 881 missing referral-source details, 72 missing last-login timestamps; messy audit sheet has 1,008 rows and 8 repeated user-ID rows.
 - Python script executed successfully; the generated SQLite SQL script was parsed and executed successfully. Local database excludes names and emails and is not committed.
 
 
 ## Verification status after 31 October website update
 
-The Vercel application now keeps the original seven-section reviewer structure. Aggregate profile findings and the missingness chart are embedded in the existing Supplied data audit page; the separate technology-labelled tab has been removed. The production build passed on the page-change commit, and the live Playwright suite passed 12/12 tests against the canonical Vercel domain on 31 October. The suite now asserts exactly seven navigation items and checks the integrated audit chart and supporting links.
+The Vercel application keeps the original seven-section reviewer structure. Original-source profile findings and the separately labelled synthetic test-pack findings are embedded in the existing Supplied data audit page; the technology-labelled tab has been removed. The latest build and live Playwright suite for this version are being rerun after the supplemental panel was added. The suite asserts exactly seven navigation items and checks both audit evidence layers.
 
 ## External acceptance gates (cannot be completed by code changes alone)
 
