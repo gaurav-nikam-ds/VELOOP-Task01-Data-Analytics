@@ -8,7 +8,9 @@
 - Reviewed the current Vercel reviewer workspace against the Task 01 assignment requirements, company communication rules and the source-data boundaries.
 - Removed the separate technology-labelled navigation item that had made the website look like a skills showcase.
 - Restored the original seven-section reviewer navigation.
-- Integrated the profile-quality evidence into the existing **Supplied data audit** page: row/field counts, missing-cell metrics, descriptive profile measures, a field-level missingness chart and links to reproducible supporting evidence.
+- Integrated the profile-quality evidence into the existing **Supplied data audit** page: row/field counts, missing-cell metrics, descriptive profile measures and a field-level missingness chart.
+- Added a separate, clearly labelled synthetic test-pack evidence panel covering seven datasets, relationship checks, chronology, KPI feasibility and intentionally injected messy-data defects.
+- Added reproducible aggregate outputs for synthetic dataset profiles, relationship checks, quality checks and status distributions. Two synthetic review flags (52 unmatched polymorphic wallet references and one self-referral) remain visible rather than being hidden.
 - Kept the separate Task 02 behavior workbook outside Task 01 analysis pending coordinator approval.
 - Updated the website QA suite to assert exactly seven navigation items and verify that the profile evidence appears inside the Data audit section.
 - Updated the requirements checklist, implementation-status matrix, final audit, testing evidence and README references.
@@ -18,7 +20,7 @@
 - Website presentation now follows the project purpose: data audit, findings, deliverables, dashboard blueprint, acceptance blockers and supporting documentation.
 - The analysis is presented as evidence for data-quality findings, not as a separate promotion of tools or skills.
 - The page explains that missing referral details and last-login timestamps are not automatically defects; business meaning and null semantics require confirmation.
-- Automated browser coverage now includes the integrated profile evidence and checks the original seven-section navigation.
+- Automated browser coverage now includes the original seven-section navigation, integrated profile evidence and the supplemental synthetic test-pack panel.
 
 ## Current Stage
 
