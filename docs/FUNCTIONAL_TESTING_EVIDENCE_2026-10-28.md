@@ -29,6 +29,7 @@ The clean sheet has 28 physical header cells but 27 named fields because the fin
 | Public site responds; title, data-authenticity notice and navigation visible | PASS |
 | Exactly seven navigation sections show expected content; no technology-labelled navigation tab | PASS |
 | Profile metrics, missingness chart and supporting links are integrated into the existing Data audit section | PASS |
+| Supplemental synthetic test pack, seven datasets, relationship review flags and supporting evidence links appear inside Data audit | PASS |
 | Findings search and priority filter update results | PASS |
 | Findings CSV export: filename, headers, 4 data rows and expected content | PASS |
 | Deliverables CSV export: filename, headers, 21 data rows and expected content | PASS |
@@ -68,4 +69,4 @@ The automated tests verify the deployed reviewer workspace and the tested browse
 
 ## 6. Subsequent website change — 31 October 2026
 
-The 31 October correction removed the separate technology-labelled navigation tab and integrated the profile metrics, missingness chart and supporting links into the existing Data audit section. The live browser suite now asserts exactly seven navigation items and validates the integrated evidence. The current live run passed 12/12 tests; the Next.js production build passed on the corresponding page-change commit.
+The 31 October correction removed the separate technology-labelled navigation tab and integrated both the original-source profile evidence and the separate supplemental synthetic test-pack evidence into the existing Data audit section. The live browser suite asserts exactly seven navigation items and validates both evidence layers. The latest QA/build run for the expanded panel is being checked.
