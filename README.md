@@ -72,7 +72,7 @@ npm run build
 
 ## Current verification
 
-- Latest live browser QA: [12/12 tests passed on 31 October](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170915811). The run verifies the corrected seven-section website, including profile analysis integrated into the existing Data audit page.
+- Latest live browser QA: [12/12 tests passed on 31 October](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41171422812). The run verifies the corrected seven-section website, including profile analysis integrated into the existing Data audit page.
 - Latest Next.js production build: [passed](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636252).
 - Automated QA does not replace coordinator/company approval or validate production integrations that are not configured.
 
@@ -91,7 +91,7 @@ npm run build
 - [Python + SQL analysis evidence](docs/PYTHON_SQL_ANALYSIS_EVIDENCE.md) — reproducible profile, measured quality findings, SQL checks, chart and limitations.
 
 
-The project uses a reproducible Task 01 profiling workflow and validation queries to support the findings shown inside the existing Data audit page. The website presents the evidence in the context of the data audit; it does not advertise implementation technologies as separate navigation items.
+The project uses two reproducible evidence workflows: the original Task 01 user-profile audit and a separate supplemental synthetic test-pack profile with relationship checks and sample KPI feasibility. Both are presented inside the existing Data audit page; the website does not advertise implementation technologies as separate navigation items. See [analytics evidence and run instructions](analytics/README.md).
 
 - [Analytics workflow guide](analytics/README.md)
 - [Python profiling script](analytics/python/analyze_task01.py)
