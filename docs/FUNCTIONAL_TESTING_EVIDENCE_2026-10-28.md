@@ -63,3 +63,8 @@ The automated tests verify the deployed reviewer workspace and the tested browse
 2. Obtain coordinator confirmation about Task 02 scope and any additional submission requirements.
 3. Obtain company owner approval for product feature status, canonical identifiers, event definitions, reward units, wallet/withdrawal states, KPI formulas and governance.
 4. Keep all synthetic-data warnings and proposal/production distinctions explicit in the final handoff.
+
+
+## 5. Subsequent website change — 31 October 2026
+
+The Vercel app was updated after the 29 October run to add the Python + SQL analysis section, a field-level missingness chart and updated deliverable tracker statuses. The 29 October 11/11 result is historical evidence for the earlier deployed version only. Re-run the live browser QA and production build for the current commit before treating the new page as verified. A direct live-site fetch was unavailable during the 31 October review.
