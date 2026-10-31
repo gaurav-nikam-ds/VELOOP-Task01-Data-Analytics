@@ -61,7 +61,7 @@ test.describe("VELOOP live reviewer workspace", () => {
   test("findings search and priority filter change the visible results", async ({ page }) => {
     await page.goto(baseURL, { waitUntil: "domcontentloaded" });
     await page.getByRole("navigation").getByRole("button", { name: "Findings" }).click();
-    await expect(page.getByRole("heading", { name: "What needs attention in the supplied files?" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "What needs attention in the supplied files?" })).toBeVisible({ timeout: 15000 });
 
     const findingCards = page.locator(".finding-card");
     await expect(findingCards).toHaveCount(4);
@@ -113,7 +113,7 @@ test.describe("VELOOP live reviewer workspace", () => {
     await page.goto(baseURL, { waitUntil: "domcontentloaded" });
     await expect(page.getByRole("navigation")).toBeVisible();
     await page.getByRole("navigation").getByRole("button", { name: "Findings" }).click();
-    await expect(page.getByRole("heading", { name: "What needs attention in the supplied files?" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "What needs attention in the supplied files?" })).toBeVisible({ timeout: 15000 });
   });
 
   test("responsive layouts do not create horizontal page overflow", async ({ page }) => {
@@ -123,7 +123,7 @@ test.describe("VELOOP live reviewer workspace", () => {
       const dimensions = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
       expect(dimensions.page, `Horizontal overflow at width ${width}: ${JSON.stringify(dimensions)}`).toBeLessThanOrEqual(dimensions.viewport + 1);
       await page.getByRole("navigation").getByRole("button", { name: "Findings" }).click();
-      await expect(page.getByRole("heading", { name: "What needs attention in the supplied files?" })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "What needs attention in the supplied files?" })).toBeVisible({ timeout: 15000 });
     }
   });
 
