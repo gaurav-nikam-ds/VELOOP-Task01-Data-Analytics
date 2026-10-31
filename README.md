@@ -72,7 +72,7 @@ npm run build
 
 ## Current verification
 
-- Latest live browser QA: [11/11 tests passed](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636363).
+- Latest previously recorded live browser QA: [11/11 tests passed on 29 October](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636363). This run predates the 31 October Python + SQL page update; a fresh run is required to verify the current website.
 - Latest Next.js production build: [passed](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636252).
 - Automated QA does not replace coordinator/company approval or validate production integrations that are not configured.
 
