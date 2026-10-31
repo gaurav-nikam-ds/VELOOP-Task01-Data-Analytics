@@ -33,7 +33,7 @@ The [Vercel build workflow](../.github/workflows/vercel-app-build.yml) checks th
 
 ## Latest verified QA
 
-**29 October 2026:** [Live browser QA run passed 11/11 tests](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636363). The [production build also passed](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636252).
+**31 October 2026:** [Live browser QA passed 12/12 tests](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170725246). The [Next.js production build passed](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170709789).
 
 The browser suite verifies:
 - Public page response and visible data-authenticity notice
@@ -75,8 +75,8 @@ The live website is the reviewer workspace; it is not a substitute for the full 
 
 
 
-## Python, SQL and visualization evidence
+## Data-profile evidence in the reviewer workspace
 
-The reviewer website now includes a **Python + SQL analysis** section with aggregate findings and a field-level missingness visualization. The reproducible code and evidence are in the repository's [analytics folder](../analytics/README.md), including the [Python profiling script](../analytics/python/analyze_task01.py), [SQLite queries](../analytics/sql/task01_analysis.sql), [quality summary](../analytics/evidence/quality_summary.json), and [missingness chart](../analytics/evidence/top_missing_fields.svg).
+The profiling results and field-level missingness visualization are integrated into the existing **Supplied data audit** page. There is no separate technology/skills navigation section. Supporting reproducibility files remain in the repository's [analytics folder](../analytics/README.md), including the [profiling script](../analytics/python/analyze_task01.py), [validation queries](../analytics/sql/task01_analysis.sql), [quality summary](../analytics/evidence/quality_summary.json), and [missingness chart](../analytics/evidence/top_missing_fields.svg).
 
 This analysis uses only the supplied Task 01 simulated user-profile sheets. It does not include Task 02 data and does not calculate production task, reward, wallet, withdrawal, referral or event metrics.
