@@ -47,6 +47,12 @@ test.describe("VELOOP live reviewer workspace", () => {
     await expect(page.locator('img[alt^="Top missing fields"]')).toBeVisible();
     expect(await page.getByRole("link", { name: /Open reproducible profiling script/ }).getAttribute("href")).toContain("analytics/python/analyze_task01.py");
     expect(await page.getByRole("link", { name: /Open validation queries/ }).getAttribute("href")).toContain("analytics/sql/task01_analysis.sql");
+    await expect(page.getByRole("heading", { name: "Supplemental synthetic test layer", exact: true })).toBeVisible();
+    await expect(page.getByText(/52 wallet reference IDs/)).toBeVisible();
+    await expect(page.getByText(/one self-referral/)).toBeVisible();
+    await expect(page.locator('img[alt^="Supplemental synthetic test pack record counts"]')).toBeVisible();
+    expect(await page.getByRole("link", { name: /Open reproducible dataset checks/ }).getAttribute("href")).toContain("analytics/python/analyze_synthetic_pack.py");
+    expect(await page.getByRole("link", { name: /Open relationship and KPI queries/ }).getAttribute("href")).toContain("analytics/sql/synthetic_test_pack_analysis.sql");
   });
 
   test("findings search and priority filter change the visible results", async ({ page }) => {
