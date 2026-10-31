@@ -1,0 +1,24 @@
+check,records_affected,interpretation
+Task_Activity: null primary keys,0,Primary-key completeness
+Task_Activity: duplicate primary keys beyond first,0,Primary-key uniqueness
+Rewards: null primary keys,0,Primary-key completeness
+Rewards: duplicate primary keys beyond first,0,Primary-key uniqueness
+Wallet: null primary keys,0,Primary-key completeness
+Wallet: duplicate primary keys beyond first,0,Primary-key uniqueness
+Withdrawals: null primary keys,0,Primary-key completeness
+Withdrawals: duplicate primary keys beyond first,0,Primary-key uniqueness
+Referrals: null primary keys,0,Primary-key completeness
+Referrals: duplicate primary keys beyond first,0,Primary-key uniqueness
+Feature_Events: null primary keys,0,Primary-key completeness
+Feature_Events: duplicate primary keys beyond first,0,Primary-key uniqueness
+Messy_Data: null primary keys,8,Primary-key completeness
+Messy_Data: duplicate primary keys beyond first,11,Primary-key uniqueness
+Task_Activity completion before start,0,Chronology after QA correction
+Withdrawals final before processing,0,Chronology after QA correction
+Referrals activation before registration,0,Chronology check
+Messy_Data null activity_id,8,Injected test defect
+Messy_Data duplicate non-null activity_id rows beyond first,11,Injected test defect
+Messy_Data malformed nonblank task_viewed_at,9,Injected test defect
+Messy_Data invalid task_status,9,Injected test defect
+Messy_Data whitespace-only failure_reason,12,Injected test defect
+Messy_Data negative numeric reward_status,14,Injected type/value defect
