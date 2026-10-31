@@ -69,4 +69,4 @@ The automated tests verify the deployed reviewer workspace and the tested browse
 
 ## 6. Subsequent website change — 31 October 2026
 
-The 31 October correction removed the separate technology-labelled navigation tab and integrated both the original-source profile evidence and the separate supplemental synthetic test-pack evidence into the existing Data audit section. The live browser suite asserts exactly seven navigation items and validates both evidence layers. The latest QA/build run for the expanded panel is being checked.
+The 31 October correction removed the separate technology-labelled navigation tab and integrated both the original-source profile evidence and the separate supplemental synthetic test-pack evidence into the existing Data audit section. The live browser suite asserts exactly seven navigation items and validates both evidence layers. The live browser suite passed 12/12 tests after the synthetic test-pack panel was added; the production build passed on the corresponding website commit.
