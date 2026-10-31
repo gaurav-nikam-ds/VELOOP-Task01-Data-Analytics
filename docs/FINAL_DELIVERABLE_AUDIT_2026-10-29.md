@@ -1,6 +1,6 @@
 # VELOOP Task 01 — Final Deliverable Audit
 
-**Audit date:** 29 October 2026  
+**Audit date:** 31 October 2026  
 **Prepared by:** Gaurav Nikam  
 **Assignment:** Product Analytics, Data Readiness & Data Management Blueprint  
 **Active application:** https://veloop-task01-data-analytics.vercel.app/  
@@ -14,9 +14,9 @@ The coordinator's latest known WhatsApp instruction was to provide progress upda
 
 ## Verified technical evidence
 
-- Live Playwright browser QA: **11/11 tests passed** on 29 October 2026 — [run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636363).
+- Live Playwright browser QA: **12/12 tests passed** on 31 October 2026 — [run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170725246).
 - Next.js production build: **passed** — [run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636252).
-- Coverage includes all seven navigation sections, findings search and priority filter, both CSV exports, eight document links, responsive widths 320/360/390/768/1024/1440 px, automated WCAG 2.1 A/AA scans, accessible names/unique IDs, network errors and JavaScript/console errors.
+- Coverage includes exactly seven navigation sections (no technology showcase tab), integrated profile evidence in Data audit, findings search and priority filter, both CSV exports, eight document links, responsive widths 320/360/390/768/1024/1440 px, automated WCAG 2.1 A/AA scans, accessible names/unique IDs, network errors and JavaScript/console errors.
 - Source workbook header mismatch resolved: `Users_1000_Clean` has 28 header cells, 27 named fields and one blank trailing header. The original source remains unchanged.
 - The current site is the only active app target. The old Streamlit prototype is out of scope.
 
@@ -65,20 +65,20 @@ The following artifacts were located in the working Library and are suitable for
 These Library files are **not automatically public GitHub repository assets**. Do not tell a reviewer that they can download them from GitHub until their exact repository paths or approved submission links have been verified. The separate Task 02 behavior workbook is deliberately excluded from the final Task 01 package unless written approval is obtained.
 
 
-## Python, SQL and visualization work added on 31 October 2026
+## Reproducible data profiling and validation work added on 31 October 2026
 
 - Added `analytics/python/analyze_task01.py`, a reproducible pandas profile of the Task 01 clean and messy user sheets.
 - Added `analytics/sql/task01_analysis.sql` with SQLite-compatible descriptive and data-quality queries.
 - Added aggregate evidence under `analytics/evidence/`: quality summary JSON, missingness CSV, account-status CSV and missing-field SVG visualization.
 - Added `docs/PYTHON_SQL_ANALYSIS_EVIDENCE.md` with the measured results, interpretation and limitations.
-- Added a Python + SQL analysis section to the Vercel reviewer workspace and updated the deliverable tracker to reflect the added evidence.
+- Initially added a separate technology-labelled navigation section; on review, this was removed and the evidence was integrated into the existing Supplied data audit page. The deliverable tracker now describes the analysis outputs rather than advertising tools.
 - Results: 1,000 clean rows, 27 named columns, 1,000 unique IDs, zero clean-sheet duplicate IDs, 953 missing cells (3.53%), 881 missing referral-source details, 72 missing last-login timestamps; messy audit sheet has 1,008 rows and 8 repeated user-ID rows.
 - Python script executed successfully; the generated SQLite SQL script was parsed and executed successfully. Local database excludes names and emails and is not committed.
 
 
 ## Verification status after 31 October website update
 
-The Vercel application source was updated to add a Python + SQL analysis section, a field-level missingness visualization and updated deliverable statuses. The Vercel build and live-browser QA workflows are configured to run on changes under `vercel-app/**`. The previously recorded 11/11 run predates these changes and must not be treated as verification of the new section. Confirm the new workflow run and inspect the deployed page before marking this update verified. A direct live-site fetch was not available during this check.
+The Vercel application now keeps the original seven-section reviewer structure. Aggregate profile findings and the missingness chart are embedded in the existing Supplied data audit page; the separate technology-labelled tab has been removed. The production build passed on the page-change commit, and the live Playwright suite passed 12/12 tests against the canonical Vercel domain on 31 October. The suite now asserts exactly seven navigation items and checks the integrated audit chart and supporting links.
 
 ## External acceptance gates (cannot be completed by code changes alone)
 
