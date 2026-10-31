@@ -23,5 +23,6 @@
     "Messy_Data whitespace-only failure_reason": 12,
     "Messy_Data negative numeric reward_status": 14
   },
-  "limitations": "Synthetic logic testing only. One self-referral and unmatched polymorphic wallet references remain review items."
+  "date_parsing": "Mixed timestamp formats parsed explicitly with pandas format='mixed'; rerun completed without mixed-date inference warnings.",
+  "limitations": "Synthetic data validates analytical logic only; it is not production evidence. One self-referral and 52 unmatched polymorphic wallet reference IDs remain review items."
 }
