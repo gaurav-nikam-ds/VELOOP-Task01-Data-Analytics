@@ -112,7 +112,7 @@ export default function Home() {
       <div className="side-footer">Evidence-based analysis<br/>No production system connected</div>
     </aside>
     <main className="main">
-      <header className="hero"><div className="hero-top"><span className="pill">TASK 01 · PROJECT HANDOFF</span><span className="live-dot">WEBSITE CHECKS COMPLETED</span></div><h1>Understand the data. Fix the gaps. Prepare reliable analytics.</h1><p>A practical analytics blueprint for VELOOP Rewards. This workspace shows what was checked, what the evidence says, and what the company must confirm before live reporting can be built.</p></header>
+      <header className="hero"><div className="hero-top"><span className="pill">TASK 01 · PROJECT HANDOFF · UPDATED 31 OCT 2026</span><span className="live-dot">WEBSITE CHECKS COMPLETED</span></div><h1>Understand the data. Fix the gaps. Prepare reliable analytics.</h1><p>A practical analytics blueprint for VELOOP Rewards. This workspace shows what was checked, what the evidence says, and what the company must confirm before live reporting can be built.</p></header>
       <div className="notice"><strong>PLEASE NOTE</strong> The supplied files contain simulated assignment data, not live VELOOP production data. The findings below describe those files only. Proposed KPIs and dashboard designs are plans—not live company results.</div>
       <div className="content">
       {active==="Executive status" && <>
