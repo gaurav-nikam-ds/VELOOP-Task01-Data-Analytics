@@ -1,9 +1,8 @@
-dataset,rows,columns,missing_cells,primary_key,null_primary_keys,duplicate_primary_key_extra_rows
-Task_Activity,6000,12,6251,activity_id,0,0
-Rewards,5001,10,8459,reward_id,0,0
-Wallet,3552,10,2667,transaction_id,0,0
-Withdrawals,1200,9,1552,withdrawal_id,0,0
-Referrals,900,8,828,referral_id,0,0
-Feature_Events,12000,12,0,event_id,0,0
-Messy_Data,700,12,734,activity_id,8,11
-External_References,1977,5,not_applicable,reference_id,0,0
+dataset,rows,columns,missing_cells,primary_key,null_primary_keys,duplicate_primary_key_extra_rows,exact_duplicate_rows,task_viewed_at_min,task_viewed_at_max,task_viewed_at_invalid_nonblank,task_started_at_min,task_started_at_max,task_started_at_invalid_nonblank,task_completed_at_min,task_completed_at_max,task_completed_at_invalid_nonblank,created_at_min,created_at_max,created_at_invalid_nonblank,transaction_timestamp_min,transaction_timestamp_max,transaction_timestamp_invalid_nonblank,requested_at_min,requested_at_max,requested_at_invalid_nonblank,processing_at_min,processing_at_max,processing_at_invalid_nonblank,final_at_min,final_at_max,final_at_invalid_nonblank,registered_at_min,registered_at_max,registered_at_invalid_nonblank,activated_at_min,activated_at_max,activated_at_invalid_nonblank,event_timestamp_min,event_timestamp_max,event_timestamp_invalid_nonblank
+Task_Activity,6000,12,6251,activity_id,0,0,0,2026-04-01 01:07:44,2026-09-15 21:46:12,0.0,2026-04-01 01:14:44,2026-09-15 21:47:12,0.0,2026-04-01 02:23:44,2026-09-15 22:05:12,0.0,,,,,,,,,,,,,,,,,,,,,,,
+Rewards,5001,10,8459,reward_id,0,0,0,,,,,,,,,,2026-04-01 00:27:27,2026-09-15 22:14:26,0.0,,,,,,,,,,,,,,,,,,,,,
+Wallet,3552,10,2667,transaction_id,0,0,0,,,,,,,,,,,,,2026-04-01 00:00:58,2026-09-15 19:22:40,0.0,,,,,,,,,,,,,,,,,
+Withdrawals,1200,9,1552,withdrawal_id,0,0,0,,,,,,,,,,,,,,,,2026-04-01 01:27:47,2026-09-15 18:33:29,0.0,2026-04-01 01:29:47,2026-09-15 20:00:01,0.0,2026-04-02 01:31:16,2026-09-17 22:28:26,0.0,,,,,,,,
+Referrals,900,8,828,referral_id,0,0,0,,,,,,,,,,2026-04-01 00:02:52,2026-09-15 18:25:19,0.0,,,,,,,,,,,,,2026-04-02 06:07:16,2026-09-23 17:30:51,0.0,2026-04-04 02:44:36,2026-09-28 09:07:14,0.0,,,
+Feature_Events,12000,12,0,event_id,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,2026-04-01 00:07:28,2026-09-15 23:46:27,0.0
+Messy_Data,700,12,734,activity_id,8,11,0,2026-04-01 04:00:21,2026-09-15 18:32:11,9.0,2026-04-01 04:04:21,2026-09-15 18:32:11,0.0,2026-04-01 05:07:21,2026-09-15 11:56:20,0.0,,,,,,,,,,,,,,,,,,,,,,,
