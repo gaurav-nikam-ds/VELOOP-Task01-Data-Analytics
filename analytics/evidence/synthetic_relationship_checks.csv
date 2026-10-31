@@ -1,0 +1,13 @@
+relationship,child_rows,nonnull_values,null_values,unmatched_nonnull_values,result
+Task_Activity.user_id -> Task01 Users.user_id,6000,6000,0,0,PASS
+Rewards.user_id -> Task01 Users.user_id,5001,5001,0,0,PASS
+Wallet.user_id -> Task01 Users.user_id,3552,3552,0,0,PASS
+Withdrawals.user_id -> Task01 Users.user_id,1200,1200,0,0,PASS
+Feature_Events.user_id -> Task01 Users.user_id,12000,12000,0,0,PASS
+Referrals.referrer_user_id -> Task01 Users.user_id,900,900,0,0,PASS
+Referrals.referred_user_id -> Task01 Users.user_id,900,900,0,0,PASS
+Rewards.source_activity_id -> Task_Activity.activity_id,5001,5001,0,0,PASS
+Rewards.correction_of_reward_id -> Rewards.reward_id,5001,255,4746,0,PASS
+Wallet.reversal_of_transaction_id -> Wallet.transaction_id,3552,885,2667,0,PASS
+Wallet.reference_id -> known domain/external references (polymorphic),3552,3552,0,52,REVIEW
+Referrals.referrer_user_id != referred_user_id,900,900,0,1,REVIEW
