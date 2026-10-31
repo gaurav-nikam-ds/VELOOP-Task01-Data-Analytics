@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="410" viewBox="0 0 900 410" role="img" aria-labelledby="title desc">
+<title id="title">Supplemental synthetic test pack record counts</title>
+<desc id="desc">Seven synthetic datasets: feature events 12,000; task activity 6,000; messy data 700; rewards 5,001; wallet 3,552; withdrawals 1,200; referrals 900.</desc>
+<rect width="900" height="410" fill="#ffffff"/>
+<text x="34" y="36" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#152238">Supplemental synthetic test pack</text>
+<text x="34" y="61" font-family="Arial,sans-serif" font-size="13" fill="#526174">Record counts by dataset · generated test data only</text>
+<g font-family="Arial,sans-serif" font-size="14" fill="#25364a">
+<text x="34" y="111">Feature Events</text><rect x="210" y="92" width="560" height="24" rx="5" fill="#e7eef4"/><rect x="210" y="92" width="560" height="24" rx="5" fill="#087e8b"/><text x="786" y="110">12,000</text>
+<text x="34" y="155">Task Activity</text><rect x="210" y="136" width="560" height="24" rx="5" fill="#e7eef4"/><rect x="210" y="136" width="280" height="24" rx="5" fill="#087e8b"/><text x="506" y="154">6,000</text>
+<text x="34" y="199">Rewards</text><rect x="210" y="180" width="560" height="24" rx="5" fill="#e7eef4"/><rect x="210" y="180" width="233" height="24" rx="5" fill="#087e8b"/><text x="459" y="198">5,001</text>
+<text x="34" y="243">Wallet</text><rect x="210" y="224" width="560" height="24" rx="5" fill="#e7eef4"/><rect x="210" y="224" width="166" height="24" rx="5" fill="#087e8b"/><text x="392" y="242">3,552</text>
+<text x="34" y="287">Withdrawals</text><rect x="210" y="268" width="560" height="24" rx="5" fill="#e7eef4"/><rect x="210" y="268" width="56" height="24" rx="5" fill="#087e8b"/><text x="282" y="286">1,200</text>
+<text x="34" y="331">Referrals</text><rect x="210" y="312" width="560" height="24" rx="5" fill="#e7eef4"/><rect x="210" y="312" width="42" height="24" rx="5" fill="#087e8b"/><text x="268" y="330">900</text>
+<text x="34" y="375">Messy Data</text><rect x="210" y="356" width="560" height="24" rx="5" fill="#e7eef4"/><rect x="210" y="356" width="33" height="24" rx="5" fill="#087e8b"/><text x="259" y="374">700</text>
+</g>
+</svg>
