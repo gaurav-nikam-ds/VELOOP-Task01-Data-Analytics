@@ -1,0 +1,9 @@
+dataset,rows,columns,missing_cells,primary_key,null_primary_keys,duplicate_primary_key_extra_rows
+Task_Activity,6000,12,6251,activity_id,0,0
+Rewards,5001,10,8459,reward_id,0,0
+Wallet,3552,10,2667,transaction_id,0,0
+Withdrawals,1200,9,1552,withdrawal_id,0,0
+Referrals,900,8,828,referral_id,0,0
+Feature_Events,12000,12,0,event_id,0,0
+Messy_Data,700,12,734,activity_id,8,11
+External_References,1977,5,not_applicable,reference_id,0,0
