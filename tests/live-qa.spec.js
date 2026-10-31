@@ -127,6 +127,7 @@ test.describe("VELOOP live reviewer workspace", () => {
   test("all eight implementation-library document links resolve", async ({ page, request }) => {
     await page.goto(baseURL, { waitUntil: "domcontentloaded" });
     await page.getByRole("navigation").getByRole("button", { name: "Documents" }).click();
+    await expect(page.locator("a.library-card")).toHaveCount(8);
     const links = await page.locator("a.library-card").evaluateAll(nodes => nodes.map(a => ({ title: a.querySelector("h3")?.textContent?.trim() || a.textContent.trim(), href: a.href })));
     expect(links.length).toBe(8);
     for (const link of links) {
