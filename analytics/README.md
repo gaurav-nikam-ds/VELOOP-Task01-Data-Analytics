@@ -14,7 +14,14 @@
 - `sql/synthetic_test_pack_analysis.sql`: tests joins, status distributions, KPI feasibility examples, chronology and injected data-quality defects.
 - `evidence/synthetic_*`: aggregate profile, status, quality, relationship and KPI-feasibility evidence.
 - The test pack uses Task 01 user IDs as parent keys, but all added transaction/event rows are synthetic. The separate Task 02 behavior workbook is not imported or merged.
-- The local SQLite database is created only for execution and is not committed.
+- The local SQLite databases are created only for execution and are not committed.
+
+## Local execution verification (31 October 2026)
+- Original Task 01 profiling script: executed against the supplied Task 01 workbook.
+- Original Task 01 SQL script: executed successfully against the generated SQLite database.
+- Supplemental synthetic test-pack profiling script: executed against the QA-checked synthetic workbook.
+- Supplemental synthetic test-pack SQL script: full script executed successfully against the generated SQLite database.
+- The synthetic profile script emitted two non-fatal pandas mixed-date inference warnings; output generation completed.
 
 ## Run
 
