@@ -18,7 +18,7 @@ The clean sheet has 28 physical header cells but 27 named fields because the fin
 ## 2. Latest deployed Vercel browser QA — passed
 
 - **Run:** [Live browser QA — 12/12 tests passed](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170725246)
-- **Build:** [Next.js production build passed](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636252)
+- **Build:** [Next.js production build passed](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170709789)
 - **Date:** 31 October 2026
 - **Result:** The live-browser job and build job both completed successfully.
 
@@ -27,7 +27,8 @@ The clean sheet has 28 physical header cells but 27 named fields because the fin
 | Test | Result |
 |---|---|
 | Public site responds; title, data-authenticity notice and navigation visible | PASS |
-| All seven navigation sections show expected content | PASS |
+| Exactly seven navigation sections show expected content; no technology-labelled navigation tab | PASS |
+| Profile metrics, missingness chart and supporting links are integrated into the existing Data audit section | PASS |
 | Findings search and priority filter update results | PASS |
 | Findings CSV export: filename, headers, 4 data rows and expected content | PASS |
 | Deliverables CSV export: filename, headers, 21 data rows and expected content | PASS |
@@ -39,7 +40,7 @@ The clean sheet has 28 physical header cells but 27 named fields because the fin
 | No failed requests/HTTP error responses during navigation | PASS |
 | No uncaught JavaScript errors or console errors | PASS |
 
-The run output reports **11 passed (14.1 seconds)**. The two CSV export checks are covered within one test case.
+The run output reports **12 passed (13.8 seconds)**. The findings and deliverables CSV checks are covered within one combined test case.
 
 ## 3. What these checks do and do not prove
 
@@ -65,6 +66,6 @@ The automated tests verify the deployed reviewer workspace and the tested browse
 4. Keep all synthetic-data warnings and proposal/production distinctions explicit in the final handoff.
 
 
-## 5. Subsequent website change — 31 October 2026
+## 6. Subsequent website change — 31 October 2026
 
 The 31 October correction removed the separate technology-labelled navigation tab and integrated the profile metrics, missingness chart and supporting links into the existing Data audit section. The live browser suite now asserts exactly seven navigation items and validates the integrated evidence. The current live run passed 12/12 tests; the Next.js production build passed on the corresponding page-change commit.
