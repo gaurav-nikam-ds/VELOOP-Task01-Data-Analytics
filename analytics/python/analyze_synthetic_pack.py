@@ -106,7 +106,7 @@ def main():
         ("Messy_Data duplicate non-null activity_id rows beyond first", int(messy.activity_id.dropna().duplicated().sum()), "Injected test defect"),
         ("Messy_Data malformed nonblank task_viewed_at", int((messy.task_viewed_at.notna() & viewed.isna()).sum()), "Injected test defect"),
         ("Messy_Data invalid task_status", int((~messy.task_status.isin(valid_status)).sum()), "Injected test defect"),
-        ("Messy_Data whitespace-only failure_reason", int(messy.failure_reason.dropna().astype(str).str.fullmatch(r"\\s+").sum()), "Injected test defect"),
+        ("Messy_Data whitespace-only failure_reason", int(messy.failure_reason.dropna().astype(str).str.fullmatch(r"\s+").sum()), "Injected test defect"),
         ("Messy_Data negative numeric reward_status", int(pd.to_numeric(messy.reward_status, errors="coerce").lt(0).sum()), "Injected type/value defect"),
     ]
     for label, count, note in checks:
