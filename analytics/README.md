@@ -12,7 +12,7 @@
 ### Supplemental synthetic test pack
 - `python/analyze_synthetic_pack.py`: profiles the QA-checked synthetic Task Activity, Rewards, Wallet, Withdrawals, Referrals, Feature Events and Messy Data tables.
 - `sql/synthetic_test_pack_analysis.sql`: tests joins, status distributions, KPI feasibility examples, chronology and injected data-quality defects.
-- `evidence/synthetic_*`: aggregate profile, status, quality, relationship and KPI-feasibility evidence.
+- `evidence/synthetic_*`: aggregate profile (including timestamp ranges/invalid-date counts), status, quality, relationship and KPI-feasibility evidence, synchronized after the warning-free rerun.
 - The test pack uses Task 01 user IDs as parent keys, but all added transaction/event rows are synthetic. The separate Task 02 behavior workbook is not imported or merged.
 - The local SQLite databases are created only for execution and are not committed.
 
@@ -21,7 +21,7 @@
 - Original Task 01 SQL script: executed successfully against the generated SQLite database.
 - Supplemental synthetic test-pack profiling script: executed against the QA-checked synthetic workbook.
 - Supplemental synthetic test-pack SQL script: full script executed successfully against the generated SQLite database.
-- The synthetic profile script emitted two non-fatal pandas mixed-date inference warnings; output generation completed.
+- Mixed timestamp parsing was made explicit with `format="mixed"`; the profiling script was rerun on 31 October and completed without pandas mixed-date inference warnings.
 
 ## Run
 
