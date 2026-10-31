@@ -73,3 +73,10 @@ The supplied assignment workbooks are simulated. The Task 01 source workbook pro
 
 The live website is the reviewer workspace; it is not a substitute for the full report and workbook deliverables. The assignment audit is tracked in [the final deliverable audit](../docs/FINAL_DELIVERABLE_AUDIT_2026-10-29.md). Before marking the assignment ready for final submission, confirm that the consolidated report (PDF and editable DOCX), QA-checked master workbook, proposed ERD and dashboard wireframes are individually accessible from this repository or the coordinator-approved submission location. Do not claim these files are hosted here until their links have been verified.
 
+
+
+## Python, SQL and visualization evidence
+
+The reviewer website now includes a **Python + SQL analysis** section with aggregate findings and a field-level missingness visualization. The reproducible code and evidence are in the repository's [analytics folder](../analytics/README.md), including the [Python profiling script](../analytics/python/analyze_task01.py), [SQLite queries](../analytics/sql/task01_analysis.sql), [quality summary](../analytics/evidence/quality_summary.json), and [missingness chart](../analytics/evidence/top_missing_fields.svg).
+
+This analysis uses only the supplied Task 01 simulated user-profile sheets. It does not include Task 02 data and does not calculate production task, reward, wallet, withdrawal, referral or event metrics.
