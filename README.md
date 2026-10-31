@@ -31,7 +31,7 @@ Proposed fields, events, KPI definitions, data models, governance controls and p
 
 ## Today's progress report
 
-- [Daily progress report — 29 October 2026](docs/TODAYS_PROGRESS_REPORT_2026-10-29.md) — latest verified live QA, source audit, prepared review package and remaining approval gates.
+- [Daily progress report — 31 October 2026](docs/TODAYS_PROGRESS_REPORT_2026-10-31.md) — corrected seven-section website, integrated audit evidence, fresh 12/12 live QA and remaining approval gates.
 
 - [Daily progress report — 28 October 2026](docs/TODAYS_PROGRESS_REPORT_2026-10-28.md) — today's documentation/scope alignment, remaining dependencies, and coordinator questions about work quality, errors, improvements and additions.
 
