@@ -1,0 +1,22 @@
+Deliverable,Evidence status,Remaining dependency
+Assignment scope and source register,Documented,Confirm approved scope
+Executive summary and decision framing,Documented,Owner review
+Data coverage matrix,Documented,Validate against source systems
+User/account analytics specification,Documented,Confirm identifiers and account states
+Earning/reward analytics specification,Documented design,Authoritative reward/task records not supplied
+Wallet/withdrawal specification,Documented design,Finance/Operations must confirm ledger semantics
+Referral/engagement specification,Documented design,Approve activation and conversion definitions
+Event tracking plan,Proposed,Engineering approval and staging validation
+Data dictionary (75+ fields),90 proposed fields,Confirm physical schema and constraints
+Logical data model and ERD,Proposed,Not verified against production schema
+KPI catalogue (30+ KPIs),36 proposed KPIs,Approve formulas, units, sources and denominators
+Simulated data profiling,Profiled and cross-checked,Task 01 source is user-profile data only; transaction/event data not supplied
+Data quality rules and acceptance gates,Automated validation checks; documented proposal,Agree thresholds and exception handling
+Dashboard visual specifications,Documented blueprint,Validate with dashboard owners
+Data pipeline and refresh plan,Proposed,Confirm source access and SLA
+Governance and ownership model,Proposed,Assign accountable owners
+Privacy, access and retention considerations,Proposed,Security/Legal review
+Data gaps and risk register,Documented,Track owners and due dates
+Implementation backlog,Documented proposal,Prioritise with stakeholders
+Testing and acceptance checklist,Documented proposal,Run QA and record evidence
+Final handoff and recommendations,Prepared for review,Coordinator / stakeholder acceptance
