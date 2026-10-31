@@ -88,6 +88,9 @@ npm run build
 
 ## Python, SQL & data visualization analysis
 
+- [Python + SQL analysis evidence](docs/PYTHON_SQL_ANALYSIS_EVIDENCE.md) — reproducible profile, measured quality findings, SQL checks, chart and limitations.
+
+
 The project now includes a reproducible Task 01 analytics workflow using Python/pandas and SQLite SQL, with aggregate evidence and a visualization:
 
 - [Analytics workflow guide](analytics/README.md)
