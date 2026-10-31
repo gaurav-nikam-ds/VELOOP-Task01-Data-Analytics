@@ -1,6 +1,6 @@
 # VELOOP Task 01 — Implemented vs Planned Features
 
-**Review date:** 28 October 2026  
+**Review date:** 31 October 2026  
 **Purpose:** Make the current reviewer workspace's implementation status explicit before final submission.
 
 ## Status definitions
