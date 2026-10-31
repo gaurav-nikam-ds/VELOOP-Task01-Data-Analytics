@@ -10,7 +10,9 @@
 - Restored the original seven-section reviewer navigation.
 - Integrated the profile-quality evidence into the existing **Supplied data audit** page: row/field counts, missing-cell metrics, descriptive profile measures and a field-level missingness chart.
 - Added a separate, clearly labelled synthetic test-pack evidence panel covering seven datasets, relationship checks, chronology, KPI feasibility and intentionally injected messy-data defects.
-- Added reproducible aggregate outputs for synthetic dataset profiles, relationship checks, quality checks and status distributions. Two synthetic review flags (52 unmatched polymorphic wallet references and one self-referral) remain visible rather than being hidden.
+- Executed the Task 01 profile script and its SQLite SQL file against the original source workbook.
+- Executed the supplemental synthetic-pack profiling script and its complete SQLite SQL file against the QA-checked synthetic workbook. Cross-checked the generated output: 52 unmatched polymorphic wallet references and one self-referral remain review flags.
+- Added reproducible aggregate outputs for synthetic dataset profiles, relationship checks, quality checks and status distributions. The script emitted two non-fatal pandas mixed-date inference warnings; profiling completed and outputs were generated.
 - Kept the separate Task 02 behavior workbook outside Task 01 analysis pending coordinator approval.
 - Updated the website QA suite to assert exactly seven navigation items and verify that the profile evidence appears inside the Data audit section.
 - Updated the requirements checklist, implementation-status matrix, final audit, testing evidence and README references.
@@ -24,8 +26,8 @@
 
 ## Current Stage
 
-- Live Vercel browser QA: **12/12 tests passed** on 31 October 2026 ([test report](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41171422812)).
-- Next.js production build: **passed** on the website-change commit ([build report](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41171409019)).
+- Live Vercel browser QA: **12/12 tests passed** on 31 October 2026 ([test report](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41171606251)).
+- Next.js production build: **passed** on the website-change commit ([build report](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41171525783)).
 - Live reviewer workspace: https://veloop-task01-data-analytics.vercel.app/
 - GitHub repository: https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics
 
