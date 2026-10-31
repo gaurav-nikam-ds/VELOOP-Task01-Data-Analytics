@@ -16,14 +16,14 @@
 |---|---|---|
 | Executive status / Home | Implemented in reviewer workspace | Presents scope, evidence status and data-authenticity caveats |
 | Insights & recommendations / Findings | Implemented in reviewer workspace; manual behavior owner-reported | Displays Task 01 user-profile findings; Task 02 event audit remains separate |
-| Supplied data audit | Implemented in reviewer workspace | Presents audit findings from supplied simulated user-profile data |
+| Supplied data audit | Implemented in reviewer workspace; independent browser-tested 31 Oct 2026 | Presents source inventory, profile metrics, missingness chart and reproducible evidence links from supplied simulated user-profile data |
 | Deliverable tracker | Implemented in reviewer workspace | Tracks 21 assignment deliverables and dependencies |
 | Seven-dashboard blueprint | Implemented as a specification view | Shows seven proposed dashboard areas; **not seven live production dashboards** |
 | Acceptance blockers / What remains | Implemented in reviewer workspace | Lists data, approval and sign-off dependencies |
 | Implementation library / Documents | Implemented in reviewer workspace | Links to design, audit and handoff documentation |
-| Findings search / priority filters | Owner-reported tested on 28 Oct 2026 | Preserve screenshot/browser evidence; independent re-run pending |
-| CSV exports | Owner-reported tested on 28 Oct 2026 | Exports contain review/simulated content, not production metrics; independent re-run pending |
-| Source/document links | Owner-reported tested on 28 Oct 2026 | Independent re-run pending |
+| Findings search / priority filters | Independent browser-tested 31 Oct 2026 | Search and priority filter behavior passed the live Playwright suite |
+| CSV exports | Independent browser-tested 31 Oct 2026 | Both exports passed filename, header and row-count checks; they contain review/simulated content, not production metrics |
+| Source/document links | Independent browser-tested 31 Oct 2026 | All eight implementation-library links resolved successfully |
 | Desktop/mobile responsive layout | Owner-reported tested on 28 Oct 2026 | Independent re-run pending |
 | Production database/API connection | Not implemented / not configured | No production data connection is claimed |
 | Production event instrumentation | Proposed, not verified as implemented | Engineering must implement and validate event contracts |
