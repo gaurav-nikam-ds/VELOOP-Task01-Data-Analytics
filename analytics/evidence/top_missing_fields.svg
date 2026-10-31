@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="430" viewBox="0 0 960 430">
+<rect width="960" height="430" fill="#ffffff"/>
+<text x="48" y="48" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#17212b">Task 01 simulated data — missing fields</text>
+<text x="48" y="78" font-family="Arial,sans-serif" font-size="14" fill="#53616d">Users_1000_Clean · 1,000 rows · aggregate missing-value counts</text>
+<text x="48" y="142" font-family="Arial,sans-serif" font-size="17" fill="#17212b">referral_source_detail</text>
+<rect x="310" y="115" width="540" height="42" rx="6" fill="#e8edf1"/><rect x="310" y="115" width="529" height="42" rx="6" fill="#247ba0"/>
+<text x="860" y="143" font-family="Arial,sans-serif" font-size="18" fill="#17212b">881 (88.1%)</text>
+<text x="48" y="222" font-family="Arial,sans-serif" font-size="17" fill="#17212b">last_login_datetime</text>
+<rect x="310" y="195" width="540" height="42" rx="6" fill="#e8edf1"/><rect x="310" y="195" width="43" height="42" rx="6" fill="#247ba0"/>
+<text x="365" y="223" font-family="Arial,sans-serif" font-size="18" fill="#17212b">72 (7.2%)</text>
+<text x="48" y="315" font-family="Arial,sans-serif" font-size="14" fill="#53616d">Interpretation: confirm whether referral detail is conditionally required. Missing last login may be legitimate for users who have not logged in.</text>
+<text x="48" y="352" font-family="Arial,sans-serif" font-size="13" fill="#9b3c2c">SIMULATED ASSIGNMENT DATA — NOT ACTUAL VELOOP PRODUCTION DATA</text>
+</svg>
