@@ -1,6 +1,6 @@
 # VELOOP Task 01 — Testing Evidence & QA Status
 
-**Updated:** 29 October 2026  
+**Updated:** 31 October 2026  
 **Live reviewer workspace:** https://veloop-task01-data-analytics.vercel.app/  
 **Repository:** https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics
 
@@ -17,9 +17,9 @@ The clean sheet has 28 physical header cells but 27 named fields because the fin
 
 ## 2. Latest deployed Vercel browser QA — passed
 
-- **Run:** [Live browser QA — 11/11 tests passed](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636363)
+- **Run:** [Live browser QA — 12/12 tests passed](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170725246)
 - **Build:** [Next.js production build passed](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636252)
-- **Date:** 29 October 2026
+- **Date:** 31 October 2026
 - **Result:** The live-browser job and build job both completed successfully.
 
 ### Browser test coverage
@@ -67,4 +67,4 @@ The automated tests verify the deployed reviewer workspace and the tested browse
 
 ## 5. Subsequent website change — 31 October 2026
 
-The Vercel app was updated after the 29 October run to add the Python + SQL analysis section, a field-level missingness chart and updated deliverable tracker statuses. The 29 October 11/11 result is historical evidence for the earlier deployed version only. Re-run the live browser QA and production build for the current commit before treating the new page as verified. A direct live-site fetch was unavailable during the 31 October review.
+The 31 October correction removed the separate technology-labelled navigation tab and integrated the profile metrics, missingness chart and supporting links into the existing Data audit section. The live browser suite now asserts exactly seven navigation items and validates the integrated evidence. The current live run passed 12/12 tests; the Next.js production build passed on the corresponding page-change commit.
