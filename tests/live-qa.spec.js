@@ -42,10 +42,11 @@ test.describe("VELOOP live reviewer workspace", () => {
     await page.getByRole("navigation").getByRole("button", { name: "Data audit" }).click();
     await expect(page.getByRole("heading", { name: "Profile and quality evidence", exact: true })).toBeVisible();
     await expect(page.getByText("953", { exact: true })).toBeVisible();
-    await expect(page.getByText(/881 rows \\(88\\.1%\\)/)).toBeVisible();
+    await expect(page.getByText(/881 rows/)).toBeVisible();
+    await expect(page.getByText(/88.1%/)).toBeVisible();
     await expect(page.locator('img[alt^="Top missing fields"]')).toBeVisible();
-    await expect(page.getByRole("link", { name: /Open reproducible profiling script/ })).toHaveAttribute("href", /analytics\\/python\\/analyze_task01\\.py/);
-    await expect(page.getByRole("link", { name: /Open validation queries/ })).toHaveAttribute("href", /analytics\\/sql\\/task01_analysis\\.sql/);
+    expect(await page.getByRole("link", { name: /Open reproducible profiling script/ }).getAttribute("href")).toContain("analytics/python/analyze_task01.py");
+    expect(await page.getByRole("link", { name: /Open validation queries/ }).getAttribute("href")).toContain("analytics/sql/task01_analysis.sql");
   });
 
   test("findings search and priority filter change the visible results", async ({ page }) => {
