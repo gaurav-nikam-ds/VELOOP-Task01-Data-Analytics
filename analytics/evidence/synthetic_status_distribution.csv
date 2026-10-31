@@ -24,3 +24,9 @@ Feature_Events,event_status,failed,3021
 Feature_Events,event_status,success,3009
 Feature_Events,event_status,unknown,2994
 Feature_Events,event_status,pending,2976
+Messy_Data,task_status,completed,375
+Messy_Data,task_status,failed,95
+Messy_Data,task_status,abandoned,93
+Messy_Data,task_status,pending,77
+Messy_Data,task_status,validation_failed,51
+Messy_Data,task_status,DONE??,9
