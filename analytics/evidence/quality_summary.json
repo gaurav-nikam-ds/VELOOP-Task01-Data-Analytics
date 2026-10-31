@@ -1,0 +1,23 @@
+{
+  "data_notice": "SIMULATED ASSIGNMENT DATA — NOT ACTUAL VELOOP PRODUCTION DATA",
+  "source_sheet": "Users_1000_Clean",
+  "rows": 1000,
+  "columns": 27,
+  "distinct_user_ids": 1000,
+  "null_user_id_rows": 0,
+  "duplicate_user_id_extra_rows": 0,
+  "total_missing_cells": 953,
+  "missing_cell_rate_pct": 3.53,
+  "missing_referral_source_detail": 881,
+  "missing_last_login_datetime": 72,
+  "age_min": 18,
+  "age_max": 38,
+  "median_lifetime_sessions": 9,
+  "median_active_days": 6,
+  "negative_days_since_registration": 4,
+  "messy_sheet_rows": 1008,
+  "messy_sheet_distinct_user_ids": 1000,
+  "messy_sheet_duplicate_user_id_extra_rows": 8,
+  "messy_sheet_null_registration_datetime": 1,
+  "method_note": "Missing last-login may be legitimate for users who have not logged in. Duplicate extra rows count repeats after the first occurrence. Missing referral detail may be conditionally optional."
+}
