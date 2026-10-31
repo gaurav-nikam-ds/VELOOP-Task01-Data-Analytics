@@ -72,7 +72,7 @@ npm run build
 
 ## Current verification
 
-- Latest live browser QA: [12/12 tests passed on 31 October](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170725246). The run verifies the corrected seven-section website, including profile analysis integrated into the existing Data audit page.
+- Latest live browser QA: [12/12 tests passed on 31 October](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170915811). The run verifies the corrected seven-section website, including profile analysis integrated into the existing Data audit page.
 - Latest Next.js production build: [passed](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636252).
 - Automated QA does not replace coordinator/company approval or validate production integrations that are not configured.
 
