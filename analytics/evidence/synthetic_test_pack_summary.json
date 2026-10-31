@@ -1,0 +1,27 @@
+{
+  "data_notice": "SIMULATED DATA — CREATED FOR ANALYTICAL TESTING",
+  "source_workbook": "QA-checked supplemental synthetic test workbook",
+  "generation_method": "Deterministic synthetic test data; user IDs sampled from Task 01 clean users; Task 02 workbook excluded.",
+  "tables": {
+    "Task_Activity": {"rows": 6000, "columns": 12},
+    "Rewards": {"rows": 5001, "columns": 10},
+    "Wallet": {"rows": 3552, "columns": 10},
+    "Withdrawals": {"rows": 1200, "columns": 9},
+    "Referrals": {"rows": 900, "columns": 8},
+    "Feature_Events": {"rows": 12000, "columns": 12}
+  },
+  "messy_data": {"rows": 700, "null_activity_ids": 8, "duplicate_nonnull_activity_id_extra_rows": 11},
+  "relationship_review_flags": {"unmatched_wallet_reference_ids": 52, "self_referral_rows": 1},
+  "quality_checks": {
+    "Task_Activity completion before start": 0,
+    "Withdrawals final before processing": 0,
+    "Referrals activation before registration": 0,
+    "Messy_Data null activity_id": 8,
+    "Messy_Data duplicate non-null activity_id rows beyond first": 11,
+    "Messy_Data malformed nonblank task_viewed_at": 9,
+    "Messy_Data invalid task_status": 9,
+    "Messy_Data whitespace-only failure_reason": 12,
+    "Messy_Data negative numeric reward_status": 14
+  },
+  "limitations": "Synthetic logic testing only. One self-referral and unmatched polymorphic wallet references remain review items."
+}
