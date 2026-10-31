@@ -1,0 +1,13 @@
+{
+  "synthetic_notice": "SIMULATED DATA — CREATED FOR ANALYTICAL TESTING",
+  "task_activity_rows": 6000,
+  "task_started_rows": 6000,
+  "task_completed_status_rows": 3229,
+  "task_completed_status_share_pct": 53.82,
+  "reward_status_counts": {"credited": 3427, "pending": 820, "reversed": 499, "corrected": 255},
+  "wallet_status_counts": {"reversed": 1766, "pending": 902, "completed": 884},
+  "withdrawal_status_counts": {"completed": 684, "pending": 196, "processing": 140, "rejected": 131, "reversed": 49},
+  "referral_status_counts": {"activated": 340, "registered": 292, "created": 135, "expired": 133},
+  "feature_event_status_counts": {"failed": 3021, "success": 3009, "unknown": 2994, "pending": 2976},
+  "interpretation": "Descriptive synthetic test outputs only; not production rates or targets. Keep reward units separate; pending/open states affect denominators."
+}
