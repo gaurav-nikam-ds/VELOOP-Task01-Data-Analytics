@@ -12,6 +12,8 @@ test.describe("VELOOP live reviewer workspace", () => {
     await expect(page).toHaveTitle(/VELOOP Rewards/i);
     await expect(page.getByText("PLEASE NOTE", { exact: true })).toBeVisible();
     await expect(page.getByRole("navigation")).toBeVisible();
+    await expect(page.getByText("TASK 01 · PROJECT HANDOFF · UPDATED 31 OCT 2026", { exact: true })).toBeVisible();
+    await expect(page.getByRole("navigation").getByRole("button", { name: "Python + SQL", exact: true })).toHaveCount(0);
   });
 
   test("all seven navigation sections open their expected content", async ({ page }) => {
