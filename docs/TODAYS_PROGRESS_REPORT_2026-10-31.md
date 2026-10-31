@@ -24,8 +24,8 @@
 
 ## Current Stage
 
-- Live Vercel browser QA: **12/12 tests passed** on 31 October 2026.
-- Next.js production build: **passed** on the website-change commit.
+- Live Vercel browser QA: **12/12 tests passed** on 31 October 2026 ([test report](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41171422812)).
+- Next.js production build: **passed** on the website-change commit ([build report](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41171409019)).
 - Live reviewer workspace: https://veloop-task01-data-analytics.vercel.app/
 - GitHub repository: https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics
 
