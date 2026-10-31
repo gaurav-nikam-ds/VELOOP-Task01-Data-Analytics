@@ -75,6 +75,11 @@ These Library files are **not automatically public GitHub repository assets**. D
 - Results: 1,000 clean rows, 27 named columns, 1,000 unique IDs, zero clean-sheet duplicate IDs, 953 missing cells (3.53%), 881 missing referral-source details, 72 missing last-login timestamps; messy audit sheet has 1,008 rows and 8 repeated user-ID rows.
 - Python script executed successfully; the generated SQLite SQL script was parsed and executed successfully. Local database excludes names and emails and is not committed.
 
+
+## Verification status after 31 October website update
+
+The Vercel application source was updated to add a Python + SQL analysis section, a field-level missingness visualization and updated deliverable statuses. The Vercel build and live-browser QA workflows are configured to run on changes under `vercel-app/**`. The previously recorded 11/11 run predates these changes and must not be treated as verification of the new section. Confirm the new workflow run and inspect the deployed page before marking this update verified. A direct live-site fetch was not available during this check.
+
 ## External acceptance gates (cannot be completed by code changes alone)
 
 1. Coordinator confirms whether Task 02 data may supplement Task 01; until then keep it separate.
