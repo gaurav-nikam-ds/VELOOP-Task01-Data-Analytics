@@ -15,7 +15,7 @@ The coordinator's latest known WhatsApp instruction was to provide progress upda
 ## Verified technical evidence
 
 - Live Playwright browser QA: **12/12 tests passed** on 31 October 2026 — [run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170725246).
-- Next.js production build: **passed** — [run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170709789).
+- Next.js production build: **passed** — [run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41171409019).
 - Coverage includes exactly seven navigation sections (no technology showcase tab), integrated profile evidence in Data audit, findings search and priority filter, both CSV exports, eight document links, responsive widths 320/360/390/768/1024/1440 px, automated WCAG 2.1 A/AA scans, accessible names/unique IDs, network errors and JavaScript/console errors.
 - Source workbook header mismatch resolved: `Users_1000_Clean` has 28 header cells, 27 named fields and one blank trailing header. The original source remains unchanged.
 - The current site is the only active app target. The old Streamlit prototype is out of scope.
@@ -78,7 +78,7 @@ These Library files are **not automatically public GitHub repository assets**. D
 
 ## Verification status after 31 October website update
 
-The Vercel application keeps the original seven-section reviewer structure. Original-source profile findings and the separately labelled synthetic test-pack findings are embedded in the existing Supplied data audit page; the technology-labelled tab has been removed. The latest build and live Playwright suite for this version are being rerun after the supplemental panel was added. The suite asserts exactly seven navigation items and checks both audit evidence layers.
+The Vercel application keeps the original seven-section reviewer structure. Original-source profile findings and the separately labelled synthetic test-pack findings are embedded in the existing Supplied data audit page; the technology-labelled tab has been removed. The live Playwright suite passed 12/12 tests after the supplemental panel was added. The Next.js production build also passed on the page-change commit. The suite asserts exactly seven navigation items and checks both audit evidence layers.
 
 ## External acceptance gates (cannot be completed by code changes alone)
 
