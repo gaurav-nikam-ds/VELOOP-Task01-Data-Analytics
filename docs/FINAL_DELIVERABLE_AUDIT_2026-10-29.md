@@ -37,8 +37,8 @@ The source brief lists 21 required deliverables, a minimum of 75 data-dictionary
 | 9 | Data dictionary (75+ fields) | 90 proposed fields in master workbook | Numeric requirement met; schema approval pending |
 | 10 | Logical data model and ERD | Proposed ERD image and relationship sheet | Design exists; not a verified physical schema |
 | 11 | KPI catalogue (30+ KPIs) | 36 proposed KPI definitions | Numeric requirement met; formulas and denominators require owner approval |
-| 12 | Simulated data profiling | Source audit, profile sheets, synthetic test pack | Done for supplied/synthetic scope; never label synthetic results as company performance |
-| 13 | Data quality audit | Quality Audit and Supplemental Data QA sheets; report | Prototype/source-specific checks documented; production audit requires authorized source data |
+| 12 | Simulated data profiling | Excel source audit plus reproducible Python/pandas profiling, SQLite SQL and aggregate visualization in `analytics/` | Implemented and locally executed against Task 01 user-profile sheets; never label simulated results as company performance |
+| 13 | Data quality audit | Excel QA sheets plus Python missingness/duplicate/chronology checks, SQL queries and aggregate evidence | Source-specific checks executed; production audit still requires authorized source data and approved thresholds |
 | 14 | Dashboard blueprint | Seven-dashboard wireframes and specifications | Design exists; not seven live production dashboards |
 | 15 | Developer analytics handoff | Handoff document/workbook | Proposed; Engineering review and staging validation pending |
 | 16 | Data pipeline proposal | Pipeline proposal and design notes | Proposed; not deployed |
@@ -63,6 +63,17 @@ The following artifacts were located in the working Library and are suitable for
 - Progress/QA evidence: `VELOOP_Task01_Progress_QA_Evidence_Using_Existing_Screenshots_2026-10-28.pdf`
 
 These Library files are **not automatically public GitHub repository assets**. Do not tell a reviewer that they can download them from GitHub until their exact repository paths or approved submission links have been verified. The separate Task 02 behavior workbook is deliberately excluded from the final Task 01 package unless written approval is obtained.
+
+
+## Python, SQL and visualization work added on 31 October 2026
+
+- Added `analytics/python/analyze_task01.py`, a reproducible pandas profile of the Task 01 clean and messy user sheets.
+- Added `analytics/sql/task01_analysis.sql` with SQLite-compatible descriptive and data-quality queries.
+- Added aggregate evidence under `analytics/evidence/`: quality summary JSON, missingness CSV, account-status CSV and missing-field SVG visualization.
+- Added `docs/PYTHON_SQL_ANALYSIS_EVIDENCE.md` with the measured results, interpretation and limitations.
+- Added a Python + SQL analysis section to the Vercel reviewer workspace and updated the deliverable tracker to reflect the added evidence.
+- Results: 1,000 clean rows, 27 named columns, 1,000 unique IDs, zero clean-sheet duplicate IDs, 953 missing cells (3.53%), 881 missing referral-source details, 72 missing last-login timestamps; messy audit sheet has 1,008 rows and 8 repeated user-ID rows.
+- Python script executed successfully; the generated SQLite SQL script was parsed and executed successfully. Local database excludes names and emails and is not committed.
 
 ## External acceptance gates (cannot be completed by code changes alone)
 
