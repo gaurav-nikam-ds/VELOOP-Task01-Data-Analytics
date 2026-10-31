@@ -52,6 +52,7 @@ test.describe("VELOOP live reviewer workspace", () => {
   test("findings search and priority filter change the visible results", async ({ page }) => {
     await page.goto(baseURL, { waitUntil: "domcontentloaded" });
     await page.getByRole("navigation").getByRole("button", { name: "Findings" }).click();
+    await expect(page.getByRole("heading", { name: "What needs attention in the supplied files?" })).toBeVisible();
 
     const findingCards = page.locator(".finding-card");
     await expect(findingCards).toHaveCount(4);
