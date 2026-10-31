@@ -14,6 +14,7 @@ test.describe("VELOOP live reviewer workspace", () => {
     await expect(page.getByRole("navigation")).toBeVisible();
     await expect(page.getByText("TASK 01 · PROJECT HANDOFF · UPDATED 31 OCT 2026", { exact: true })).toBeVisible();
     await expect(page.getByRole("navigation").getByRole("button", { name: "Python + SQL", exact: true })).toHaveCount(0);
+    await expect(page.getByRole("link", { name: "velop-task01-data-analytics.vercel.app" })).toHaveAttribute("href", "https://veloop-task01-data-analytics.vercel.app/");
   });
 
   test("all seven navigation sections open their expected content", async ({ page }) => {
