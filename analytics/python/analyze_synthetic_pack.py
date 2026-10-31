@@ -21,6 +21,10 @@ SHEETS = {
     "Messy_Data": ("activity_id", ["task_viewed_at", "task_started_at", "task_completed_at"], "task_status"),
 }
 
+def parse_dates(values):
+    """Parse mixed-format timestamps without pandas format-inference warnings."""
+    return pd.to_datetime(values, format="mixed", errors="coerce")
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", required=True, help="QA-checked supplemental synthetic workbook")
@@ -47,7 +51,7 @@ def main():
                "duplicate_primary_key_extra_rows": int(df[pk].dropna().duplicated().sum()),
                "exact_duplicate_rows": int(df.duplicated().sum())}
         for col in date_cols:
-            parsed = pd.to_datetime(df[col], errors="coerce")
+            parsed = parse_dates(df[col])
             nonblank = df[col].notna() & df[col].astype(str).str.strip().ne("")
             row[col + "_invalid_nonblank"] = int((nonblank & parsed.isna()).sum())
             if parsed.notna().any():
@@ -90,13 +94,13 @@ def main():
                           "unmatched_nonnull_values":self_ref, "result":"REVIEW" if self_ref else "PASS"})
 
     task, wd, ref, messy = frames["Task_Activity"], frames["Withdrawals"], frames["Referrals"], frames["Messy_Data"]
-    task_start = pd.to_datetime(task.task_started_at, errors="coerce")
-    task_done = pd.to_datetime(task.task_completed_at, errors="coerce")
-    proc = pd.to_datetime(wd.processing_at, errors="coerce")
-    final = pd.to_datetime(wd.final_at, errors="coerce")
-    registered = pd.to_datetime(ref.registered_at, errors="coerce")
-    activated = pd.to_datetime(ref.activated_at, errors="coerce")
-    viewed = pd.to_datetime(messy.task_viewed_at, errors="coerce")
+    task_start = parse_dates(task.task_started_at)
+    task_done = parse_dates(task.task_completed_at)
+    proc = parse_dates(wd.processing_at)
+    final = parse_dates(wd.final_at)
+    registered = parse_dates(ref.registered_at)
+    activated = parse_dates(ref.activated_at)
+    viewed = parse_dates(messy.task_viewed_at)
     valid_status = {"pending", "completed", "abandoned", "validation_failed", "failed"}
     checks = [
         ("Task_Activity completion before start", int((task_done < task_start).sum()), "Chronology after QA correction; expected 0"),
