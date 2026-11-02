@@ -6,14 +6,14 @@
 
 ## Live workspaces
 
-- **New Task 01 submission website (production deployment):** https://velop-task01-submission.vercel.app/ — complete reviewer-facing blueprint with navigation, source audit, coverage matrix, KPI catalogue, ERD, pipeline, seven dashboard wireframes, governance, backlog and 21-item assignment checklist. All example values are clearly marked simulated; this is not a production analytics integration.
+- **Primary Task 01 reviewer website (production deployment):** https://velop-task01-submission.vercel.app/ — 25 sections: 18 analytical specification sections and seven interactive dashboard prototype sections. All example values are clearly marked simulated; this is not a production analytics integration.
 - **Website source:** [submission-site/index.html](submission-site/index.html)
 - **Submission website README:** [submission-site/README.md](submission-site/README.md)
 
-- **Current Vercel workspace:** https://veloop-task01-data-analytics.vercel.app/
+- **Secondary Next.js workspace (historical 7-section reviewer app):** https://veloop-task01-data-analytics.vercel.app/
 - Vercel app source and deployment instructions: [vercel-app/README.md](vercel-app/README.md)
 
-The user-provided screenshots already in the conversation were reviewed and linked as visual QA evidence for the Vercel workspace: Home, Findings, Supplied data audit, Deliverable tracker, Dashboard blueprint and Implementation library are visible; Findings filter controls and a completed deliverable-tracker CSV download are also shown. The user has additionally reported checking links and mobile layout. The latest independent Playwright browser run passed all 12 tests on 31 October, including the seven navigation sections and integrated source-profile evidence, filters, CSV exports, eight document links, six responsive widths (320–1440px), WCAG 2.1 A/AA scans, network responses and browser errors. See the linked QA run and testing evidence. See [Testing evidence & pending QA](docs/FUNCTIONAL_TESTING_EVIDENCE_2026-10-28.md) and [Implemented vs planned features](docs/IMPLEMENTED_VS_PLANNED_FEATURES.md). The [Vercel build workflow](.github/workflows/vercel-app-build.yml) runs the Next.js build for relevant changes, and the live-browser QA workflow tests the deployed Vercel website.
+The repository now includes a primary static reviewer website with 18 analytical specification sections and seven interactive dashboard prototype sections (25 total). A refreshed Playwright suite targets this primary website and checks section navigation, sample-window KPIs, coverage/data-explorer filters, CSV export, mobile overflow and WCAG 2.1 A/AA accessibility. The earlier 7-section Next.js workspace and its historical QA results are retained as secondary/historical evidence; they are not the primary Task 01 reviewer target. Current live QA run status is tracked in [GitHub Actions](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions). The [Vercel build workflow](.github/workflows/vercel-app-build.yml) runs the Next.js build for relevant changes, and the live-browser QA workflow tests the deployed Vercel website.
 
 ## What the workspace contains
 
@@ -76,8 +76,9 @@ npm run build
 
 ## Current verification
 
-- Latest live browser QA: [12/12 tests passed on 31 October](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41171606251). The run verifies the corrected seven-section website, including profile analysis integrated into the existing Data audit page.
-- Latest Next.js production build: [passed](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/40846636252).
+- Static source QA for the 25-section primary site passed: [GitHub Actions run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41465328015).
+- Refreshed live Playwright QA targets the primary 25-section reviewer website; its run status and final result are available in [GitHub Actions](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions).
+- Primary Vercel deployment is checked independently; a READY state confirms deployment completion, not browser-test success.
 - Automated QA does not replace coordinator/company approval or validate production integrations that are not configured.
 
 ## Remaining external acceptance gates
