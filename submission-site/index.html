@@ -6,11 +6,74 @@
 @media(max-width:1000px){.g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(2,1fr)}.split{grid-template-columns:1fr}}
 @media(max-width:700px){.layout{grid-template-columns:1fr}.side{position:fixed;left:-260px;z-index:8;width:250px;transition:.2s}.side.open{left:0}.mobile{display:inline-block}.top{padding:0 13px}.content{padding:20px 13px}.h1{font-size:24px}.g4,.g3,.g2{grid-template-columns:1fr 1fr}.top .pill:not(.sim){display:none}}
 @media(max-width:430px){.g4,.g3,.g2{grid-template-columns:1fr}.wiremetrics{grid-template-columns:repeat(2,1fr)}}
+
+/* Premium enterprise redesign layer */
+:root{--nav:#0b1730;--nav2:#14294b;--bg:#f4f7fc;--paper:#fff;--ink:#14243b;--muted:#65758d;--line:#e4eaf3;--blue:#245bd6;--teal:#079b91;--gold:#bd8626;--shadow:0 12px 34px rgba(19,39,72,.065)}
+body{font-family:Inter,"Segoe UI",system-ui,sans-serif;letter-spacing:-.008em}
+.layout{grid-template-columns:264px minmax(0,1fr)}
+.side{background:linear-gradient(180deg,#0b1730 0%,#102341 100%);padding:22px 15px;box-shadow:8px 0 28px #0b173012}
+.logo{width:40px;height:40px;border-radius:12px;box-shadow:0 8px 20px #245bd655}
+.brand b{font-size:12px;letter-spacing:.11em}.brand small{font-size:9px;letter-spacing:.1em;margin-top:3px}
+.navlabel{font-size:9px;letter-spacing:.18em;color:#8297b7}
+.nav button{padding:10px 11px;margin:2px 0;border-radius:9px;font-size:11px;transition:background .18s,color .18s,transform .18s}
+.nav button:hover{transform:translateX(2px)}.nav button.active{background:linear-gradient(90deg,#245bd644,#0b9c9130);box-shadow:inset 2px 0 #5b94ff}
+.top{height:66px;padding:0 38px;box-shadow:0 2px 12px #162b4807}
+.content{max-width:1500px;padding:36px 42px 70px}
+.eyebrow{font-size:10px;letter-spacing:.19em}
+.h1{font-size:clamp(30px,3vw,43px);line-height:1.12;max-width:900px;margin:10px 0 12px}
+.lead{font-size:14px;line-height:1.75;max-width:850px}
+.notice{border-radius:12px;padding:13px 16px;line-height:1.65}
+.card{border-radius:16px;padding:19px;box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s}
+.card:hover{box-shadow:0 16px 40px rgba(19,39,72,.09)}
+.metric strong{font-size:31px;color:#122d55}.metric small{font-size:10px;letter-spacing:.04em;text-transform:uppercase;font-weight:700}
+.metric em{font-size:10px}
+.head{margin:30px 0 13px}.head h2{font-size:19px;letter-spacing:-.025em}.head p{font-size:12px}
+.tag{padding:5px 10px;font-size:9px;letter-spacing:.04em}
+.node{border-radius:12px;padding:15px 12px;background:linear-gradient(145deg,#f8faff,#eef4fc);border-color:#e1e9f5}
+.node b{font-size:12px}.node span{font-size:10px;line-height:1.5}
+.tablewrap{border-radius:12px}th,td{padding:12px 13px;font-size:11px}th{font-size:9px;letter-spacing:.09em}
+.dash{border-radius:14px;padding:16px}.wire{border-radius:10px;padding:12px}
+.page.active{animation:fadeIn .28s ease-out}@keyframes fadeIn{from{opacity:.35;transform:translateY(5px)}to{opacity:1;transform:none}}
+.hero-visual{margin:24px 0 25px;padding:22px;border-radius:20px;background:radial-gradient(circle at 82% 10%,#214d83 0,#142b4b 36%,#0d1b34 78%);color:#fff;display:grid;grid-template-columns:1fr 1.1fr;gap:22px;align-items:center;overflow:hidden;position:relative}
+.hero-visual:after{content:"";position:absolute;width:320px;height:320px;border:1px solid #ffffff14;border-radius:50%;right:-100px;top:-170px;box-shadow:0 0 0 35px #ffffff08,0 0 0 70px #ffffff05}
+.hero-copy{position:relative;z-index:1}.hero-copy .eyebrow{color:#8db8ff}.hero-copy h2{font-size:24px;line-height:1.2;margin:9px 0}.hero-copy p{color:#b8c8df;font-size:12px;line-height:1.7;max-width:450px}
+.hero-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:17px}.hero-kpis div{background:#ffffff10;border:1px solid #ffffff18;border-radius:11px;padding:11px}.hero-kpis b{display:block;font-size:20px}.hero-kpis span{font-size:9px;color:#b8c8df}
+.hero-board{position:relative;z-index:1;background:#f9fbff;border:1px solid #ffffff40;border-radius:15px;padding:14px;color:#1a2c48;box-shadow:0 18px 45px #0003}
+.hero-board-head{display:flex;justify-content:space-between;align-items:center;font-size:10px;font-weight:800;margin-bottom:12px}.hero-board-head span{color:#71829a;font-weight:500}
+.hero-board-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.hero-mini{background:#fff;border:1px solid #e8edf5;border-radius:9px;padding:9px}.hero-mini span{font-size:8px;color:#7a899e}.hero-mini b{display:block;font-size:16px;margin-top:3px}
+.hero-chart{margin-top:9px;background:#fff;border:1px solid #e8edf5;border-radius:10px;padding:10px}.hero-chart svg{width:100%;height:auto;display:block}
+.visual-callout{display:flex;gap:10px;align-items:flex-start;padding:13px 15px;background:#eef5ff;border:1px solid #dce9ff;border-radius:12px;color:#31527f;font-size:11px;line-height:1.6;margin:16px 0}
+@media(max-width:1000px){.content{padding:28px 24px 55px}.hero-visual{grid-template-columns:1fr}.hero-board{max-width:100%}}
+@media(max-width:700px){.layout{grid-template-columns:1fr}.content{padding:22px 14px 50px}.top{padding:0 14px}.hero-visual{padding:17px}.hero-copy h2{font-size:21px}.hero-kpis{grid-template-columns:repeat(3,1fr)}}
 </style></head><body>
 <div class="layout"><aside class="side" id="side"><div class="brand"><div class="logo">V</div><div><b>VELOOP REWARDS</b><small>TASK 01 · ANALYTICS BLUEPRINT</small></div></div><div class="navlabel">ANALYTICS DESIGN</div><nav class="nav" id="nav">
 <button class="active" data-page="overview"><i>01</i> Executive summary</button><button data-page="audit"><i>02</i> Product & data audit</button><button data-page="coverage"><i>03</i> Coverage matrix</button><button data-page="user"><i>04</i> User analytics</button><button data-page="earning"><i>05</i> Earning & rewards</button><button data-page="wallet"><i>06</i> Wallet & withdrawals</button><button data-page="referral"><i>07</i> Referral & engagement</button><button data-page="tracking"><i>08</i> Event tracking plan</button><button data-page="dictionary"><i>09</i> Data dictionary</button><button data-page="model"><i>10</i> Logical data model</button><button data-page="kpis"><i>11</i> KPI catalogue</button><button data-page="quality"><i>12</i> Data quality & profiling</button><button data-page="blueprints"><i>13</i> Dashboard blueprints</button><button data-page="pipeline"><i>14</i> Data pipeline</button><button data-page="governance"><i>15</i> Privacy & governance</button><button data-page="readiness"><i>16</i> Readiness & assumptions</button><button data-page="backlog"><i>17</i> Developer handoff & backlog</button><button data-page="deliverables"><i>18</i> Assignment checklist</button></nav><div class="sidefoot">Prepared by Gaurav Nikam<br>Design proposal · 02 Nov 2026</div></aside>
 <main class="main"><header class="top"><div><button class="mobile" onclick="document.getElementById('side').classList.toggle('open')">☰</button> <span class="crumb">VELOOP / Task 01 / <b id="crumb">Executive summary</b></span></div><div><span class="pill sim">SIMULATED / ILLUSTRATIVE ONLY</span></div></header><div class="content">
-<section class="page active" id="overview"><div class="eyebrow">Task 01 · Product analytics and data readiness</div><h1 class="h1">From product activity to trusted business decisions.</h1><p class="lead">A visual proposal for the data VELOOP should capture, the metrics it should define, and the dashboards it can build after source validation and owner approval.</p><div class="notice"><b>Important:</b> This is an analyst blueprint, not a live dashboard. All example values and visual patterns are simulated or illustrative. No production data connection, metric approval or deployment is claimed.</div>
+<section class="page active" id="overview"><div class="eyebrow">Task 01 · Product analytics and data readiness</div><h1 class="h1">From product activity to trusted business decisions.</h1><p class="lead">A visual proposal for the data VELOOP should capture, the metrics it should define, and the dashboards it can build after source validation and owner approval.</p>
+<div class="hero-visual">
+ <div class="hero-copy">
+  <div class="eyebrow">EXECUTIVE ANALYTICS BLUEPRINT</div>
+  <h2>Make every product signal explain a business decision.</h2>
+  <p>A structured measurement framework connecting user journeys, reward economics, wallet integrity and operational performance—built on governed definitions and validated source data.</p>
+  <div class="hero-kpis"><div><b>21</b><span>Work packages mapped</span></div><div><b>36</b><span>Proposed KPI definitions</span></div><div><b>7</b><span>Dashboard concepts</span></div></div>
+ </div>
+ <div class="hero-board">
+  <div class="hero-board-head">ANALYTICS CONTROL TOWER <span>Illustrative layout · not live data</span></div>
+  <div class="hero-board-grid"><div class="hero-mini"><span>USER JOURNEY</span><b>Funnel</b></div><div class="hero-mini"><span>REWARD ECONOMICS</span><b>Ledger</b></div><div class="hero-mini"><span>OPERATIONS</span><b>Settlement</b></div></div>
+  <div class="hero-chart">
+   <svg viewBox="0 0 560 175" role="img" aria-label="Illustrative multi-series analytics trend chart">
+    <g stroke="#e8edf5" stroke-width="1"><path d="M28 25H540M28 65H540M28 105H540M28 145H540"/></g>
+    <g fill="#8291a6" font-size="9"><text x="2" y="28">100</text><text x="8" y="68">75</text><text x="8" y="108">50</text><text x="8" y="148">25</text></g>
+    <path d="M30 128 C75 118 95 92 135 99 S205 65 245 78 S315 45 355 57 S430 35 470 48 S515 25 538 32" fill="none" stroke="#3268d8" stroke-width="3" stroke-linecap="round"/>
+    <path d="M30 143 C80 136 100 125 135 130 S205 110 245 119 S315 91 355 101 S430 83 470 91 S515 72 538 79" fill="none" stroke="#0b9b91" stroke-width="3" stroke-linecap="round"/>
+    <g fill="#3268d8"><circle cx="135" cy="99" r="3.5"/><circle cx="245" cy="78" r="3.5"/><circle cx="355" cy="57" r="3.5"/><circle cx="470" cy="48" r="3.5"/></g>
+    <g fill="#8291a6" font-size="9"><text x="28" y="166">W1</text><text x="150" y="166">W2</text><text x="275" y="166">W3</text><text x="400" y="166">W4</text><text x="520" y="166">W5</text></g>
+   </svg>
+   <div style="display:flex;gap:15px;font-size:9px;color:#71829a"><span>● User activity (concept)</span><span style="color:#0b9b91">● Reward activity (concept)</span></div>
+  </div>
+ </div>
+</div>
+<div class="visual-callout"><b>How to read this proposal:</b> each section pairs a business question with its required data, proposed metric logic, visual output and validation dependency. All sample values remain simulated or illustrative.</div><div class="notice"><b>Important:</b> This is an analyst blueprint, not a live dashboard. All example values and visual patterns are simulated or illustrative. No production data connection, metric approval or deployment is claimed.</div>
 <div class="grid g4"><div class="card metric"><small>Assignment work packages</small><strong>21</strong><em>Mapped to the original brief</em></div><div class="card metric"><small>Proposed KPI definitions</small><strong>36</strong><em>Approval required</em></div><div class="card metric"><small>Dictionary inventory</small><strong>90</strong><em>See companion workbook</em></div><div class="card metric"><small>Dashboard concepts</small><strong>7</strong><em>Decision-focused wireframes</em></div></div>
 <div class="head"><div><h2>How the analytics system fits together</h2><p>One end-to-end view of the proposed solution</p></div><span class="tag">Conceptual architecture</span></div><div class="card"><div class="flow"><div class="node"><b>Product actions</b><span>Signup · tasks · rewards · wallet · referrals</span></div><div class="arr">→</div><div class="node"><b>Event & source data</b><span>Stable IDs · timestamps · state history</span></div><div class="arr">→</div><div class="node"><b>Data quality layer</b><span>Validate · deduplicate · reconcile</span></div><div class="arr">→</div><div class="node"><b>Governed metrics</b><span>Approved KPI definitions</span></div><div class="arr">→</div><div class="node"><b>Dashboards</b><span>Decisions · alerts · trends</span></div></div></div>
 <div class="head"><div><h2>Three decisions before dashboard development</h2><p>Recommended order of work</p></div></div><div class="grid g3"><div class="card"><span class="tag">01 · Foundation</span><h3>Confirm source of truth</h3><p>Approve canonical IDs, event ownership, transaction ledger and lifecycle states.</p></div><div class="card"><span class="tag">02 · Measurement</span><h3>Approve metric contracts</h3><p>Agree formula, eligible population, time window, exclusions and owner for each KPI.</p></div><div class="card"><span class="tag gold">03 · Release gate</span><h3>Prove data quality</h3><p>Reconcile source totals, test edge cases and display freshness before publishing metrics.</p></div></div></section>
