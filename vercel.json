@@ -1,0 +1,6 @@
+{
+  "version": 2,
+  "buildCommand": "mkdir -p public && cp submission-site/index.html public/index.html",
+  "outputDirectory": "public",
+  "cleanUrls": true
+}
