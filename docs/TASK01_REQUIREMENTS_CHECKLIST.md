@@ -22,7 +22,7 @@
 | 8 | Event tracking plan | Event name, trigger, definition, IDs, timestamp, feature, status, properties, types, validation, source, KPI, implementation status | Designed/documented | Engineering review required; proposed events are not live events |
 | 9 | Data dictionary: at least 75 meaningful fields | Entity, field, type, definition, example, required, allowed values, validation, source, sensitivity, use, status | 90 proposed field definitions documented | Confirm fields and constraints with Engineering |
 | 10 | Logical data model and ER diagram | Entities, keys, relationships and relationship explanations | Designed/documented | Logical model is not a statement of the physical production schema |
-| 11 | KPI catalogue: 30+ KPIs | Definition, formula, required fields, source, frequency, stakeholder, purpose, interpretation, limitation, status | 36 KPI definitions documented | Do not publish KPIs until definitions and source data are approved |
+| 11 | KPI catalogue: 30+ KPIs | Definition, formula, required fields, source, frequency, stakeholder, purpose, interpretation, limitation, status | 38 KPI definitions documented | Do not publish KPIs until definitions and source data are approved |
 | 12 | Simulated data profiling | Profile supplied simulated data and document findings | Original user/audit data profiled; supplemental synthetic datasets exist for testing | Supplemental synthetic tables are not actual company data |
 | 13 | Data quality audit | Workbook/report, validation rules, anomalies and interpretation | Prototype now demonstrates 22 checks across five synthetic tables; report downloadable as CSV | This is not the full production audit; run against authorized datasets when supplied |
 | 14 | Dashboard blueprint | Seven dashboard areas; every visual specifies metric, calculation, source, visualization, filters, dimensions, date range, refresh, question and decision | Seven dashboard areas specified in report/workbook; current Vercel reviewer workspace has seven navigation sections | The interactive demo is a prototype, not seven separate production dashboards |
@@ -37,17 +37,15 @@
 
 ## Current interactive workspace: scope and evidence (updated 31 October 2026)
 
-The current reviewer-facing website is the Next.js/Vercel app at https://veloop-task01-data-analytics.vercel.app/. It has seven sections: Executive status (Home), Insights & recommendations (Findings), Supplied data audit (Data audit), Deliverable tracker (Deliverables), Seven-dashboard blueprint (Dashboard plan), Acceptance blockers (What remains), and Implementation library (Documents). These are seven navigation sections in a design/evidence workspace, **not seven live production dashboards**.
+The primary reviewer website is https://velop-task01-submission.vercel.app/. It contains 25 sections: 18 analytical specification sections and seven interactive dashboard prototype sections. These are reviewer-facing design/evidence sections, **not production dashboards**. The separate Next.js workspace is secondary/historical.
 
-The Vercel/Next.js website is the sole active reviewer workspace and QA target: https://veloop-task01-data-analytics.vercel.app/. It has seven navigation sections, which are reviewer pages in a design/evidence workspace—not seven live production dashboards.
+## Current live QA status (2 November 2026)
 
-## Current live QA status (31 October 2026)
-
-- [x] Live Playwright browser QA passed **12/12 tests**: [GitHub Actions run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170725246).
-- [x] Next.js production build passed: [GitHub Actions run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41170709789).
-- [x] Exactly seven navigation sections, integrated profile evidence in Data audit, findings search/priority filter, two CSV exports, eight implementation-library links, responsive widths, automated accessibility, accessible control names/unique IDs, and no failed requests or browser errors were tested.
-- [x] Responsive overflow check passed at 320, 360, 390, 768, 1024 and 1440 px.
-- [x] Automated WCAG 2.1 A/AA scan passed on all seven sections.
+- [x] Live Playwright browser QA passed **11/11 tests** against the primary 25-section site: [GitHub Actions run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41469605990).
+- [x] Static source QA passed: [GitHub Actions run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41469495737).
+- [x] All 25 sections open; sample-window KPI calculations, coverage search, Data Explorer filters, CSV export, accessible names, unique IDs and network/JS errors checked.
+- [x] Responsive overflow passed at 320, 360, 390, 768, 1024 and 1440 px.
+- [x] WCAG 2.1 A/AA scan passed across all 25 sections.
 - [x] Data-authenticity notice is checked by the browser suite.
 - [ ] Obtain coordinator/company approval for scope and proposed specifications.
 - [ ] Publish or attach the required final report, design workbook and companion diagrams in the submission location specified by the assignment.
@@ -77,3 +75,8 @@ The Vercel/Next.js website is the sole active reviewer workspace and QA target: 
 | Gaps, assumptions and implementation backlog | `docs/ANALYTICS_FOUNDATION_IMPLEMENTATION_PACK.md`; `docs/data_gaps_and_kpi_guardrails.md` | Acceptance blockers; Deliverable tracker | External decisions and approvals remain open |
 | Website architecture and deployment instructions | `vercel-app/README.md`; repository workflows | Current Vercel workspace | Current site is a reviewer workspace; independent live Playwright QA passed 12/12 tests on 31 October 2026 (linked QA evidence) |
 | Today's work and requested coordinator feedback | `docs/TODAYS_PROGRESS_REPORT_2026-10-28.md` | Linked from README after this update | Progress report; asks for quality, errors, improvements, additions and priorities |
+
+
+## Final handoff files — 2 November 2026
+
+A final analyst report PDF and an Excel analytics design workbook were generated as separate attachments in this handoff. The workbook contains the requirements matrix, source inventory, user-profile metrics, synthetic summary, sample-window KPIs, data-quality register, 90-field proposed dictionary, 38 KPI definitions, event catalogue, dashboard blueprint, 25-section inventory and browser QA evidence. Upload both attachments to the coordinator-approved submission location.
