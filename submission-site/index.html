@@ -76,6 +76,37 @@ body{font-family:Inter,"Segoe UI",system-ui,sans-serif;letter-spacing:-.008em}
 th{position:sticky;top:0;z-index:1}
 @media(max-width:850px){.insight-panel{grid-template-columns:1fr}.insight-intro{min-height:115px}.section-toolbar{align-items:flex-start}.progress-track{width:65px}}
 @media(max-width:520px){.insight-steps{grid-template-columns:1fr}.insight-step{padding:12px}.section-toolbar small{max-width:110px}}
+
+/* Visual showcase v3 — chart language, dashboard gallery, responsive polish */
+.visual-gallery{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:13px;margin:20px 0 28px}
+.viz-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow);min-width:0;overflow:hidden}
+.viz-card.wide{grid-column:span 7}.viz-card.medium{grid-column:span 5}.viz-card.third{grid-column:span 4}
+.viz-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:13px}
+.viz-card-head b{font-size:12px;color:#1b3455}.viz-card-head small{display:block;color:var(--muted);font-size:9px;margin-top:3px}
+.viz-label{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#8291a6;font-weight:800}
+.viz-svg{display:block;width:100%;height:auto}
+.viz-legend{display:flex;gap:12px;flex-wrap:wrap;font-size:9px;color:#728198;margin-top:8px}
+.viz-legend span:before{content:"";display:inline-block;width:7px;height:7px;border-radius:2px;background:var(--c);margin-right:5px}
+.viz-funnel{display:flex;flex-direction:column;gap:6px;align-items:center;padding:2px 0}
+.viz-funnel div{height:25px;display:flex;align-items:center;justify-content:space-between;padding:0 10px;border-radius:6px;color:#fff;font-size:9px;font-weight:700;max-width:100%}
+.viz-funnel div:nth-child(1){width:100%;background:#245bd6}.viz-funnel div:nth-child(2){width:82%;background:#3977d8}.viz-funnel div:nth-child(3){width:64%;background:#159a9b}.viz-funnel div:nth-child(4){width:46%;background:#6384bb}
+.viz-donut-row{display:flex;align-items:center;gap:20px;justify-content:center;padding:10px}
+.viz-donut{width:122px;height:122px;border-radius:50%;background:conic-gradient(#245bd6 0 38%,#159a9b 38% 66%,#8b78d0 66% 84%,#e8edf5 84% 100%);position:relative;flex:none}
+.viz-donut:after{content:"";position:absolute;inset:24px;border-radius:50%;background:#fff}
+.viz-donut-center{position:absolute;inset:0;display:grid;place-items:center;z-index:1;font-size:9px;text-align:center;color:#61738c;font-weight:700}
+.viz-legend-list{display:grid;gap:8px;font-size:10px;color:#52647e}.viz-legend-list i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:7px;background:var(--c)}
+.viz-heat{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}.viz-heat i{display:block;aspect-ratio:1;border-radius:3px;background:#eaf0fb}.viz-heat i:nth-child(3n){background:#b9cef7}.viz-heat i:nth-child(4n){background:#7fa5eb}.viz-heat i:nth-child(7n){background:#245bd6}
+.viz-stages{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:9px}.viz-stages div{background:#f4f7fc;border:1px solid #e5ebf4;border-radius:8px;padding:9px 6px;text-align:center}.viz-stages b{font-size:9px;display:block;color:#2b4569}.viz-stages small{font-size:8px;color:#7b8aa0}
+.dashboard-intro{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:17px 19px;background:linear-gradient(115deg,#10213d,#1d4772);border-radius:15px;color:#fff;margin:15px 0}
+.dashboard-intro b{font-size:14px}.dashboard-intro p{font-size:10px;color:#c1d0e4;margin:4px 0 0}.dashboard-intro .tag{background:#ffffff18;color:#dceaff;border:1px solid #ffffff20}
+.dash{box-shadow:0 8px 24px rgba(18,42,77,.055);transition:transform .2s,box-shadow .2s}.dash:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(18,42,77,.1)}
+.dash .bars i:nth-child(2n){background:linear-gradient(#8dc7c2,#159a9b)}
+.dash .wirebox{background:linear-gradient(145deg,#fff,#f7f9fd)}
+.flow .node{position:relative}
+.card .tablewrap{margin-top:10px}
+.footer{line-height:1.7}
+@media(max-width:900px){.viz-card.wide,.viz-card.medium{grid-column:span 12}.viz-card.third{grid-column:span 6}}
+@media(max-width:600px){.visual-gallery{grid-template-columns:1fr}.viz-card.wide,.viz-card.medium,.viz-card.third{grid-column:span 1}.viz-donut-row{gap:12px}.viz-donut{width:100px;height:100px}.dashboard-intro{align-items:flex-start;flex-direction:column}}
 </style></head><body>
 <div class="layout"><aside class="side" id="side"><div class="brand"><div class="logo">V</div><div><b>VELOOP REWARDS</b><small>TASK 01 · ANALYTICS BLUEPRINT</small></div></div><div class="navlabel">ANALYTICS DESIGN</div><nav class="nav" id="nav">
 <button class="active" data-page="overview"><i>01</i> Executive summary</button><button data-page="audit"><i>02</i> Product & data audit</button><button data-page="coverage"><i>03</i> Coverage matrix</button><button data-page="user"><i>04</i> User analytics</button><button data-page="earning"><i>05</i> Earning & rewards</button><button data-page="wallet"><i>06</i> Wallet & withdrawals</button><button data-page="referral"><i>07</i> Referral & engagement</button><button data-page="tracking"><i>08</i> Event tracking plan</button><button data-page="dictionary"><i>09</i> Data dictionary</button><button data-page="model"><i>10</i> Logical data model</button><button data-page="kpis"><i>11</i> KPI catalogue</button><button data-page="quality"><i>12</i> Data quality & profiling</button><button data-page="blueprints"><i>13</i> Dashboard blueprints</button><button data-page="pipeline"><i>14</i> Data pipeline</button><button data-page="governance"><i>15</i> Privacy & governance</button><button data-page="readiness"><i>16</i> Readiness & assumptions</button><button data-page="backlog"><i>17</i> Developer handoff & backlog</button><button data-page="deliverables"><i>18</i> Assignment checklist</button></nav><div class="sidefoot">Prepared by Gaurav Nikam<br>Design proposal · 02 Nov 2026</div></aside>
@@ -193,4 +224,27 @@ function addNavSearch(){
 }
 addVisualGuides();addNavSearch();
 
+
+function buildVisualShowcase(){
+ const overview=document.getElementById("overview");
+ if(overview&&!overview.querySelector(".visual-gallery")){
+  const gallery=document.createElement("div");gallery.className="visual-gallery";
+  gallery.innerHTML=`
+   <div class="viz-card wide"><div class="viz-card-head"><div><span class="viz-label">01 · Trend analysis</span><b>Product activity over time</b><small>Conceptual multi-series time trend · no live values</small></div><span class="tag">Trend</span></div>
+   <svg class="viz-svg" viewBox="0 0 600 190" role="img" aria-label="Conceptual time series chart"><defs><linearGradient id="areaA" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#245bd6" stop-opacity=".22"/><stop offset="1" stop-color="#245bd6" stop-opacity="0"/></linearGradient></defs><g stroke="#e9eef5"><path d="M35 25H580M35 65H580M35 105H580M35 145H580"/></g><path d="M35 140 C75 128 88 105 135 116 S205 72 245 89 S310 46 355 66 S425 34 465 53 S535 22 580 36 L580 160 L35 160Z" fill="url(#areaA)"/><path d="M35 140 C75 128 88 105 135 116 S205 72 245 89 S310 46 355 66 S425 34 465 53 S535 22 580 36" fill="none" stroke="#245bd6" stroke-width="3" stroke-linecap="round"/><path d="M35 151 C75 145 95 132 135 139 S205 116 245 124 S310 95 355 108 S425 81 465 92 S535 70 580 78" fill="none" stroke="#079b91" stroke-width="2.5" stroke-linecap="round"/><g fill="#8392a7" font-size="10"><text x="35" y="180">Period 1</text><text x="165" y="180">Period 2</text><text x="300" y="180">Period 3</text><text x="435" y="180">Period 4</text><text x="540" y="180">Period 5</text></g></svg><div class="viz-legend"><span style="--c:#245bd6">Activity series A</span><span style="--c:#079b91">Activity series B</span></div></div>
+   <div class="viz-card medium"><div class="viz-card-head"><div><span class="viz-label">02 · Conversion</span><b>User journey funnel</b><small>Illustrative funnel structure</small></div><span class="tag">Funnel</span></div><div class="viz-funnel"><div><span>Registered</span><span>100%</span></div><div><span>Onboarded</span><span>—</span></div><div><span>Activated</span><span>—</span></div><div><span>Retained</span><span>—</span></div></div><div class="viz-legend"><span style="--c:#245bd6">Stage widths are illustrative</span></div></div>
+   <div class="viz-card third"><div class="viz-card-head"><div><span class="viz-label">03 · Mix analysis</span><b>Reward composition</b><small>Category structure only</small></div></div><div class="viz-donut-row"><div class="viz-donut"><div class="viz-donut-center">Mix<br/>view</div></div><div class="viz-legend-list"><span><i style="--c:#245bd6"></i>Category A</span><span><i style="--c:#159a9b"></i>Category B</span><span><i style="--c:#8b78d0"></i>Category C</span><span><i style="--c:#e8edf5"></i>Other</span></div></div></div>
+   <div class="viz-card third"><div class="viz-card-head"><div><span class="viz-label">04 · Cohort view</span><b>Retention matrix</b><small>Heatmap layout · values intentionally omitted</small></div></div><div class="viz-heat">${Array.from({length:40},()=>"<i></i>").join("")}</div><div class="viz-legend"><span style="--c:#245bd6">Higher intensity</span><span style="--c:#eaf0fb">Lower intensity</span></div></div>
+   <div class="viz-card third"><div class="viz-card-head"><div><span class="viz-label">05 · Operations</span><b>Lifecycle monitoring</b><small>State progression concept</small></div></div><div class="viz-stages"><div><b>Pending</b><small>Queue</small></div><div><b>Review</b><small>Validate</small></div><div><b>Approved</b><small>Decision</small></div><div><b>Settled</b><small>Ledger</small></div></div><div class="visual-callout" style="margin:12px 0 0;padding:9px">Track volume, ageing, failure reasons and reconciliation at each state.</div></div>
+  `;
+  const callout=overview.querySelector(".visual-callout");if(callout)callout.insertAdjacentElement("afterend",gallery);
+ }
+ const dash=document.getElementById("blueprints");
+ if(dash&&!dash.querySelector(".dashboard-intro")){
+  const intro=document.createElement("div");intro.className="dashboard-intro";intro.innerHTML='<div><b>Dashboard design system</b><p>Seven role-based views · shared KPI definitions · consistent filters · clear drill-down paths</p></div><span class="tag">Wireframes · not connected to live data</span>';
+  const lead=dash.querySelector(".lead");if(lead)lead.insertAdjacentElement("afterend",intro);
+  dash.querySelectorAll(".dash").forEach((card,i)=>{const head=card.querySelector(".dashhead");if(head){const num=String(i+1).padStart(2,"0");head.insertAdjacentHTML("afterbegin",'<span class="viz-label">VIEW '+num+'</span>')}});
+ }
+}
+buildVisualShowcase();
 </script></body></html>
