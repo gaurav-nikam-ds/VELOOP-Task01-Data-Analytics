@@ -112,8 +112,9 @@ test.describe("VELOOP Task 01 — live 25-section submission QA", () => {
     const stream = await download.createReadStream();
     let csv = "";
     for await (const chunk of stream) csv += chunk.toString("utf8");
+    expect(csv).toContain('"Domain","Metric","Value","Note"');
     expect(csv).toContain('"Wallet","Unmatched references","52"');
-    expect(csv.split(/\r?\n/)).toHaveLength(1);
+    expect(csv.split(/\r?\n/)).toHaveLength(2);
   });
 
   test("responsive layouts remain usable without horizontal page overflow", async ({ page }) => {
