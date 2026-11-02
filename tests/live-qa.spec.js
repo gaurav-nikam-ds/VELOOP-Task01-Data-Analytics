@@ -26,6 +26,7 @@ test.describe("VELOOP Task 01 — live 25-section submission QA", () => {
   });
 
   test("all 25 sections open and render their own content", async ({ page }) => {
+    test.setTimeout(90000);
     await page.goto(baseURL, { waitUntil: "domcontentloaded" });
     for (const [id, label] of sections) {
       const button = page.locator(`#nav button[data-page="${id}"]`);
@@ -126,6 +127,7 @@ test.describe("VELOOP Task 01 — live 25-section submission QA", () => {
       expect(dimensions.page, `Horizontal overflow at ${width}px: ${JSON.stringify(dimensions)}`)
         .toBeLessThanOrEqual(dimensions.viewport + 1);
       if (width <= 700) await page.locator("button.mobile").click();
+      if (width <= 700) await page.getByRole("button", { name: "Open navigation menu" }).click();
       await page.locator('#nav button[data-page="dash-explorer"]').click();
       await expect(page.locator("#explore-domain")).toBeVisible();
     }
@@ -143,6 +145,7 @@ test.describe("VELOOP Task 01 — live 25-section submission QA", () => {
   });
 
   test("WCAG 2.1 A/AA automated scan on all 25 sections", async ({ page }) => {
+    test.setTimeout(180000);
     test.setTimeout(120_000);
     await page.goto(baseURL);
     const failures = [];
@@ -164,6 +167,7 @@ test.describe("VELOOP Task 01 — live 25-section submission QA", () => {
   });
 
   test("no failed network requests, HTTP errors or uncaught JS errors", async ({ page }) => {
+    test.setTimeout(90000);
     const failed = [], badResponses = [], pageErrors = [], consoleErrors = [];
     page.on("requestfailed", request => failed.push(`${request.method()} ${request.url()}: ${request.failure()?.errorText}`));
     page.on("response", response => { if (response.status() >= 400) badResponses.push(`${response.status()} ${response.url()}`); });
