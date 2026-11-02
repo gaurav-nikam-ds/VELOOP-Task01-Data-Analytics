@@ -45,6 +45,37 @@ body{font-family:Inter,"Segoe UI",system-ui,sans-serif;letter-spacing:-.008em}
 .visual-callout{display:flex;gap:10px;align-items:flex-start;padding:13px 15px;background:#eef5ff;border:1px solid #dce9ff;border-radius:12px;color:#31527f;font-size:11px;line-height:1.6;margin:16px 0}
 @media(max-width:1000px){.content{padding:28px 24px 55px}.hero-visual{grid-template-columns:1fr}.hero-board{max-width:100%}}
 @media(max-width:700px){.layout{grid-template-columns:1fr}.content{padding:22px 14px 50px}.top{padding:0 14px}.hero-visual{padding:17px}.hero-copy h2{font-size:21px}.hero-kpis{grid-template-columns:repeat(3,1fr)}}
+
+/* Visual clarity and reviewer experience v2 */
+:root{--accent-soft:#edf3ff;--teal-soft:#e9f7f5;--violet-soft:#f2efff}
+.section-toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 18px;padding:11px 14px;background:#fff;border:1px solid var(--line);border-radius:12px}
+.section-progress{display:flex;align-items:center;gap:9px;min-width:0}.section-progress b{font-size:10px;color:#284c86;white-space:nowrap}.progress-track{height:5px;width:110px;background:#e9eef6;border-radius:9px;overflow:hidden}.progress-track span{display:block;height:100%;background:linear-gradient(90deg,#3268d8,#12a39a);border-radius:9px}
+.section-toolbar small{font-size:9px;color:var(--muted);text-align:right}
+.insight-panel{display:grid;grid-template-columns:1.15fr 2fr;gap:14px;margin:17px 0 22px}
+.insight-intro{background:linear-gradient(145deg,#10213d,#1a3c67);color:#fff;border-radius:15px;padding:18px;display:flex;flex-direction:column;justify-content:space-between;min-height:140px}
+.insight-intro .eyebrow{color:#9fc1ff}.insight-intro b{font-size:17px;line-height:1.25;display:block;margin:9px 0}.insight-intro p{font-size:10px;line-height:1.6;color:#c2d2e7;margin:0}
+.insight-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.insight-step{background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px;min-width:0;position:relative;overflow:hidden}
+.insight-step:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--step-color,#3268d8)}
+.insight-step span{font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:#71829a}
+.insight-step b{display:block;font-size:12px;margin:8px 0 5px;color:#203653}
+.insight-step p{font-size:10px;line-height:1.55;color:var(--muted);margin:0}
+.insight-step .step-icon{font-size:19px;color:var(--step-color,#3268d8);font-weight:800}
+.mini-visual{background:#fff;border:1px solid var(--line);border-radius:15px;padding:17px;margin:18px 0}
+.mini-visual-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.mini-visual-head b{font-size:12px}.mini-visual-head span{font-size:9px;color:var(--muted)}
+.mini-flow{display:flex;align-items:stretch;gap:7px;flex-wrap:wrap}
+.mini-flow .mini-node{flex:1;min-width:110px;border:1px solid #e1e9f5;border-radius:10px;background:#f7faff;padding:12px;text-align:center}
+.mini-node b{font-size:10px;display:block;color:#25436c}.mini-node small{font-size:9px;color:#71829a;display:block;margin-top:4px}.mini-arrow{align-self:center;color:#8fa3bf;font-size:17px}
+.visual-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;color:var(--muted);font-size:9px}
+.visual-legend i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;background:#3268d8}
+#nav{padding-bottom:6px}
+.nav-search{margin:12px 4px 4px}.nav-search input{width:100%;padding:9px 10px;border:1px solid #ffffff20;border-radius:8px;background:#ffffff0c;color:#fff;font-size:10px;outline:none}.nav-search input::placeholder{color:#91a4bf}
+.nav button[hidden]{display:none}
+.tablewrap{box-shadow:0 3px 12px #1b345008}
+th{position:sticky;top:0;z-index:1}
+@media(max-width:850px){.insight-panel{grid-template-columns:1fr}.insight-intro{min-height:115px}.section-toolbar{align-items:flex-start}.progress-track{width:65px}}
+@media(max-width:520px){.insight-steps{grid-template-columns:1fr}.insight-step{padding:12px}.section-toolbar small{max-width:110px}}
 </style></head><body>
 <div class="layout"><aside class="side" id="side"><div class="brand"><div class="logo">V</div><div><b>VELOOP REWARDS</b><small>TASK 01 · ANALYTICS BLUEPRINT</small></div></div><div class="navlabel">ANALYTICS DESIGN</div><nav class="nav" id="nav">
 <button class="active" data-page="overview"><i>01</i> Executive summary</button><button data-page="audit"><i>02</i> Product & data audit</button><button data-page="coverage"><i>03</i> Coverage matrix</button><button data-page="user"><i>04</i> User analytics</button><button data-page="earning"><i>05</i> Earning & rewards</button><button data-page="wallet"><i>06</i> Wallet & withdrawals</button><button data-page="referral"><i>07</i> Referral & engagement</button><button data-page="tracking"><i>08</i> Event tracking plan</button><button data-page="dictionary"><i>09</i> Data dictionary</button><button data-page="model"><i>10</i> Logical data model</button><button data-page="kpis"><i>11</i> KPI catalogue</button><button data-page="quality"><i>12</i> Data quality & profiling</button><button data-page="blueprints"><i>13</i> Dashboard blueprints</button><button data-page="pipeline"><i>14</i> Data pipeline</button><button data-page="governance"><i>15</i> Privacy & governance</button><button data-page="readiness"><i>16</i> Readiness & assumptions</button><button data-page="backlog"><i>17</i> Developer handoff & backlog</button><button data-page="deliverables"><i>18</i> Assignment checklist</button></nav><div class="sidefoot">Prepared by Gaurav Nikam<br>Design proposal · 02 Nov 2026</div></aside>
@@ -120,4 +151,46 @@ const titles={overview:"Executive summary",audit:"Product & data audit",coverage
 function show(id){document.querySelectorAll(".page").forEach(x=>x.classList.toggle("active",x.id===id));document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("active",x.dataset.page===id));document.getElementById("crumb").textContent=titles[id]||id;document.getElementById("side").classList.remove("open");window.scrollTo(0,0)}
 document.querySelectorAll("#nav button").forEach(x=>x.addEventListener("click",()=>show(x.dataset.page)));
 function filterTable(id,q){const v=q.toLowerCase();document.querySelectorAll("#"+id+" tr").forEach((r,i)=>{if(i)r.style.display=r.innerText.toLowerCase().includes(v)?"":"none"})}
+
+const visualGuides={
+audit:{title:"Evidence before interpretation",desc:"Separate supplied-file observations from product facts that still require owner confirmation.",steps:[["01","Inspect source","Profile fields, keys and date ranges."],["02","Classify issues","Missing, invalid, duplicate and ambiguous values."],["03","Confirm ownership","Validate meaning with Product, Ops and Finance."]],flow:["Supplied workbook","Profile & exceptions","Owner verification","Approved source map"]},
+coverage:{title:"From behaviour to measurement",desc:"A complete tracking design connects each action to a reliable event and a decision.",steps:[["01","User action","Define the real product behaviour."],["02","Event contract","Name, trigger, identity and timestamp."],["03","Decision use","Specify the question and KPI enabled."]],flow:["Action","Event","Required fields","Business question"]},
+user:{title:"Measure the full user journey",desc:"Funnel, activation and retention need consistent cohorts and eligibility rules.",steps:[["01","Acquisition","Source and registration cohort."],["02","Activation","First qualifying value event."],["03","Retention","Repeat meaningful activity by cohort."]],flow:["Acquired","Registered","Activated","Retained"]},
+earning:{title:"Reward lifecycle and financial traceability",desc:"A reward must have an eligibility decision, state history and a traceable ledger outcome.",steps:[["01","Eligibility","Rule and qualifying activity."],["02","Validation","Review, approval and rejection."],["03","Settlement","Credit, reversal and reconciliation."]],flow:["Eligible","Pending","Approved / rejected","Credited / reversed"]},
+wallet:{title:"Reconcile the wallet as a ledger",desc:"Every balance movement must be reproducible from posted transactions and linked references.",steps:[["01","Opening balance","Prior period closing position."],["02","Movements","Credits, debits and adjustments."],["03","Closing balance","Reconcile to authoritative ledger."]],flow:["Opening","Credits","Debits","Closing"]},
+referral:{title:"Measure referral quality, not invite volume",desc:"Attribution and activation rules determine whether a referral is valid and valuable.",steps:[["01","Invite","Referrer and attribution token."],["02","Registration","New user identity and eligibility."],["03","Activation","Qualifying action and reward decision."]],flow:["Invite sent","Registered","Activated","Eligible"]},
+tracking:{title:"A governed event contract",desc:"A common event envelope makes product activity joinable, testable and auditable.",steps:[["01","Identity","Event, user and session keys."],["02","Context","Timestamp, source and properties."],["03","Governance","Schema version, consent and validation."]],flow:["Event trigger","Payload schema","Validation","Warehouse"]},
+dictionary:{title:"One shared language for every field",desc:"Definitions, types, ownership and null semantics prevent inconsistent reporting.",steps:[["01","Identify","Name, entity and business meaning."],["02","Constrain","Type, allowed values and nullability."],["03","Govern","Owner, source and change history."]],flow:["Field","Definition","Validation rule","Owner"]},
+model:{title:"Connect entities without losing lineage",desc:"Primary keys and foreign-key relationships make user, task and financial records traceable.",steps:[["01","Identity","Canonical user and session keys."],["02","Activity","Tasks, events and reward decisions."],["03","Finance","Wallet transactions and withdrawals."]],flow:["User","Activity","Reward","Ledger"]},
+kpis:{title:"Metric contracts before metric charts",desc:"Every KPI needs a formula, grain, population, source, owner and quality gate.",steps:[["01","Define","Formula, numerator, denominator and grain."],["02","Validate","Source mapping, exclusions and tests."],["03","Approve","Owner, version and effective date."]],flow:["Business question","KPI definition","Data test","Approved metric"]},
+quality:{title:"Quality gates protect decision quality",desc:"Critical failures should quarantine or suppress affected metrics instead of silently publishing them.",steps:[["01","Detect","Completeness, validity and uniqueness."],["02","Resolve","Quarantine, correct or document exception."],["03","Release","Reconcile, record and monitor."]],flow:["Ingest","Test","Quarantine / fix","Trusted layer"]},
+blueprints:{title:"Seven dashboards, seven decision contexts",desc:"Each dashboard should serve a defined audience, decision cadence and approved metric set.",steps:[["01","Leadership","Business health and trends."],["02","Operations","Task, reward and payout queues."],["03","Growth","Acquisition, referrals and retention."]],flow:["Executive","User journey","Rewards & wallet","Operations"]},
+pipeline:{title:"A controlled path from source to insight",desc:"Preserve raw data, validate transformations and publish only governed models.",steps:[["01","Ingest","Batch extracts and product events."],["02","Transform","Dedupe, validate and reconcile."],["03","Serve","Curated models, metrics and BI."]],flow:["Sources","Raw zone","Quality & transform","Curated marts","BI layer"]},
+governance:{title:"Privacy and accountability by design",desc:"Access, retention and data minimisation should be reviewed with the responsible teams.",steps:[["01","Minimise","Collect only purpose-linked fields."],["02","Protect","Role-based access and pseudonymisation."],["03","Audit","Retention, lineage and approval logs."]],flow:["Purpose","Access policy","Retention","Audit trail"]},
+readiness:{title:"Make readiness gaps visible",desc:"Evidence, proposed design and unresolved dependencies must not be blended into one score.",steps:[["01","Evidence","What the supplied files demonstrate."],["02","Design","What the analyst has proposed."],["03","Dependency","What owners must verify or approve."]],flow:["Evidence","Design proposal","Owner decision","Implementation gate"]},
+backlog:{title:"Sequence work to reduce rework",desc:"Resolve definitions and data trust before building production dashboards.",steps:[["P0","Foundation","IDs, events, states and ledger rules."],["P1","Data platform","Ingestion, tests, curated models."],["P2","Analytics release","KPI approval, dashboards and monitoring."]],flow:["P0 · Define","P1 · Build","P2 · Release"]},
+deliverables:{title:"A reviewer-friendly submission map",desc:"The website is the visual index; the report and workbooks remain the detailed evidence.",steps:[["01–07","Analytics","Audit, coverage and domain specifications."],["08–14","Data & BI","Tracking, dictionary, ERD, KPIs and dashboards."],["15–21","Delivery","Handoff, governance, readiness and backlog."]],flow:["Website overview","Consolidated report","Analyst workbook","QA workbook"]}
+};
+const sectionOrder=["overview","audit","coverage","user","earning","wallet","referral","tracking","dictionary","model","kpis","quality","blueprints","pipeline","governance","readiness","backlog","deliverables"];
+function addVisualGuides(){
+ sectionOrder.forEach((id,i)=>{
+  if(id==="overview")return;
+  const page=document.getElementById(id);const v=visualGuides[id];if(!page||!v||page.querySelector(".insight-panel"))return;
+  const toolbar=document.createElement("div");toolbar.className="section-toolbar";
+  toolbar.innerHTML='<div class="section-progress"><b>SECTION '+String(i+1).padStart(2,"0")+' / 18</b><div class="progress-track"><span style="width:'+((i+1)/18*100)+'%"></span></div></div><small>Task 01 · Visual analyst guide</small>';
+  const panel=document.createElement("div");panel.className="insight-panel";
+  panel.innerHTML='<div class="insight-intro"><div class="eyebrow">THE ANALYTICS LOGIC</div><div><b>'+v.title+'</b><p>'+v.desc+'</p></div></div><div class="insight-steps">'+v.steps.map((s,j)=>'<div class="insight-step" style="--step-color:'+(j===1?'#079b91':j===2?'#8b70d6':'#3268d8')+'"><span>'+s[0]+'</span><div class="step-icon">'+(j===0?'↗':j===1?'◇':'✓')+'</div><b>'+s[1]+'</b><p>'+s[2]+'</p></div>').join("")+'</div>';
+  const flow=document.createElement("div");flow.className="mini-visual";
+  flow.innerHTML='<div class="mini-visual-head"><b>Process visual</b><span>Conceptual flow · confirm against source systems</span></div><div class="mini-flow">'+v.flow.map((s,j)=>(j?'<div class="mini-arrow">→</div>':'')+'<div class="mini-node"><b>'+s+'</b><small>Proposed stage</small></div>').join("")+'</div>';
+  const lead=page.querySelector(".lead");if(lead){lead.insertAdjacentElement("afterend",toolbar);toolbar.insertAdjacentElement("afterend",panel);panel.insertAdjacentElement("afterend",flow);}
+ });
+}
+function addNavSearch(){
+ const nav=document.getElementById("nav");if(!nav||nav.querySelector(".nav-search"))return;
+ const wrap=document.createElement("div");wrap.className="nav-search";wrap.innerHTML='<input id="navFilter" type="search" placeholder="Find a section…">';
+ nav.insertAdjacentElement("beforebegin",wrap);
+ wrap.querySelector("input").addEventListener("input",e=>{const q=e.target.value.toLowerCase();nav.querySelectorAll("button").forEach(b=>b.hidden=!b.innerText.toLowerCase().includes(q));});
+}
+addVisualGuides();addNavSearch();
+
 </script></body></html>
