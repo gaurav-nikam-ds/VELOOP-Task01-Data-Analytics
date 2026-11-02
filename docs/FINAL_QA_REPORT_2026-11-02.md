@@ -2,7 +2,7 @@
 
 ## Outcome
 
-<badge>11/11 live Playwright tests passed</badge>
+**Result: 11/11 live Playwright tests passed.**
 
 - **Primary reviewer website:** https://velop-task01-submission.vercel.app/
 - **Repository:** https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics
@@ -34,7 +34,7 @@
 - Added keyboard-focusable named regions for scrollable tables.
 - Corrected low-contrast text and chart colours in the overview, audit, wireframe, event tracking and dashboard sections.
 - Reconciled sample metrics to the actual synthetic test pack and removed selected unsupported illustrative trend/cohort claims.
-- Configured the primary Vercel project and verified the production domain against the explicit READY deployment. The current public alias is pinned to the tested deployment because the Git-connected project build has not consistently emitted static output; the verified deployment remains live.
+- Configured the primary Vercel project and verified the production domain against the explicit READY deployment. The public production alias is pinned to the tested READY deployment. The Git-connected project build still needs a stable static-output configuration; future source pushes should be followed by a deployment-state check and alias verification.
 
 ## Data and production boundaries
 
