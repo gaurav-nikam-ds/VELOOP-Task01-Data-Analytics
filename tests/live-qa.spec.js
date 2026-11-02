@@ -39,7 +39,7 @@ test.describe("VELOOP Task 01 — live 25-section submission QA", () => {
   test("coverage inventory search filters rows correctly", async ({ page }) => {
     await page.goto(baseURL);
     await page.locator('#nav button[data-page="coverage"]').click();
-    const rows = page.locator("#covTable tr");
+    const rows = page.locator("#covTable tr:visible");
     const initial = await rows.count();
     await page.locator("#covSearch").fill("registration");
     await expect(rows).toHaveCount(2);
@@ -87,7 +87,7 @@ test.describe("VELOOP Task 01 — live 25-section submission QA", () => {
   test("data explorer domain and text filters change the result set", async ({ page }) => {
     await page.goto(baseURL);
     await page.locator('#nav button[data-page="dash-explorer"]').click();
-    const rows = page.locator("#explorer-table tbody tr");
+    const rows = page.locator("#explorer-table tbody tr:visible");
     await expect(rows).toHaveCount(5);
     await page.locator("#explore-domain").selectOption("Rewards");
     await expect(rows).toHaveCount(1);
