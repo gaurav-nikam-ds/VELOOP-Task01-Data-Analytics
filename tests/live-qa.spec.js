@@ -145,13 +145,22 @@ test.describe("VELOOP Task 01 — live 25-section submission QA", () => {
   test("WCAG 2.1 A/AA automated scan on all 25 sections", async ({ page }) => {
     test.setTimeout(120_000);
     await page.goto(baseURL);
+    const failures = [];
     for (const [id, label] of sections) {
       await page.locator(`#nav button[data-page="${id}"]`).click();
       const scan = await new AxeBuilder({ page }).withTags(["wcag2a","wcag2aa","wcag21a","wcag21aa"]).analyze();
-      if (scan.violations.length) console.log("AXE_DETAILS " + JSON.stringify(scan.violations.map(v => ({id:v.id,nodes:v.nodes.map(n=>({target:n.target,html:n.html,failureSummary:n.failureSummary}))}))));
-      expect(scan.violations.map(v => ({ id:v.id, impact:v.impact, help:v.help, nodes:v.nodes.length })),
-        `Accessibility violations in ${label}`).toEqual([]);
+      if (scan.violations.length) failures.push({
+        section: label,
+        violations: scan.violations.map(v => ({
+          id: v.id,
+          impact: v.impact,
+          help: v.help,
+          nodes: v.nodes.map(n => ({ target: n.target, html: n.html, failureSummary: n.failureSummary }))
+        }))
+      });
     }
+    if (failures.length) console.log("AXE_DETAILS " + JSON.stringify(failures));
+    expect(failures, "WCAG 2.1 A/AA violations by section").toEqual([]);
   });
 
   test("no failed network requests, HTTP errors or uncaught JS errors", async ({ page }) => {
