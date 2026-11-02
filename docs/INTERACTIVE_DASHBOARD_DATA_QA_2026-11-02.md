@@ -69,3 +69,19 @@ A GitHub Actions workflow runs this check on relevant pushes, pull requests and 
 Primary reviewer site: https://velop-task01-submission.vercel.app/
 
 The primary and secondary Vercel production deployments were observed in READY state for commit `b95408f0087db8a60718f7109721afae25812522`. Subsequent QA workflow/test-file commits are separate commits and must complete their own checks and deployments before being considered final.
+
+
+## Final live browser verification — 2 November 2026
+
+- **11/11 Playwright tests passed:** https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41469605990
+- All 25 sections opened and rendered their own headings.
+- Coverage search, no-match and reset states passed.
+- Executive 7/30/90-day KPI filters passed with the documented denominators.
+- User, rewards, referrals, quality and operations KPI blocks rendered expected values.
+- Data Explorer filters and filtered CSV download passed.
+- Responsive overflow checks passed at 320, 360, 390, 768, 1024 and 1440 px.
+- Accessible names and unique IDs passed.
+- WCAG 2.1 A/AA automated scan passed across all 25 sections.
+- No failed network requests, HTTP errors, uncaught JavaScript errors or console errors.
+
+The primary production alias is assigned to the READY deployment tested by the successful run. The Git-connected Vercel build has intermittently emitted no static output, so future pushes require a deployment and alias check. The verified production deployment remains available at https://velop-task01-submission.vercel.app/.
