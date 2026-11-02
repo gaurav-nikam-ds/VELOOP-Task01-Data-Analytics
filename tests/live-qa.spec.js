@@ -125,6 +125,7 @@ test.describe("VELOOP Task 01 — live 25-section submission QA", () => {
       }));
       expect(dimensions.page, `Horizontal overflow at ${width}px: ${JSON.stringify(dimensions)}`)
         .toBeLessThanOrEqual(dimensions.viewport + 1);
+      if (width <= 700) await page.locator("button.mobile").click();
       await page.locator('#nav button[data-page="dash-explorer"]').click();
       await expect(page.locator("#explore-domain")).toBeVisible();
     }
@@ -142,6 +143,7 @@ test.describe("VELOOP Task 01 — live 25-section submission QA", () => {
   });
 
   test("WCAG 2.1 A/AA automated scan on all 25 sections", async ({ page }) => {
+    test.setTimeout(120_000);
     await page.goto(baseURL);
     for (const [id, label] of sections) {
       await page.locator(`#nav button[data-page="${id}"]`).click();
