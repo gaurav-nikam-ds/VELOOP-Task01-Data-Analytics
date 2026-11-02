@@ -39,7 +39,7 @@ jobs:
 
       - name: Run live website QA against the primary reviewer website
         env:
-          BASE_URL: https://velop-task01-submission.vercel.app/
+          BASE_URL: https://velop-task01-submission-n81tm3g70-gaurav-nikam-ds.vercel.app/
         run: npx playwright test tests/live-qa.spec.js --reporter=list,html --trace=retain-on-failure
 
       - name: Upload test report and screenshots
