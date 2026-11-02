@@ -6,6 +6,10 @@
 
 ## Live workspaces
 
+- **New Task 01 submission website (production deployment):** https://velop-task01-submission.vercel.app/ — complete reviewer-facing blueprint with navigation, source audit, coverage matrix, KPI catalogue, ERD, pipeline, seven dashboard wireframes, governance, backlog and 21-item assignment checklist. All example values are clearly marked simulated; this is not a production analytics integration.
+- **Website source:** [submission-site/index.html](submission-site/index.html)
+- **Submission website README:** [submission-site/README.md](submission-site/README.md)
+
 - **Current Vercel workspace:** https://veloop-task01-data-analytics.vercel.app/
 - Vercel app source and deployment instructions: [vercel-app/README.md](vercel-app/README.md)
 
