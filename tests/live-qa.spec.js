@@ -21,7 +21,7 @@ test.describe("VELOOP Task 01 — live 25-section submission QA", () => {
     expect(response.status()).toBeLessThan(400);
     await expect(page).toHaveTitle(/VELOOP.*Task 01/i);
     await expect(page.getByRole("navigation")).toBeVisible();
-    await expect(page.getByText(/SIMULATED DATA|illustrative prototype/i).first()).toBeVisible();
+    await expect(page.getByText("SIMULATED / ILLUSTRATIVE ONLY", { exact: true })).toBeVisible();
     await expect(page.locator("#nav button[data-page]")).toHaveCount(25);
   });
 
@@ -148,6 +148,7 @@ test.describe("VELOOP Task 01 — live 25-section submission QA", () => {
     for (const [id, label] of sections) {
       await page.locator(`#nav button[data-page="${id}"]`).click();
       const scan = await new AxeBuilder({ page }).withTags(["wcag2a","wcag2aa","wcag21a","wcag21aa"]).analyze();
+      if (scan.violations.length) console.log("AXE_DETAILS " + JSON.stringify(scan.violations.map(v => ({id:v.id,nodes:v.nodes.map(n=>({target:n.target,html:n.html,failureSummary:n.failureSummary}))}))));
       expect(scan.violations.map(v => ({ id:v.id, impact:v.impact, help:v.help, nodes:v.nodes.length })),
         `Accessibility violations in ${label}`).toEqual([]);
     }
