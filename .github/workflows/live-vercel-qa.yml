@@ -6,7 +6,7 @@ on:
     branches: [main]
     paths:
       - "tests/live-qa.spec.js"
-      - "vercel-app/**"
+      - "submission-site/**"
       - ".github/workflows/live-vercel-qa.yml"
   schedule:
     - cron: "30 3 * * 1-5"
@@ -17,7 +17,7 @@ permissions:
 jobs:
   live-browser-qa:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -33,9 +33,9 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
-      - name: Run live website QA against Vercel
+      - name: Run live website QA against the primary reviewer website
         env:
-          BASE_URL: https://veloop-task01-data-analytics.vercel.app/
+          BASE_URL: https://velop-task01-submission.vercel.app/
         run: npx playwright test tests/live-qa.spec.js --reporter=list,html --trace=retain-on-failure
 
       - name: Upload test report and screenshots
