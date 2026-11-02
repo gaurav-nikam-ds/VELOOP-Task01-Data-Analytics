@@ -25,7 +25,7 @@
 | 11 | KPI catalogue: 30+ KPIs | Definition, formula, required fields, source, frequency, stakeholder, purpose, interpretation, limitation, status | 38 KPI definitions documented | Do not publish KPIs until definitions and source data are approved |
 | 12 | Simulated data profiling | Profile supplied simulated data and document findings | Original user/audit data profiled; supplemental synthetic datasets exist for testing | Supplemental synthetic tables are not actual company data |
 | 13 | Data quality audit | Workbook/report, validation rules, anomalies and interpretation | Prototype now demonstrates 22 checks across five synthetic tables; report downloadable as CSV | This is not the full production audit; run against authorized datasets when supplied |
-| 14 | Dashboard blueprint | Seven dashboard areas; every visual specifies metric, calculation, source, visualization, filters, dimensions, date range, refresh, question and decision | Seven dashboard areas specified in report/workbook; current Vercel reviewer workspace has seven navigation sections | The interactive demo is a prototype, not seven separate production dashboards |
+| 14 | Dashboard blueprint | Seven dashboard areas; every visual specifies metric, calculation, source, visualization, filters, dimensions, date range, refresh, question and decision | Seven dashboard areas specified in report/workbook; primary Vercel reviewer workspace has 25 sections, including seven interactive dashboard prototypes | The interactive demo is a prototype, not seven separate production dashboards |
 | 15 | Developer analytics handoff | Critical event trigger/payload/validation/deduplication/timestamp/source/KPI/acceptance test/priority | Designed/documented | Engineering sign-off and implementation required |
 | 16 | Data pipeline and operating model | Sources, collection, storage, raw layer, validation, transformation, analytics layer, dashboard, refresh, monitoring, failure handling, ownership | Proposed architecture documented | Do not imply pipeline has been deployed |
 | 17 | Data access, privacy and governance | Role-based access, data minimisation, secret handling, retention and ownership | Proposed controls documented | Security/Legal review required |
@@ -73,10 +73,15 @@ The primary reviewer website is https://velop-task01-submission.vercel.app/. It 
 | Seven dashboard areas | `docs/DASHBOARD_VISUAL_SPECIFICATIONS.md` | Seven-dashboard blueprint | Blueprint/specification, not seven live dashboards |
 | Pipeline, governance and change control | `docs/ANALYTICS_CHANGE_LOG_AND_OPERATING_MODEL.md` | Implementation library; Acceptance blockers | Proposed operating model; owner/security review pending |
 | Gaps, assumptions and implementation backlog | `docs/ANALYTICS_FOUNDATION_IMPLEMENTATION_PACK.md`; `docs/data_gaps_and_kpi_guardrails.md` | Acceptance blockers; Deliverable tracker | External decisions and approvals remain open |
-| Website architecture and deployment instructions | `vercel-app/README.md`; repository workflows | Current Vercel workspace | Current site is a reviewer workspace; independent live Playwright QA passed 12/12 tests on 31 October 2026 (linked QA evidence) |
+| Website architecture and deployment instructions | `vercel-app/README.md`; repository workflows | Current Vercel workspace | Current site is a reviewer workspace; independent live Playwright QA passed 11/11 tests on 31 October 2026 (linked QA evidence) |
 | Today's work and requested coordinator feedback | `docs/TODAYS_PROGRESS_REPORT_2026-10-28.md` | Linked from README after this update | Progress report; asks for quality, errors, improvements, additions and priorities |
 
 
 ## Final handoff files — 2 November 2026
 
 A final analyst report PDF and an Excel analytics design workbook were generated as separate attachments in this handoff. The workbook contains the requirements matrix, source inventory, user-profile metrics, synthetic summary, sample-window KPIs, data-quality register, 90-field proposed dictionary, 38 KPI definitions, event catalogue, dashboard blueprint, 25-section inventory and browser QA evidence. Upload both attachments to the coordinator-approved submission location.
+
+
+## Final handoff files — 2 November 2026
+
+A final analyst report PDF and an Excel analytics design workbook were generated as separate attachments in this handoff. The workbook contains the 22-row requirements matrix, source inventory, user profile metrics, synthetic sample summary, sample-window KPI calculations, quality register, 90-field proposed data dictionary, 38 proposed KPI definitions, event catalogue, dashboard blueprint, 25-section inventory and browser QA evidence. Upload both files to the coordinator-approved submission location.
