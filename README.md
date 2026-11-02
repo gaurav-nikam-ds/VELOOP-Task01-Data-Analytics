@@ -76,9 +76,10 @@ npm run build
 
 ## Current verification
 
-- Static source QA for the 25-section primary site passed: [GitHub Actions run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41465328015).
-- Refreshed live Playwright QA targets the primary 25-section reviewer website; its run status and final result are available in [GitHub Actions](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions).
-- Primary Vercel deployment is checked independently; a READY state confirms deployment completion, not browser-test success.
+- Live Playwright browser QA passed **11/11 tests** against the primary 25-section site: [GitHub Actions run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41469605990).
+- Static source QA passed: [GitHub Actions run](https://github.com/gaurav-nikam-ds/VELOOP-Task01-Data-Analytics/actions/runs/41469495737).
+- All 25 sections, filters, sample-window KPIs, CSV export, six responsive widths, accessible names, unique IDs and WCAG 2.1 A/AA across all 25 sections passed.
+- The primary production alias is pinned to a READY deployment that was browser-tested. Git-connected deployments have intermittently emitted no static output, so verify deployment contents and aliases after future source pushes.
 - Automated QA does not replace coordinator/company approval or validate production integrations that are not configured.
 
 ## Remaining external acceptance gates
