@@ -35,19 +35,23 @@ Proposed fields, events, KPI definitions, data models, governance controls and p
 
 ## Today's progress report
 
-- [Daily progress report — 31 October 2026](docs/TODAYS_PROGRESS_REPORT_2026-10-31.md) — corrected seven-section website, integrated audit evidence, fresh 12/12 live QA and remaining approval gates.
+- [Daily progress report — 31 October 2026](docs/TODAYS_PROGRESS_REPORT_2026-10-31.md) — historical seven-section reviewer workspace and QA evidence.
+- [Final QA report — 2 November 2026](docs/FINAL_QA_REPORT_2026-11-02.md) — current 25-section browser QA results.
 
 - [Daily progress report — 28 October 2026](docs/TODAYS_PROGRESS_REPORT_2026-10-28.md) — today's documentation/scope alignment, remaining dependencies, and coordinator questions about work quality, errors, improvements and additions.
 
 ## Requirements and evidence
 
-- [Final deliverable audit — 29 October 2026](docs/FINAL_DELIVERABLE_AUDIT_2026-10-29.md) — required deliverables, verified QA, artifact availability and remaining acceptance gates.
+- [Final QA report — 2 November 2026](docs/FINAL_QA_REPORT_2026-11-02.md) — 11/11 browser tests, 25-section accessibility scan and deployment evidence.
+- [Logical ERD](docs/LOGICAL_ERD.md) and [pipeline architecture](docs/ANALYTICS_PIPELINE_ARCHITECTURE.md) — proposed data model and operating flow.
+- [Final deliverable audit — 29 October 2026](docs/FINAL_DELIVERABLE_AUDIT_2026-10-29.md) — historical artifact/approval checklist.
 
 - [Analytics foundation implementation pack](docs/ANALYTICS_FOUNDATION_IMPLEMENTATION_PACK.md) — source register, product/data coverage map, event contract, identity/grain model, quality controls, proposed KPIs, seven-dashboard blueprint, pipeline, governance, gaps, verification register, backlog and acceptance checklist.
 - [Source data profile & quality audit](docs/SOURCE_DATA_PROFILE_AND_QUALITY_AUDIT.md) — recalculated Task 01 workbook profile, missingness, duplicate IDs and cross-tab findings.
 - [Data dictionary field index](docs/DATA_DICTIONARY_FIELD_INDEX.md) — 90-field inventory and field governance rules.
 - [Developer analytics handoff](docs/DEVELOPER_ANALYTICS_HANDOFF.md) — proposed event contract, lifecycle events and acceptance tests.
 - [Seven-dashboard visual specifications](docs/DASHBOARD_VISUAL_SPECIFICATIONS.md) — visual-level formulas, sources, filters, questions and decisions for all seven areas.
+- [Final submission overview](docs/FINAL_SUBMISSION_OVERVIEW.md) — current deliverables, attachments and external approval gates.
 - [Analytics change log & operating model](docs/ANALYTICS_CHANGE_LOG_AND_OPERATING_MODEL.md) — ownership, review workflow, monitoring, incident handling and release acceptance.
 - [Task 01 requirements-to-evidence checklist](docs/TASK01_REQUIREMENTS_CHECKLIST.md)
 - [Final submission overview and artifact/approval checklist](docs/FINAL_SUBMISSION_OVERVIEW.md)
