@@ -1,0 +1,27 @@
+name: Submission site static QA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "submission-site/**"
+      - ".github/workflows/submission-site-check.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "submission-site/**"
+      - ".github/workflows/submission-site-check.yml"
+  workflow_dispatch:
+
+jobs:
+  static-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate dashboard structure, evidence and JavaScript
+        run: node submission-site/test-dashboard-data.mjs
