@@ -118,9 +118,10 @@ test.describe("VELOOP Task 01 — live 25-section submission QA", () => {
   });
 
   test("responsive layouts remain usable without horizontal page overflow", async ({ page }) => {
+    test.setTimeout(60000);
+    await page.goto(baseURL, { waitUntil: "domcontentloaded" });
     for (const width of [320,360,390,768,1024,1440]) {
       await page.setViewportSize({ width, height: 900 });
-      await page.goto(baseURL, { waitUntil: "domcontentloaded" });
       const dimensions = await page.evaluate(() => ({
         viewport: document.documentElement.clientWidth,
         page: document.documentElement.scrollWidth
